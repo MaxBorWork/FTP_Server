@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 
 public class ServerSocketAccept {
 
-    private static final int PORT = 21;
+    private static final int PORT = 1488;
 
     public ServerSocketAccept() {
         start();
