@@ -1,4 +1,4 @@
-package view;
+package model;
 
 public class ReplyCode {
     static public String CODE_501 = "501 Syntax error in parameters or arguments.";

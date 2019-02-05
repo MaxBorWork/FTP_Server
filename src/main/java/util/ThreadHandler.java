@@ -1,7 +1,6 @@
 package util;
 
 import controller.CommandsController;
-import view.Messages;
 
 import java.io.*;
 import java.net.Socket;
@@ -104,14 +103,14 @@ public class ThreadHandler implements Runnable {
                             break;
                         }
                         case PWD: {
-                            String response = controller.printWorkDirCommand(answer);
-                            writer.println(response);
+//                            String response = controller.printWorkDirCommand(answer);
+//                            writer.println(response);
                             done = true;
                             break;
                         }
                         case LIST: { // _--------------------------------------------------!!!
-                            String response = controller.listCommand(line, answer);
-                            writer.println(response);
+//                            String response = controller.listCommand(line, answer);
+//                            writer.println(response);
                             done = true;
                             break;
                         }
@@ -121,7 +120,7 @@ public class ThreadHandler implements Runnable {
                         }
                     }
                 } else {
-                    answer.commandUnrecognized();
+//                    answer.commandUnrecognized();
                     done = true;
                 }
             }

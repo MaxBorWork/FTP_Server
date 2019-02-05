@@ -1,8 +1,8 @@
 package controller;
 
 import util.JDBCConnection;
-import view.Messages;
-import view.ReplyCode;
+import model.Messages;
+import model.ReplyCode;
 
 import java.io.File;
 import java.util.ArrayList;
