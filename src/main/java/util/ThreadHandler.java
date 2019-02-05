@@ -1,6 +1,7 @@
 package util;
 
 import controller.CommandsController;
+import view.Messages;
 
 import java.io.*;
 import java.net.Socket;
@@ -8,6 +9,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class ThreadHandler implements Runnable {
+
+    final String USERNAME = "USERNAME";
+    final String PASSWORD = "PASSWORD";
+    final String DELE = "DELE";
+    final String RMD = "RMD";
+    final String MKD = "MKD";
+    final String STORE = "STORE";
+    final String PORT = "PORT";
+    final String RETR = "RETR";
+    final String LIST = "LIST";
+    final String CWD = "CWD";
+    final String PWD = "PWD";
 
     private Socket inSocket;
     private CommandsController controller;
@@ -27,6 +40,7 @@ public class ThreadHandler implements Runnable {
                     new OutputStreamWriter(outputStream, StandardCharsets.UTF_8),true);
 
             writer.println("220 Service ready for new user");
+
             boolean done = false;
             while (!done && in.hasNextLine()) {
                 String line = in.nextLine();
@@ -36,22 +50,78 @@ public class ThreadHandler implements Runnable {
                 if (lineSlpit.length > 1) {
                     String command = lineSlpit[0];
                     switch (command) {
-                        case "USERNAME": {
+                        case USERNAME: {
                             String response = controller.userCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case "PASSWORD": {
+                        case PASSWORD: {
                             String response = controller.passwordCommand(line);
                             writer.println(response);
                             done = true;
                             break;
                         }
-                        default: {
+                        case DELE: { // _--------------------------------------------------!!!
+                            String response = controller.deleteCommand(line);
+                            writer.println(response);
                             done = true;
+                            break;
+                        }
+                        case MKD: { // _--------------------------------------------------!!!
+                            String response = controller.makeDirectoryCommand(line);
+                            writer.println(response);
+                            done = true;
+                            break;
+                        }
+                        case STORE: {
+                            String response = controller.storeCommand(line);
+                            writer.println(response);
+                            done = true;
+                            break;
+                        }
+                        case PORT: { 
+                            String response = controller.portCommand(line);
+                            writer.println(response);
+                            done = true;
+                            break;
+                        }
+                        case RMD: { // _--------------------------------------------------!!!
+                            String response = controller.removeDirectoryCommand(line);
+                            writer.println(response);
+                            done = true;
+                            break;
+                        }
+                        case RETR: {
+                            String response = controller.retrieveCommand(line);
+                            writer.println(response);
+                            done = true;
+                            break;
+                        }
+                        case CWD: {
+                            String response = controller.changeWorkDirCommand(line);
+                            writer.println(response);
+                            done = true;
+                            break;
+                        }
+                        case PWD: {
+                            String response = controller.printWorkDirCommand(answer);
+                            writer.println(response);
+                            done = true;
+                            break;
+                        }
+                        case LIST: { // _--------------------------------------------------!!!
+                            String response = controller.listCommand(line, answer);
+                            writer.println(response);
+                            done = true;
+                            break;
+                        }
+
+                        default: {
+                            done = true;/// CHANGE!!!!!!!!
                         }
                     }
                 } else {
+                    answer.commandUnrecognized();
                     done = true;
                 }
             }
