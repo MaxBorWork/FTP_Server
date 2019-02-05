@@ -17,7 +17,6 @@ public class ThreadHandler implements Runnable {
         controller = new CommandsController();
     }
 
-
     public void run() {
         try(InputStream inputStream = inSocket.getInputStream();
             OutputStream outputStream = inSocket.getOutputStream()) {
@@ -27,7 +26,7 @@ public class ThreadHandler implements Runnable {
             PrintWriter writer = new PrintWriter(
                     new OutputStreamWriter(outputStream, StandardCharsets.UTF_8),true);
 
-            writer.println("Hello! Write something");
+            writer.println("220 Service ready for new user");
             boolean done = false;
             while (!done && in.hasNextLine()) {
                 String line = in.nextLine();
