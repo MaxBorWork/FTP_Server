@@ -1,6 +1,7 @@
 package util;
 
 import controller.CommandsController;
+import model.ReplyCode;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,8 +10,8 @@ import java.util.Scanner;
 
 public class ThreadHandler implements Runnable {
 
-    final String USERNAME = "USERNAME";
-    final String PASSWORD = "PASSWORD";
+    final String USER = "USER";
+    final String PASS = "PASS";
     final String DELE = "DELE";
     final String RMD = "RMD";
     final String MKD = "MKD";
@@ -20,6 +21,7 @@ public class ThreadHandler implements Runnable {
     final String LIST = "LIST";
     final String CWD = "CWD";
     final String PWD = "PWD";
+    final String SYST = "SYST";
 
     private Socket inSocket;
     private CommandsController controller;
@@ -38,7 +40,7 @@ public class ThreadHandler implements Runnable {
             PrintWriter writer = new PrintWriter(
                     new OutputStreamWriter(outputStream, StandardCharsets.UTF_8),true);
 
-            writer.println("220 Service ready for new user");
+            writer.println(ReplyCode.CODE_220);
 
             boolean done = false;
             while (!done && in.hasNextLine()) {
@@ -46,82 +48,80 @@ public class ThreadHandler implements Runnable {
                 System.out.println(line);
                 String[] lineSlpit = line.split(" ");
 
-                if (lineSlpit.length > 1) {
+                if (lineSlpit.length >= 1) {
                     String command = lineSlpit[0];
                     switch (command) {
-                        case USERNAME: {
+                        case USER: {
                             String response = controller.userCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case PASSWORD: {
+                        case PASS: {
                             String response = controller.passwordCommand(line);
                             writer.println(response);
-                            done = true;
                             break;
                         }
-                        case DELE: { // _--------------------------------------------------!!!
+                        case DELE: {
                             String response = controller.deleteCommand(line);
                             writer.println(response);
-                            done = true;
                             break;
                         }
-                        case MKD: { // _--------------------------------------------------!!!
+
+                    case SYST: {
+                        String response = controller.systCommand(line);
+                        writer.println(response);
+                        break;
+                    }
+                        case MKD: {
                             String response = controller.makeDirectoryCommand(line);
                             writer.println(response);
-                            done = true;
                             break;
                         }
                         case STORE: {
                             String response = controller.storeCommand(line);
                             writer.println(response);
-                            done = true;
                             break;
                         }
                         case PORT: { 
                             String response = controller.portCommand(line);
                             writer.println(response);
-                            done = true;
                             break;
                         }
-                        case RMD: { // _--------------------------------------------------!!!
+                        case RMD: {
                             String response = controller.removeDirectoryCommand(line);
                             writer.println(response);
-                            done = true;
                             break;
                         }
                         case RETR: {
                             String response = controller.retrieveCommand(line);
                             writer.println(response);
-                            done = true;
                             break;
                         }
                         case CWD: {
                             String response = controller.changeWorkDirCommand(line);
                             writer.println(response);
-                            done = true;
                             break;
                         }
                         case PWD: {
-//                            String response = controller.printWorkDirCommand(answer);
-//                            writer.println(response);
-                            done = true;
+                            String response = controller.printWorkDirCommand();
+                            writer.println(response);
                             break;
                         }
-                        case LIST: { // _--------------------------------------------------!!!
-//                            String response = controller.listCommand(line, answer);
-//                            writer.println(response);
-                            done = true;
+                        case LIST: {
+      //                      String response = controller.listCommand(line, answer);
+                 //           writer.println(response);
+                           // done = true;
                             break;
                         }
 
                         default: {
-                            done = true;/// CHANGE!!!!!!!!
+                            writer.println(ReplyCode.CODE_500);
                         }
                     }
                 } else {
-//                    answer.commandUnrecognized();
-                    done = true;
+                    writer.println(ReplyCode.CODE_500);
+//                   answer.commandUnrecognized();
+                   done = true;
                 }
             }
 
