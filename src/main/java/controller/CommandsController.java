@@ -6,6 +6,7 @@ import model.Messages;
 import model.ReplyCode;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class CommandsController {
 
     private JDBCConnection connection;
     private String username;
-    private String ROOT = "" + File.pathSeparator + "";
+    private String ROOT = "/etc/ftRoot";
     private String SPACE = " ";
     private int SIZE_OF_COMMAND_WITHOUT_ARGUMENT = 1;
     private int SIZE_OF_COMMAND_WITH_ONE_ARGUMENT = 2;
@@ -33,7 +34,7 @@ public class CommandsController {
 
             username = messageSplit[FIRST_ARGUMENT_INDEX];
             boolean user = connection.getUsername(username);
-
+            System.out.println(user);
             if (user) {
                 log.info("username is right");
                 return ReplyCode.CODE_331;
@@ -61,6 +62,17 @@ public class CommandsController {
             }
 
         } else return ReplyCode.CODE_500;
+
+    }
+
+
+    public String systCommand(String message) {
+        String[] messageSplit = message.split(SPACE);
+
+        if (messageSplit.length ==  SIZE_OF_COMMAND_WITHOUT_ARGUMENT) return ReplyCode.CODE_215;
+
+        else return ReplyCode.CODE_500;
+
 
     }
 
@@ -159,13 +171,9 @@ public class CommandsController {
         } else return ReplyCode.CODE_500;
     }
 
-    public String printWorkDirCommand(Messages answer){
-        answer.printRoot(ROOT);
-        return ReplyCode.CODE_200;
+    public String printWorkDirCommand(){
+        return ReplyCode.CODE_257;
     }
-
-
-    //---------------------------------------------------------------------
 
 
 
@@ -186,11 +194,16 @@ public class CommandsController {
     public String portCommand(String message) {
         String[] messageSplit = message.split(" ");
 
-        if (messageSplit.length > 1) {
+        if (messageSplit.length == 2) {
+            String[] hostAndPorts = messageSplit[1].split(",");
+            String host = hostAndPorts[0] +"."+hostAndPorts[1] +"."+ hostAndPorts[2] + "."+hostAndPorts[3];
+           // String ports[] = new String[2];
+          //  ports[0] = hostAndPorts[4];
+          //  ports[1] = hostAndPorts[5];
+            return ReplyCode.CODE_200;
+            //проверка на то свобоодны ли они77?
+        } else return ReplyCode.CODE_500;
 
-        } else return "Error";
-
-        return "Error";
     }
 
 
