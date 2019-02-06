@@ -1,6 +1,6 @@
 package util;
 
-import util.ThreadHandler;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -12,6 +12,8 @@ public class ServerSocketAccept {
 
     private static final int PORT = 21;
     private static final int DATA_PORT = 20;
+
+    private static Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
     public ServerSocketAccept() {
         start();

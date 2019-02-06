@@ -50,4 +50,8 @@ public class CommandsControllerTest {
     @Test
     public void retrieveCommand() {
     }
+
+    @Test
+    public void userCommand1() {
+    }
 }

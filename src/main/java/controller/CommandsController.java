@@ -1,5 +1,6 @@
 package controller;
 
+import org.apache.log4j.Logger;
 import util.JDBCConnection;
 import model.Messages;
 import model.ReplyCode;
@@ -19,6 +20,8 @@ public class CommandsController {
     private int SIZE_OF_COMMAND_WITH_TWO_ARGUMENT = 3;
     private int FIRST_ARGUMENT_INDEX = 1;
 
+    private static Logger log = Logger.getLogger(CommandsController.class);
+
     public CommandsController() {
         connection = new JDBCConnection();
     }
@@ -32,8 +35,10 @@ public class CommandsController {
             boolean user = connection.getUsername(username);
 
             if (user) {
+                log.info("username is right");
                 return ReplyCode.CODE_331;
             } else {
+                log.info("There is no such username in DB");
                 return ReplyCode.CODE_200; ///нет такого пользователя!!!!!!!!!!!!
             }
 

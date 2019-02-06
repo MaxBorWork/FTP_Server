@@ -1,0 +1,4 @@
+2019-02-05 17:46:02 INFO  ServerSocketAccept:37 - Created input connection
+2019-02-05 17:46:02 INFO  ServerSocketAccept:53 - Get command: USER admin
+2019-02-05 17:46:07 INFO  ServerSocketAccept:37 - Created input connection
+2019-02-05 17:46:07 INFO  ServerSocketAccept:53 - Get command: USER admin

@@ -1,6 +1,7 @@
 package util;
 
 import controller.CommandsController;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.Socket;
@@ -24,12 +25,17 @@ public class ThreadHandler implements Runnable {
     private Socket inSocket;
     private CommandsController controller;
 
+    private static Logger log = Logger.getLogger(ServerSocketAccept.class);
+
     public ThreadHandler(Socket inSocket) {
         this.inSocket = inSocket;
         controller = new CommandsController();
     }
 
     public void run() {
+
+        log.info("Created input connection");
+
         try(InputStream inputStream = inSocket.getInputStream();
             OutputStream outputStream = inSocket.getOutputStream()) {
 
@@ -44,6 +50,7 @@ public class ThreadHandler implements Runnable {
             while (!done && in.hasNextLine()) {
                 String line = in.nextLine();
                 System.out.println(line);
+                log.info("Get command: " + line);
                 String[] lineSlpit = line.split(" ");
 
                 if (lineSlpit.length > 1) {
