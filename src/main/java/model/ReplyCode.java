@@ -9,4 +9,9 @@ public class ReplyCode {
     static public String CODE_215 = "215 UNIX system type.";
     static public String CODE_257 = "257 \""+ROOT+"\" is root directory.";
     static public String CODE_220 = "220 Service ready for new user";
+    static public String CODE_230 = "230 Guest login ok, access restrictions apply";
+    static public String CODE_150 = "150 ";
+    static public String CODE_226 = "226 Transfer complete";
+    static public String CODE_530 = "530 User can't be logged in";
+    static public String CODE_227 = "227 Entering Passive Mode ";
 }

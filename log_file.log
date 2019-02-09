@@ -2,3 +2,294 @@
 2019-02-05 17:46:02 INFO  ServerSocketAccept:53 - Get command: USER admin
 2019-02-05 17:46:07 INFO  ServerSocketAccept:37 - Created input connection
 2019-02-05 17:46:07 INFO  ServerSocketAccept:53 - Get command: USER admin
+2019-02-06 16:49:23 INFO  ServerSocketAccept:39 - Created input connection
+2019-02-06 16:49:23 INFO  ServerSocketAccept:55 - Get command: USER admin
+2019-02-06 16:49:23 INFO  CommandsController:42 - There is no such username in DB
+2019-02-06 16:49:23 INFO  ServerSocketAccept:55 - Get command: SYST
+2019-02-06 16:49:23 INFO  ServerSocketAccept:55 - Get command: FEAT
+2019-02-06 16:49:23 INFO  ServerSocketAccept:55 - Get command: PWD
+2019-02-06 16:49:23 INFO  ServerSocketAccept:55 - Get command: TYPE I
+2019-02-06 16:50:19 INFO  ServerSocketAccept:39 - Created input connection
+2019-02-06 16:50:19 INFO  ServerSocketAccept:55 - Get command: USER admin
+2019-02-06 16:50:19 INFO  CommandsController:42 - There is no such username in DB
+2019-02-06 16:50:19 INFO  ServerSocketAccept:55 - Get command: PWD
+2019-02-06 16:50:19 INFO  ServerSocketAccept:55 - Get command: TYPE I
+2019-02-06 16:51:02 INFO  ServerSocketAccept:39 - Created input connection
+2019-02-06 16:51:02 INFO  ServerSocketAccept:55 - Get command: USER admin
+2019-02-06 16:51:02 INFO  CommandsController:39 - username is right
+2019-02-06 16:51:02 INFO  ServerSocketAccept:55 - Get command: PASS 123
+2019-02-06 16:51:02 INFO  ServerSocketAccept:55 - Get command: PWD
+2019-02-06 16:51:02 INFO  ServerSocketAccept:55 - Get command: TYPE I
+2019-02-07 21:13:23 INFO  ServerSocketAccept:40 - Created input connection
+2019-02-07 21:13:23 INFO  ServerSocketAccept:56 - Get command: USER admin
+2019-02-07 21:13:24 INFO  CommandsController:39 - username is right
+2019-02-07 21:13:24 INFO  ServerSocketAccept:56 - Get command: PASS 123
+2019-02-07 21:13:24 INFO  ServerSocketAccept:56 - Get command: SYST
+2019-02-07 21:13:24 INFO  ServerSocketAccept:56 - Get command: FEAT
+2019-02-07 21:13:24 INFO  ServerSocketAccept:56 - Get command: PWD
+2019-02-07 21:13:24 INFO  ServerSocketAccept:56 - Get command: TYPE I
+2019-02-07 21:13:24 INFO  ServerSocketAccept:56 - Get command: PASV
+2019-02-07 21:13:24 INFO  ServerSocketAccept:56 - Get command: PORT 127,0,0,1,164,83
+2019-02-07 21:13:24 INFO  ServerSocketAccept:56 - Get command: LIST
+2019-02-07 21:13:44 INFO  ServerSocketAccept:40 - Created input connection
+2019-02-07 21:13:44 INFO  ServerSocketAccept:56 - Get command: USER admin
+2019-02-07 21:13:44 INFO  CommandsController:39 - username is right
+2019-02-07 21:13:44 INFO  ServerSocketAccept:56 - Get command: PASS 123
+2019-02-07 21:13:44 INFO  ServerSocketAccept:56 - Get command: PWD
+2019-02-07 21:13:44 INFO  ServerSocketAccept:56 - Get command: TYPE I
+2019-02-07 21:13:44 INFO  ServerSocketAccept:56 - Get command: PASV
+2019-02-07 21:13:44 INFO  ServerSocketAccept:56 - Get command: PORT 127,0,0,1,174,65
+2019-02-07 21:13:44 INFO  ServerSocketAccept:56 - Get command: LIST
+2019-02-07 21:21:10 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 21:21:10 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 21:21:10 INFO  CommandsController:39 - username is right
+2019-02-07 21:21:10 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 21:21:10 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 21:21:10 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 21:21:10 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 21:21:10 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,181,23
+2019-02-07 21:21:10 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 21:24:56 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 21:24:56 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 21:24:56 INFO  CommandsController:39 - username is right
+2019-02-07 21:24:56 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 21:24:56 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 21:24:56 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 21:24:56 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 21:24:56 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,222,91
+2019-02-07 21:24:56 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 21:25:31 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 21:25:31 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 21:25:32 INFO  CommandsController:39 - username is right
+2019-02-07 21:25:32 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 21:25:34 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 21:25:34 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 21:25:34 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 21:25:34 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,237,191
+2019-02-07 21:25:34 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 21:34:58 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 21:34:58 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 21:34:58 INFO  CommandsController:39 - username is right
+2019-02-07 21:34:58 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 21:34:58 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 21:34:58 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 21:34:58 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 21:34:58 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,189,253
+2019-02-07 21:34:58 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:12:04 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:12:04 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:12:04 INFO  CommandsController:42 - username is right
+2019-02-07 22:12:04 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:12:04 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:12:04 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:12:04 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:12:04 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,188,253
+2019-02-07 22:12:04 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:12:35 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:12:35 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:12:35 INFO  CommandsController:42 - username is right
+2019-02-07 22:12:35 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:12:35 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:12:35 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:12:35 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:12:35 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,157,123
+2019-02-07 22:12:35 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:14:04 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:14:04 INFO  CommandsController:42 - username is right
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: SYST
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: FEAT
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,155,35
+2019-02-07 22:14:04 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:21:07 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:21:07 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:21:07 INFO  CommandsController:42 - username is right
+2019-02-07 22:21:07 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:21:07 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:21:07 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:21:07 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:21:07 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,209,39
+2019-02-07 22:21:07 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:24:55 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:24:55 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:24:55 INFO  CommandsController:42 - username is right
+2019-02-07 22:24:55 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:24:55 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:24:55 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:24:55 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:24:55 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,166,155
+2019-02-07 22:24:55 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:25:52 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:25:52 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:25:52 INFO  CommandsController:42 - username is right
+2019-02-07 22:25:52 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:25:52 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:25:52 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:25:52 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:25:52 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,173,7
+2019-02-07 22:25:52 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:50:30 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:50:30 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:50:30 INFO  CommandsController:42 - username is right
+2019-02-07 22:50:30 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:50:30 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:50:30 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:50:30 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:50:30 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,163,45
+2019-02-07 22:50:30 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:50:50 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:50:50 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:50:50 INFO  CommandsController:42 - username is right
+2019-02-07 22:50:50 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:50:50 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:50:50 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:50:50 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:50:50 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,206,157
+2019-02-07 22:50:50 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:51:42 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:51:42 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:51:42 INFO  CommandsController:42 - username is right
+2019-02-07 22:51:42 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:51:42 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:51:42 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:51:42 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:51:42 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,212,189
+2019-02-07 22:51:42 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-07 22:52:02 INFO  ServerSocketAccept:41 - Created input connection
+2019-02-07 22:52:02 INFO  ServerSocketAccept:57 - Get command: USER admin
+2019-02-07 22:52:02 INFO  CommandsController:42 - username is right
+2019-02-07 22:52:02 INFO  ServerSocketAccept:57 - Get command: PASS 123
+2019-02-07 22:52:02 INFO  ServerSocketAccept:57 - Get command: PWD
+2019-02-07 22:52:02 INFO  ServerSocketAccept:57 - Get command: TYPE I
+2019-02-07 22:52:02 INFO  ServerSocketAccept:57 - Get command: PASV
+2019-02-07 22:52:02 INFO  ServerSocketAccept:57 - Get command: PORT 127,0,0,1,201,155
+2019-02-07 22:52:02 INFO  ServerSocketAccept:57 - Get command: LIST
+2019-02-08 21:58:27 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 21:58:27 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-08 21:58:27 INFO  CommandsController:42 - username is right
+2019-02-08 21:58:27 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-08 21:58:27 INFO  ServerSocketAccept:65 - Get command: SYST
+2019-02-08 21:58:27 INFO  ServerSocketAccept:65 - Get command: FEAT
+2019-02-08 21:58:27 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-08 21:58:27 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-08 21:58:27 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-08 21:58:27 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-08 22:55:14 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 22:55:14 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-08 22:55:14 INFO  CommandsController:42 - username is right
+2019-02-08 22:55:14 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-08 22:55:14 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-08 22:55:14 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-08 22:55:14 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-08 22:55:14 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-08 22:55:14 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 22:55:34 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 22:55:34 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-08 22:55:34 INFO  CommandsController:42 - username is right
+2019-02-08 22:55:34 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-08 22:55:34 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-08 22:55:34 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-08 22:55:34 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-08 22:55:34 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 22:55:34 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-08 23:41:45 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:41:45 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-08 23:41:45 INFO  CommandsController:42 - username is right
+2019-02-08 23:41:45 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-08 23:41:45 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-08 23:41:45 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-08 23:41:45 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-08 23:41:45 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-08 23:41:45 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:42:05 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:42:05 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-08 23:42:05 INFO  CommandsController:42 - username is right
+2019-02-08 23:42:05 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-08 23:42:05 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-08 23:42:05 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-08 23:42:05 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-08 23:42:05 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:42:05 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-08 23:43:29 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:43:29 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-08 23:43:29 INFO  CommandsController:42 - username is right
+2019-02-08 23:43:29 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-08 23:43:29 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-08 23:43:29 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-08 23:43:29 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-08 23:43:29 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-08 23:43:29 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:43:49 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:43:49 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-08 23:43:49 INFO  CommandsController:42 - username is right
+2019-02-08 23:43:49 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-08 23:43:49 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-08 23:43:49 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-08 23:43:49 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-08 23:43:49 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:43:49 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-08 23:45:11 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:45:11 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-08 23:45:11 INFO  CommandsController:42 - username is right
+2019-02-08 23:45:11 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-08 23:45:11 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-08 23:45:11 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-08 23:45:11 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-08 23:45:11 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-08 23:45:11 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 00:00:41 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 00:00:41 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 00:00:41 INFO  CommandsController:42 - username is right
+2019-02-09 00:00:41 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 00:00:41 INFO  CommandsController:65 - password is right
+2019-02-09 00:00:41 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 00:00:41 INFO  CommandsController:188 - printing root directory, directory is /etc/ftRoot
+2019-02-09 00:00:41 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 00:00:41 INFO  CommandsController:225 - type of transferring data is ASCII
+2019-02-09 00:00:41 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 00:00:41 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 00:00:41 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 00:00:41 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 00:02:22 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 00:02:22 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 00:02:22 INFO  CommandsController:42 - username is right
+2019-02-09 00:02:22 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 00:02:22 INFO  CommandsController:65 - password is right
+2019-02-09 00:02:22 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 00:02:22 INFO  CommandsController:188 - printing root directory, directory is /etc/ftRoot
+2019-02-09 00:02:22 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 00:02:22 INFO  CommandsController:225 - type of transferring data is ASCII
+2019-02-09 00:02:22 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 00:02:22 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 00:02:22 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 00:02:22 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 00:02:49 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 00:02:49 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 00:02:49 INFO  CommandsController:42 - username is right
+2019-02-09 00:02:49 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 00:02:49 INFO  CommandsController:65 - password is right
+2019-02-09 00:02:49 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 00:02:49 INFO  CommandsController:188 - printing root directory, directory is /etc/ftRoot
+2019-02-09 00:02:49 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 00:02:49 INFO  CommandsController:225 - type of transferring data is ASCII
+2019-02-09 00:02:49 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 00:02:49 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 00:02:49 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 00:02:49 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 00:03:19 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 00:03:19 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 00:03:19 INFO  CommandsController:42 - username is right
+2019-02-09 00:03:19 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 00:03:19 INFO  CommandsController:65 - password is right
+2019-02-09 00:03:19 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 00:03:19 INFO  CommandsController:188 - printing root directory, directory is /etc/ftRoot
+2019-02-09 00:03:19 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 00:03:19 INFO  CommandsController:225 - type of transferring data is ASCII
+2019-02-09 00:03:19 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 00:03:19 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 00:03:19 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 00:03:19 INFO  ServerSocketAccept:49 - Created input connection

@@ -6,7 +6,10 @@ import model.Messages;
 import model.ReplyCode;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +17,7 @@ public class CommandsController {
 
     private JDBCConnection connection;
     private String username;
-    private String ROOT = "/etc/ftRoot";
+    public static String ROOT = "/etc/ftRoot";
     private String SPACE = " ";
     private int SIZE_OF_COMMAND_WITHOUT_ARGUMENT = 1;
     private int SIZE_OF_COMMAND_WITH_ONE_ARGUMENT = 2;
@@ -40,10 +43,13 @@ public class CommandsController {
                 return ReplyCode.CODE_331;
             } else {
                 log.info("There is no such username in DB");
-                return ReplyCode.CODE_200; ///нет такого пользователя!!!!!!!!!!!!
+                return ReplyCode.CODE_530;
             }
 
-        } else return ReplyCode.CODE_500;
+        } else {
+            log.info("Worng command");
+            return ReplyCode.CODE_500;
+        }
 
     }
 
@@ -56,12 +62,17 @@ public class CommandsController {
             boolean user = connection.getUser(username, password);
 
             if (user) {
-                return ReplyCode.CODE_200;
+                log.info("password is right");
+                return ReplyCode.CODE_230;
             } else {
-                return ReplyCode.CODE_200; ///не верный пароль!!!!!!!!!!
+                log.info("Worng pasword");
+                return ReplyCode.CODE_530;
             }
 
-        } else return ReplyCode.CODE_500;
+        } else {
+            log.info("Worng command");
+            return ReplyCode.CODE_500;
+        }
 
     }
 
@@ -69,7 +80,9 @@ public class CommandsController {
     public String systCommand(String message) {
         String[] messageSplit = message.split(SPACE);
 
-        if (messageSplit.length ==  SIZE_OF_COMMAND_WITHOUT_ARGUMENT) return ReplyCode.CODE_215;
+        if (messageSplit.length ==  SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
+            return ReplyCode.CODE_215;
+        }
 
         else return ReplyCode.CODE_500;
 
@@ -130,7 +143,7 @@ public class CommandsController {
         }
     }
 
-    public String listCommand(String message, Messages answer) {
+    public String listCommand(String message, Messages answer) throws IOException {
         String[] messageSplit = message.split(SPACE);
 
         if (messageSplit.length == SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
@@ -148,8 +161,8 @@ public class CommandsController {
                 }
             } else return ReplyCode.CODE_500;
 
-            answer.printFileList(files);
-            answer.printDirectoryList(dirs);
+//            answer.printFileList(files);
+            answer.printDirectoryList(dirs, files);
 
             return ReplyCode.CODE_200;
 
@@ -172,6 +185,7 @@ public class CommandsController {
     }
 
     public String printWorkDirCommand(){
+        log.info("printing root directory, directory is " + ROOT);
         return ReplyCode.CODE_257;
     }
 
@@ -192,6 +206,7 @@ public class CommandsController {
 
 
     public String portCommand(String message) {
+        log.info("PORT command recieved");
         String[] messageSplit = message.split(" ");
 
         if (messageSplit.length == 2) {
@@ -206,8 +221,16 @@ public class CommandsController {
 
     }
 
+    public String getType() {
+        log.info("type of transferring data is ASCII");
+        return ReplyCode.CODE_200;
+    }
 
-
+    public String pasvResponse() {
+        log.info("sent data connection address 127.0.0.1:20");
+        String resp = ReplyCode.CODE_227 + "(127,0,0,1," + 20 /256 + "," + 20 % 256 + ")";
+        return resp;
+    }
 
 
 }

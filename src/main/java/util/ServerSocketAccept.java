@@ -15,6 +15,8 @@ public class ServerSocketAccept {
 
     private static Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
+    private static InetAddress addr;
+
     public ServerSocketAccept() {
         start();
     }
@@ -22,12 +24,12 @@ public class ServerSocketAccept {
     private void start() {
         try {
 //            InetAddress addr = InetAddress.getByName("192.168.43.234");
-            final InetAddress addr = InetAddress.getByName("127.0.0.1");
+            addr = InetAddress.getByName("127.0.0.1");
 
             Runnable r1 = new Runnable() {
                 @Override
                 public void run() {
-                    createConnection(PORT, addr);
+                    createConnection(PORT);
                 }
             };
             Thread thread1 = new Thread(r1);
@@ -36,7 +38,7 @@ public class ServerSocketAccept {
             Runnable r2 = new Runnable() {
                 @Override
                 public void run() {
-                    createConnection(DATA_PORT, addr);
+                    createConnection(DATA_PORT);
                 }
             };
             Thread thread2 = new Thread(r2);
@@ -47,7 +49,7 @@ public class ServerSocketAccept {
         }
     }
 
-    private void createConnection(int port, InetAddress addr) {
+    static void createConnection(int port) {
         try (ServerSocket socket = new ServerSocket(port, 50, addr))
         {
             int i = 1;

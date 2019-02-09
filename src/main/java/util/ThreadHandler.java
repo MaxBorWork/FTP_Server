@@ -1,12 +1,17 @@
 package util;
 
 import controller.CommandsController;
+import model.Messages;
 import org.apache.log4j.Logger;
 import model.ReplyCode;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 import java.util.Scanner;
 
 public class ThreadHandler implements Runnable {
@@ -23,8 +28,13 @@ public class ThreadHandler implements Runnable {
     final String CWD = "CWD";
     final String PWD = "PWD";
     final String SYST = "SYST";
+    final String TYPE = "TYPE";
+    final String PASV = "PASV";
+
+    private static final int DATA_PORT = 20;
 
     private Socket inSocket;
+    private Socket dataSocket;
     private CommandsController controller;
 
     private static Logger log = Logger.getLogger(ServerSocketAccept.class);
@@ -73,12 +83,11 @@ public class ThreadHandler implements Runnable {
                             writer.println(response);
                             break;
                         }
-
-                    case SYST: {
-                        String response = controller.systCommand(line);
-                        writer.println(response);
-                        break;
-                    }
+                        case SYST: {
+                            String response = controller.systCommand(line);
+                            writer.println(response);
+                            break;
+                        }
                         case MKD: {
                             String response = controller.makeDirectoryCommand(line);
                             writer.println(response);
@@ -115,12 +124,21 @@ public class ThreadHandler implements Runnable {
                             break;
                         }
                         case LIST: {
-      //                      String response = controller.listCommand(line, answer);
-                 //           writer.println(response);
+                            String response = controller.listCommand(line, new Messages(writer));
+                            writer.println(response);
                            // done = true;
                             break;
                         }
-
+                        case TYPE: {
+                            String response = controller.getType();
+                            writer.println(response);
+                            break;
+                        }
+                        case PASV: {
+                            String response = controller.pasvResponse();
+                            writer.println(response);
+                            break;
+                        }
                         default: {
                             writer.println(ReplyCode.CODE_500);
                         }
@@ -138,6 +156,25 @@ public class ThreadHandler implements Runnable {
 //            if(line != null) {
 //                System.out.println(line);
 //            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createDataSocket() throws UnknownHostException {
+        InetAddress addr = InetAddress.getByName("127.0.0.1");
+        try (ServerSocket socket = new ServerSocket(DATA_PORT, 50, addr))
+        {
+            int i = 1;
+
+            while (true) {
+                Socket inSocket = socket.accept();
+                Runnable r = new ThreadHandler(inSocket);
+                Thread thread = new Thread(r);
+                thread.run();
+                i++;
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
