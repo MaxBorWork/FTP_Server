@@ -293,3 +293,339 @@
 2019-02-09 00:03:19 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
 2019-02-09 00:03:19 INFO  ServerSocketAccept:65 - Get command: LIST
 2019-02-09 00:03:19 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 09:01:38 INFO  CommandsController:42 - username is right
+2019-02-09 09:03:36 INFO  CommandsController:49 - Worng command
+2019-02-09 09:03:40 INFO  CommandsController:42 - username is right
+2019-02-09 09:04:04 INFO  CommandsController:45 - There is no such username in DB
+2019-02-09 09:04:14 INFO  CommandsController:45 - There is no such username in DB
+2019-02-09 09:17:46 INFO  CommandsController:45 - There is no such username in DB
+2019-02-09 09:18:40 INFO  CommandsController:67 - Worng pasword
+2019-02-09 09:24:06 INFO  CommandsController:67 - Wrong pasword
+2019-02-09 09:24:12 INFO  CommandsController:72 - Wrong command
+2019-02-09 09:25:41 INFO  CommandsController:42 - username is right
+2019-02-09 09:25:41 INFO  CommandsController:64 - password is right
+2019-02-09 09:25:47 INFO  CommandsController:42 - username is right
+2019-02-09 09:25:47 INFO  CommandsController:67 - Wrong pasword
+2019-02-09 10:19:28 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 10:19:28 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 10:19:29 INFO  CommandsController:42 - username is right
+2019-02-09 10:19:29 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 10:19:29 INFO  CommandsController:64 - password is right
+2019-02-09 10:19:29 INFO  ServerSocketAccept:65 - Get command: SYST
+2019-02-09 10:19:29 INFO  ServerSocketAccept:65 - Get command: FEAT
+2019-02-09 10:19:29 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 10:19:29 INFO  CommandsController:186 - printing root directory, directory is /etc/ftRoot
+2019-02-09 10:19:29 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 10:20:43 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 10:20:43 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 10:20:43 INFO  CommandsController:42 - username is right
+2019-02-09 10:20:43 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 10:20:43 INFO  CommandsController:64 - password is right
+2019-02-09 10:20:43 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 10:20:43 INFO  CommandsController:186 - printing root directory, directory is /etc/ftRoot
+2019-02-09 10:20:43 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 10:21:29 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 10:21:29 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 10:21:30 INFO  CommandsController:42 - username is right
+2019-02-09 10:21:30 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 10:21:30 INFO  CommandsController:64 - password is right
+2019-02-09 10:21:30 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 10:21:30 INFO  CommandsController:186 - printing root directory, directory is /etc/ftRoot
+2019-02-09 10:21:30 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 10:21:30 INFO  CommandsController:230 - type of transferring data is binary
+2019-02-09 10:21:30 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 10:21:30 INFO  CommandsController:243 - sent data connection address 127.0.0.1:20
+2019-02-09 10:21:30 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 10:21:30 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:04:05 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:04:05 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 11:04:05 INFO  CommandsController:42 - username is right
+2019-02-09 11:04:05 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 11:04:05 INFO  CommandsController:64 - password is right
+2019-02-09 11:04:05 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 11:04:05 INFO  CommandsController:185 - printing root directory, directory is /etc/ftRoot
+2019-02-09 11:04:05 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 11:04:05 INFO  CommandsController:228 - type of transferring data is binary
+2019-02-09 11:04:05 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 11:04:05 INFO  CommandsController:241 - sent data connection address 127.0.0.1:20
+2019-02-09 11:04:05 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 11:04:05 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:04:28 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:04:28 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 11:06:43 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:06:43 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 11:06:43 INFO  CommandsController:42 - username is right
+2019-02-09 11:06:43 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 11:06:43 INFO  CommandsController:64 - password is right
+2019-02-09 11:06:43 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 11:06:43 INFO  CommandsController:185 - printing root directory, directory is /etc/ftRoot
+2019-02-09 11:06:43 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 11:06:43 INFO  CommandsController:228 - type of transferring data is binary
+2019-02-09 11:06:43 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 11:06:43 INFO  CommandsController:241 - sent data connection address 127.0.0.1:20
+2019-02-09 11:06:43 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 11:06:43 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:09:11 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:09:11 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 11:09:11 INFO  CommandsController:42 - username is right
+2019-02-09 11:09:11 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 11:09:11 INFO  CommandsController:64 - password is right
+2019-02-09 11:09:11 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 11:09:11 INFO  CommandsController:185 - printing root directory, directory is /etc/ftRoot
+2019-02-09 11:09:11 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 11:09:11 INFO  CommandsController:228 - type of transferring data is binary
+2019-02-09 11:09:11 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 11:09:11 INFO  CommandsController:241 - sent data connection address 127.0.0.1:20
+2019-02-09 11:09:11 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:09:11 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 11:14:40 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:14:40 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 11:14:40 INFO  CommandsController:42 - username is right
+2019-02-09 11:14:40 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 11:14:40 INFO  CommandsController:64 - password is right
+2019-02-09 11:14:40 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 11:14:40 INFO  CommandsController:185 - printing root directory, directory is /etc/ftRoot
+2019-02-09 11:14:40 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 11:14:40 INFO  CommandsController:228 - type of transferring data is binary
+2019-02-09 11:14:40 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 11:14:40 INFO  CommandsController:241 - sent data connection address 127.0.0.1:20
+2019-02-09 11:14:40 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:14:40 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 11:15:35 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:15:35 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 11:15:35 INFO  CommandsController:42 - username is right
+2019-02-09 11:15:35 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 11:15:35 INFO  CommandsController:64 - password is right
+2019-02-09 11:15:35 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 11:15:35 INFO  CommandsController:185 - printing root directory, directory is /etc/ftRoot
+2019-02-09 11:15:35 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 11:15:35 INFO  CommandsController:228 - type of transferring data is binary
+2019-02-09 11:15:35 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 11:15:35 INFO  CommandsController:241 - sent data connection address 127.0.0.1:20
+2019-02-09 11:15:35 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 11:15:35 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:18:04 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 11:18:04 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:04:55 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:04:55 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:04:55 INFO  CommandsController:42 - username is right
+2019-02-09 23:04:55 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:04:55 INFO  CommandsController:64 - password is right
+2019-02-09 23:04:55 INFO  ServerSocketAccept:65 - Get command: SYST
+2019-02-09 23:04:55 INFO  ServerSocketAccept:65 - Get command: FEAT
+2019-02-09 23:04:55 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:04:55 INFO  CommandsController:173 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:04:55 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:04:55 INFO  CommandsController:216 - type of transferring data is binary
+2019-02-09 23:04:55 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:04:55 INFO  CommandsController:229 - sent data connection address 127.0.0.1:20
+2019-02-09 23:04:55 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:04:55 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:05:15 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:05:15 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:05:15 INFO  CommandsController:42 - username is right
+2019-02-09 23:05:15 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:05:16 INFO  CommandsController:64 - password is right
+2019-02-09 23:05:16 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:05:16 INFO  CommandsController:173 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:05:16 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:05:16 INFO  CommandsController:216 - type of transferring data is binary
+2019-02-09 23:05:16 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:05:16 INFO  CommandsController:229 - sent data connection address 127.0.0.1:20
+2019-02-09 23:05:16 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:05:16 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:07:28 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:07:28 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:07:29 INFO  CommandsController:42 - username is right
+2019-02-09 23:07:29 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:07:29 INFO  CommandsController:64 - password is right
+2019-02-09 23:07:29 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:07:29 INFO  CommandsController:173 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:07:29 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:07:29 INFO  CommandsController:216 - type of transferring data is binary
+2019-02-09 23:07:29 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:07:29 INFO  CommandsController:229 - sent data connection address 127.0.0.1:20
+2019-02-09 23:07:29 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:07:29 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:07:56 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:07:56 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:07:56 INFO  CommandsController:42 - username is right
+2019-02-09 23:07:56 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:07:56 INFO  CommandsController:64 - password is right
+2019-02-09 23:07:56 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:07:56 INFO  CommandsController:173 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:07:56 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:07:56 INFO  CommandsController:216 - type of transferring data is binary
+2019-02-09 23:07:56 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:07:56 INFO  CommandsController:229 - sent data connection address 127.0.0.1:20
+2019-02-09 23:07:56 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:08:00 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:09:40 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:09:40 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:09:41 INFO  CommandsController:42 - username is right
+2019-02-09 23:09:41 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:09:41 INFO  CommandsController:64 - password is right
+2019-02-09 23:09:41 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:09:41 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:09:41 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:09:41 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:09:41 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:09:41 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:09:41 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:09:41 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:11:25 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:11:25 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:11:25 INFO  CommandsController:42 - username is right
+2019-02-09 23:11:25 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:11:25 INFO  CommandsController:64 - password is right
+2019-02-09 23:11:25 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:11:25 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:11:25 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:11:25 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:11:25 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:11:25 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:11:25 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:11:25 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:13:10 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:13:10 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:13:10 INFO  CommandsController:42 - username is right
+2019-02-09 23:13:10 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:13:10 INFO  CommandsController:64 - password is right
+2019-02-09 23:13:10 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:13:10 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:13:10 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:13:10 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:13:10 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:13:10 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:13:10 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:13:10 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:14:39 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:14:39 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:14:39 INFO  CommandsController:42 - username is right
+2019-02-09 23:14:39 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:14:39 INFO  CommandsController:64 - password is right
+2019-02-09 23:14:39 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:14:39 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:14:39 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:14:39 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:14:39 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:14:39 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:14:39 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:14:39 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:15:14 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:15:14 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:15:14 INFO  CommandsController:42 - username is right
+2019-02-09 23:15:14 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:15:14 INFO  CommandsController:64 - password is right
+2019-02-09 23:15:14 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:15:14 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:15:14 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:15:14 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:15:14 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:15:14 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:15:14 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:15:14 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:28:26 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:28:26 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:28:26 INFO  CommandsController:42 - username is right
+2019-02-09 23:28:26 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:28:26 INFO  CommandsController:64 - password is right
+2019-02-09 23:28:26 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:28:26 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:28:26 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:28:26 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:28:26 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:28:26 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:28:26 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:28:26 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:33:42 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:33:42 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:33:42 INFO  CommandsController:42 - username is right
+2019-02-09 23:33:42 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:33:42 INFO  CommandsController:64 - password is right
+2019-02-09 23:33:42 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:33:42 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:33:42 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:33:42 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:33:42 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:33:42 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:33:42 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:33:42 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:34:02 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:34:02 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:34:02 INFO  CommandsController:42 - username is right
+2019-02-09 23:34:02 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:34:02 INFO  CommandsController:64 - password is right
+2019-02-09 23:34:02 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:34:02 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:34:02 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:34:02 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:34:02 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:34:02 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:34:02 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:34:02 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:34:26 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:34:26 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:34:26 INFO  CommandsController:42 - username is right
+2019-02-09 23:34:26 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:34:26 INFO  CommandsController:64 - password is right
+2019-02-09 23:34:26 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:34:26 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:34:26 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:34:26 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:34:26 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:34:26 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:34:26 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:34:26 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:34:46 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:34:46 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:34:46 INFO  CommandsController:42 - username is right
+2019-02-09 23:34:46 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:34:46 INFO  CommandsController:64 - password is right
+2019-02-09 23:34:46 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:34:46 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:34:46 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:34:46 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:34:46 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:34:46 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:34:46 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:34:46 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:35:50 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:35:50 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:35:51 INFO  CommandsController:42 - username is right
+2019-02-09 23:35:51 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:35:51 INFO  CommandsController:64 - password is right
+2019-02-09 23:35:51 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:35:51 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:35:51 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:35:51 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:35:51 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:35:51 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:35:51 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:35:51 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:36:24 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:36:24 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:36:24 INFO  CommandsController:42 - username is right
+2019-02-09 23:36:24 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:36:24 INFO  CommandsController:64 - password is right
+2019-02-09 23:36:24 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:36:24 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:36:24 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:36:24 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:36:24 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:36:24 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:36:24 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:36:24 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:36:44 INFO  ServerSocketAccept:49 - Created input connection
+2019-02-09 23:36:44 INFO  ServerSocketAccept:65 - Get command: USER admin
+2019-02-09 23:36:44 INFO  CommandsController:42 - username is right
+2019-02-09 23:36:44 INFO  ServerSocketAccept:65 - Get command: PASS 123
+2019-02-09 23:36:44 INFO  CommandsController:64 - password is right
+2019-02-09 23:36:44 INFO  ServerSocketAccept:65 - Get command: PWD
+2019-02-09 23:36:44 INFO  CommandsController:174 - printing root directory, directory is /etc/ftRoot
+2019-02-09 23:36:44 INFO  ServerSocketAccept:65 - Get command: TYPE I
+2019-02-09 23:36:44 INFO  CommandsController:217 - type of transferring data is binary
+2019-02-09 23:36:44 INFO  ServerSocketAccept:65 - Get command: PASV
+2019-02-09 23:36:44 INFO  CommandsController:230 - sent data connection address 127.0.0.1:20
+2019-02-09 23:36:44 INFO  ServerSocketAccept:65 - Get command: LIST
+2019-02-09 23:36:44 INFO  ServerSocketAccept:49 - Created input connection

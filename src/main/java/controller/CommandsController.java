@@ -17,6 +17,7 @@ public class CommandsController {
 
     private JDBCConnection connection;
     private String username;
+    private String dataType;
     public static String ROOT = "/etc/ftRoot";
     private String SPACE = " ";
     private int SIZE_OF_COMMAND_WITHOUT_ARGUMENT = 1;
@@ -37,7 +38,6 @@ public class CommandsController {
 
             username = messageSplit[FIRST_ARGUMENT_INDEX];
             boolean user = connection.getUsername(username);
-            System.out.println(user);
             if (user) {
                 log.info("username is right");
                 return ReplyCode.CODE_331;
@@ -45,10 +45,9 @@ public class CommandsController {
                 log.info("There is no such username in DB");
                 return ReplyCode.CODE_530;
             }
-
         } else {
-            log.info("Worng command");
-            return ReplyCode.CODE_500;
+            log.info("Wrong command");
+            return ReplyCode.CODE_501;
         }
 
     }
@@ -65,13 +64,13 @@ public class CommandsController {
                 log.info("password is right");
                 return ReplyCode.CODE_230;
             } else {
-                log.info("Worng pasword");
+                log.info("Wrong pasword");
                 return ReplyCode.CODE_530;
             }
 
         } else {
-            log.info("Worng command");
-            return ReplyCode.CODE_500;
+            log.info("Wrong command");
+            return ReplyCode.CODE_501;
         }
 
     }
@@ -84,7 +83,7 @@ public class CommandsController {
             return ReplyCode.CODE_215;
         }
 
-        else return ReplyCode.CODE_500;
+        else return ReplyCode.CODE_501;
 
 
     }
@@ -103,10 +102,9 @@ public class CommandsController {
             }
 
         } else {
-            return ReplyCode.CODE_500;
+            return ReplyCode.CODE_501;
         }
     }
-
 
     public String deleteCommand(String message) {
 
@@ -121,7 +119,7 @@ public class CommandsController {
                 return "Error"; // либо не удалена либо не файл
             }
         } else {
-            return ReplyCode.CODE_500;
+            return ReplyCode.CODE_501;
         }
 
     }
@@ -139,7 +137,7 @@ public class CommandsController {
                 return "Error"; //не создали
             }
         } else {
-            return ReplyCode.CODE_500;
+            return ReplyCode.CODE_501;
         }
     }
 
@@ -147,26 +145,14 @@ public class CommandsController {
         String[] messageSplit = message.split(SPACE);
 
         if (messageSplit.length == SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
-            File root = new File(ROOT);
-
-            List files = new ArrayList<String>();
-            List dirs = new  ArrayList<String>();
-
-            if(root.listFiles() != null){
-                for(File file: root.listFiles()){
-
-                    if(!file.isDirectory()) files.add(file.getName());
-                    else  dirs.add(file.getName());
-
-                }
-            } else return ReplyCode.CODE_500;
-
-//            answer.printFileList(files);
-            answer.printDirectoryList(dirs, files);
-
-            return ReplyCode.CODE_200;
-
-        } else return ReplyCode.CODE_500;
+            answer.printDirectoryList(ROOT);
+        } else if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            String path = ROOT + "/" + messageSplit[1];
+            answer.printDirectoryList(path);
+        } else {
+            return ReplyCode.CODE_501;
+        }
+        return ReplyCode.CODE_226;
     }
 
     public String changeWorkDirCommand(String message){
@@ -181,7 +167,7 @@ public class CommandsController {
 
             } else return ReplyCode.CODE_200;// либо нет директории либо не лиректория
 
-        } else return ReplyCode.CODE_500;
+        } else return ReplyCode.CODE_501;
     }
 
     public String printWorkDirCommand(){
@@ -209,7 +195,7 @@ public class CommandsController {
         log.info("PORT command recieved");
         String[] messageSplit = message.split(" ");
 
-        if (messageSplit.length == 2) {
+        if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
             String[] hostAndPorts = messageSplit[1].split(",");
             String host = hostAndPorts[0] +"."+hostAndPorts[1] +"."+ hostAndPorts[2] + "."+hostAndPorts[3];
            // String ports[] = new String[2];
@@ -217,13 +203,27 @@ public class CommandsController {
           //  ports[1] = hostAndPorts[5];
             return ReplyCode.CODE_200;
             //проверка на то свобоодны ли они77?
-        } else return ReplyCode.CODE_500;
-
+        } else return ReplyCode.CODE_501;
     }
 
-    public String getType() {
-        log.info("type of transferring data is ASCII");
-        return ReplyCode.CODE_200;
+    public String getType(String message) {
+        String[] messageSplit = message.split(" ");
+
+        if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            dataType = messageSplit[1];
+            if (dataType.equals("A")) {
+                log.info("type of transferring data is ASCII");
+            } else if (dataType.equals("I")) {
+                log.info("type of transferring data is binary");
+            }
+            else {
+                return ReplyCode.CODE_501;
+            }
+            return ReplyCode.CODE_200;
+        }
+        else {
+            return ReplyCode.CODE_501;
+        }
     }
 
     public String pasvResponse() {
@@ -231,6 +231,5 @@ public class CommandsController {
         String resp = ReplyCode.CODE_227 + "(127,0,0,1," + 20 /256 + "," + 20 % 256 + ")";
         return resp;
     }
-
 
 }

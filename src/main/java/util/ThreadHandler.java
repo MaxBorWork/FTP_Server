@@ -126,11 +126,10 @@ public class ThreadHandler implements Runnable {
                         case LIST: {
                             String response = controller.listCommand(line, new Messages(writer));
                             writer.println(response);
-                           // done = true;
                             break;
                         }
                         case TYPE: {
-                            String response = controller.getType();
+                            String response = controller.getType(line);
                             writer.println(response);
                             break;
                         }
@@ -145,39 +144,12 @@ public class ThreadHandler implements Runnable {
                     }
                 } else {
                     writer.println(ReplyCode.CODE_500);
-//                   answer.commandUnrecognized();
                    done = true;
                 }
             }
-
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
-//            String line = reader.readLine();
-//            if(line != null) {
-//                System.out.println(line);
-//            }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void createDataSocket() throws UnknownHostException {
-        InetAddress addr = InetAddress.getByName("127.0.0.1");
-        try (ServerSocket socket = new ServerSocket(DATA_PORT, 50, addr))
-        {
-            int i = 1;
-
-            while (true) {
-                Socket inSocket = socket.accept();
-                Runnable r = new ThreadHandler(inSocket);
-                Thread thread = new Thread(r);
-                thread.run();
-                i++;
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

@@ -2,14 +2,15 @@ package model;
 
 import controller.CommandsController;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
+
+import static controller.CommandsController.ROOT;
 
 public class Messages {
     private PrintWriter writer;
@@ -30,22 +31,28 @@ public class Messages {
         writer.println("\tRMD directory_name - ");
     }
 
-    public void printDirectoryList(List<String> directoryList, List<String> fileList) throws IOException {
-        String response = "150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)\n";
-
-        for(String dir: directoryList){
-            response = response + dir + "\n";
-        }
-        for(String file: fileList){
-            String fullPath = CommandsController.ROOT + "/" + file;
-            Path path = Paths.get(fullPath);
-            BasicFileAttributes attributes = Files.getFileAttributeView(path, BasicFileAttributeView.class).readAttributes();
-            String fileDate = attributes.creationTime().toString();
-            String fileSize = String.valueOf(attributes.size());
-
-            String fileInfo = file + " " + fileSize + " " + fileDate;
-//            writer.println(resp);
-            response = response + fileInfo + "\n";
+    public void printDirectoryList(String dirName) throws IOException {
+        StringBuilder response = new StringBuilder("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)\n");
+//        StringBuilder response = new StringBuilder();
+        String command = "ls -l " + dirName;
+        try {
+            Process p = Runtime.getRuntime().exec(command);
+            p.waitFor();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line = reader.readLine();
+            while (line != null) {
+                if (!line.contains("итого")) {
+                    if (line.contains("Лют")) {
+                        line = line.replace("Лют", "Feb");
+                        response.append(line).append("\n");
+                    }
+                }
+                line=reader.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         writer.println(response);
     }
