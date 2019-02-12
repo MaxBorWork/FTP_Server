@@ -1,9 +1,9 @@
 package util;
 
 import controller.CommandsController;
-import model.Messages;
 import org.apache.log4j.Logger;
 import model.ReplyCode;
+import model.*;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -46,12 +46,12 @@ public class ThreadHandler implements Runnable {
 
     public void run() {
 
-        log.info("Created input connection");
+        log.info(LogMessages.CREATE_CONNECTION_MESSAGE);
 
         try(InputStream inputStream = inSocket.getInputStream();
             OutputStream outputStream = inSocket.getOutputStream()) {
 
-            Scanner in = new Scanner(inputStream, "UTF-8");
+            Scanner in = new Scanner(inputStream,  Config.UTF_8);
 
             PrintWriter writer = new PrintWriter(
                     new OutputStreamWriter(outputStream, StandardCharsets.UTF_8),true);
@@ -68,17 +68,17 @@ public class ThreadHandler implements Runnable {
                 if (lineSlpit.length >= 1) {
                     String command = lineSlpit[0];
                     switch (command) {
-                        case USER: {
+                        case Commands.USER: {
                             String response = controller.userCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case PASS: {
+                        case Commands.PASS: {
                             String response = controller.passwordCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case DELE: {
+                        case Commands.DELE: {
                             String response = controller.deleteCommand(line);
                             writer.println(response);
                             break;
@@ -88,53 +88,54 @@ public class ThreadHandler implements Runnable {
                             writer.println(response);
                             break;
                         }
-                        case MKD: {
+                        case Commands.MKD: {
                             String response = controller.makeDirectoryCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case STORE: {
+                        case Commands.STORE: {
                             String response = controller.storeCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case PORT: { 
+                        case Commands.PORT: {
                             String response = controller.portCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case RMD: {
+                        case Commands.RMD: {
                             String response = controller.removeDirectoryCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case RETR: {
+                        case Commands.RETR: {
                             String response = controller.retrieveCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case CWD: {
+                        case Commands.CWD: {
                             String response = controller.changeWorkDirCommand(line);
                             writer.println(response);
                             break;
                         }
-                        case PWD: {
+                        case Commands.PWD: {
                             String response = controller.printWorkDirCommand();
                             writer.println(response);
                             break;
                         }
-                        case LIST: {
+                        case Commands.LIST: {
                             String response = controller.listCommand(line, new Messages(writer));
                             writer.println(response);
+                           // done = true;
                             break;
                         }
-                        case TYPE: {
-                            String response = controller.getType(line);
+                        case Commands.TYPE: {
+                            String response = controller.getType();
                             writer.println(response);
                             break;
                         }
-                        case PASV: {
-                            String response = controller.pasvResponse();
+                        case Commands.PASV: {
+                            String response = controller.pasvResponse(line);
                             writer.println(response);
                             break;
                         }

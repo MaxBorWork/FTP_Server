@@ -13,5 +13,8 @@ public class ReplyCode {
     static public String CODE_150 = "150 ";
     static public String CODE_226 = "226 Transfer complete";
     static public String CODE_530 = "530 User can't be logged in";
-    static public String CODE_227 = "227 Entering Passive Mode ";
+
+    static public String CODE_227 = "227 Entering Passive Mode " + Messages.pasvMessage();
+    static public String CODE_425= "425 Can't open data connection.";
+    static public String CODE_225 =  "225 Data connection open; no transfer in progress.";
 }
