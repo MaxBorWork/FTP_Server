@@ -16,25 +16,7 @@ import java.util.Scanner;
 
 public class ThreadHandler implements Runnable {
 
-    final String USER = "USER";
-    final String PASS = "PASS";
-    final String DELE = "DELE";
-    final String RMD = "RMD";
-    final String MKD = "MKD";
-    final String STORE = "STORE";
-    final String PORT = "PORT";
-    final String RETR = "RETR";
-    final String LIST = "LIST";
-    final String CWD = "CWD";
-    final String PWD = "PWD";
-    final String SYST = "SYST";
-    final String TYPE = "TYPE";
-    final String PASV = "PASV";
-
-    private static final int DATA_PORT = 20;
-
     private Socket inSocket;
-    private Socket dataSocket;
     private CommandsController controller;
 
     private static Logger log = Logger.getLogger(ServerSocketAccept.class);
@@ -83,7 +65,7 @@ public class ThreadHandler implements Runnable {
                             writer.println(response);
                             break;
                         }
-                        case SYST: {
+                        case Commands.SYST: {
                             String response = controller.systCommand(line);
                             writer.println(response);
                             break;
@@ -124,13 +106,13 @@ public class ThreadHandler implements Runnable {
                             break;
                         }
                         case Commands.LIST: {
-                            String response = controller.listCommand(line, new Messages(writer));
+                            String response = controller.listCommand(line, new Messages(writer), inSocket);
                             writer.println(response);
                            // done = true;
                             break;
                         }
                         case Commands.TYPE: {
-                            String response = controller.getType();
+                            String response = controller.getType(line);
                             writer.println(response);
                             break;
                         }

@@ -3,6 +3,7 @@ package model;
 import controller.CommandsController;
 
 import java.io.*;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,7 +32,7 @@ public class Messages {
         writer.println("\tRMD directory_name - ");
     }
 
-    public void printDirectoryList(String dirName) throws IOException {
+    public void printDirectoryList(String dirName, Socket socket) throws IOException {
         StringBuilder response = new StringBuilder("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)\n");
 //        StringBuilder response = new StringBuilder();
         String command = "ls -l " + dirName;
@@ -44,7 +45,7 @@ public class Messages {
                 if (!line.contains("итого")) {
                     if (line.contains("Лют")) {
                         line = line.replace("Лют", "Feb");
-                        response.append(line).append("\n");
+                        response.append(line).append("\t\n");
                     }
                 }
                 line=reader.readLine();
@@ -55,27 +56,7 @@ public class Messages {
             e.printStackTrace();
         }
         writer.println(response);
-    }
-
-    public void printDirectoryList(List<String> directoryList, List<String> fileList) throws IOException {
-        String response = "150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)\n";
-
-        for(String dir: directoryList){
-            response = response + dir + "\n";
-        }
-        for(String file: fileList){
-            String fullPath = CommandsController.ROOT + "/" + file;
-            Path path = Paths.get(fullPath);
-            BasicFileAttributes attributes = Files.getFileAttributeView(path, BasicFileAttributeView.class).readAttributes();
-           // attributes.fileKey();
-            String fileDate = attributes.creationTime().toString();
-            String fileSize = String.valueOf(attributes.size());
-
-            String fileInfo = file + " " + fileSize + " " + fileDate;
-//            writer.println(resp);
-            response = response + fileInfo + "\n";
-        }
-        writer.println(response);
+//        socket.close();
     }
 
     public static String pasvMessage() {

@@ -1,17 +1,15 @@
 package controller;
 
-import model.Config;
-import model.LogMessages;
+import model.*;
 import org.apache.log4j.Logger;
 import util.JDBCConnection;
-import model.Messages;
-import model.ReplyCode;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
@@ -21,9 +19,7 @@ public class CommandsController {
 
     private JDBCConnection connection;
     private String username;
-    private String dataType;
-=======
->>>>>>> 4a3a16475eb256c848749bc9a3e7d560be836e1b
+    private DataSocket dataSocket;
     public static String ROOT = "/etc/ftRoot";
     private String SPACE = " ";
     private String COMMA = ",";
@@ -37,6 +33,7 @@ public class CommandsController {
 
     public CommandsController() {
         connection = new JDBCConnection();
+        dataSocket = new DataSocket();
     }
 
     public String userCommand(String message) {
@@ -82,7 +79,6 @@ public class CommandsController {
         }
     }
 
-
     public String systCommand(String message) {
         String[] messageSplit = message.split(SPACE);
 
@@ -109,9 +105,9 @@ public class CommandsController {
 
     public String pasvResponse(String message) {
         String[] messageSplit = message.split(SPACE);
-
         if (messageSplit.length == SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
             log.info(LogMessages.SENT_ADDRESS_MESSAGE);
+            dataSocket.startThread(Config.PORT_20_INT);
             return ReplyCode.CODE_227;
         } else {
             log.info(LogMessages.WRONG_COMMAND_MESSAGE);
@@ -144,7 +140,6 @@ public class CommandsController {
 
     }
 
-
     public String portCommand(String message) {
         String[] messageSplit = message.split(SPACE);
 
@@ -152,22 +147,11 @@ public class CommandsController {
             String[] hostAndPorts = messageSplit[1].split(COMMA);
             String host = hostAndPorts[0] +"."+hostAndPorts[1] +"."+ hostAndPorts[2] + "."+hostAndPorts[3];
             int port = Integer.parseInt(hostAndPorts[4])* Config.BIT_SHIFT + Integer.parseInt(hostAndPorts[5]);
-
-            try {
-                new ServerSocket(port, Config.MAX_CONNECTION_NUMBER,  InetAddress.getByName(host));
-                log.info(LogMessages.PORT_COMMAND_MESSAGE);
-                return ReplyCode.CODE_200;
-            } catch (IOException e) {
-                log.info(LogMessages.PORT_COMMAND_MESSAGE);
-                e.printStackTrace();
-                return ReplyCode.CODE_200;//КАКОЙ ТО ОШИБКА ЗДЕСЬ ДОЛЖЕН БЫТЬ
-            }
+            dataSocket.startThread(port);
+            log.info(LogMessages.PORT_COMMAND_MESSAGE);
+            return ReplyCode.CODE_200;
         } else return ReplyCode.CODE_501;
     }
-
-
-
-
 
     public String removeDirectoryCommand(String message) {
         String[] messageSplit = message.split(SPACE);
@@ -221,19 +205,17 @@ public class CommandsController {
         }
     }
 
-    public String listCommand(String message, Messages answer) throws IOException {
+    public String listCommand(String message, Messages answer, Socket sock) throws IOException {
         String[] messageSplit = message.split(SPACE);
-
         if (messageSplit.length == SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
-            answer.printDirectoryList(ROOT);
+            answer.printDirectoryList(ROOT, sock);
         } else if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
             String path = ROOT + "/" + messageSplit[1];
-            answer.printDirectoryList(path);
+            answer.printDirectoryList(path, sock);
         } else {
             return ReplyCode.CODE_501;
         }
         return ReplyCode.CODE_226;
-
     }
 
     public String changeWorkDirCommand(String message){
@@ -262,52 +244,9 @@ public class CommandsController {
         return "Error";
     }
 
-
     public String storeCommand(String message) {
         String[] messageSplit = message.split(" ");
 
         return "Error";
     }
-
-    public String portCommand(String message) {
-        log.info("PORT command recieved");
-        String[] messageSplit = message.split(" ");
-
-        if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            String[] hostAndPorts = messageSplit[1].split(",");
-            String host = hostAndPorts[0] +"."+hostAndPorts[1] +"."+ hostAndPorts[2] + "."+hostAndPorts[3];
-           // String ports[] = new String[2];
-          //  ports[0] = hostAndPorts[4];
-          //  ports[1] = hostAndPorts[5];
-            return ReplyCode.CODE_200;
-            //проверка на то свобоодны ли они77?
-        } else return ReplyCode.CODE_501;
-    }
-
-    public String getType(String message) {
-        String[] messageSplit = message.split(" ");
-
-        if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            dataType = messageSplit[1];
-            if (dataType.equals("A")) {
-                log.info("type of transferring data is ASCII");
-            } else if (dataType.equals("I")) {
-                log.info("type of transferring data is binary");
-            }
-            else {
-                return ReplyCode.CODE_501;
-            }
-            return ReplyCode.CODE_200;
-        }
-        else {
-            return ReplyCode.CODE_501;
-        }
-    }
-
-    public String pasvResponse() {
-        log.info("sent data connection address 127.0.0.1:20");
-        String resp = ReplyCode.CODE_227 + "(127,0,0,1," + 20 /256 + "," + 20 % 256 + ")";
-        return resp;
-    }
-
 }
