@@ -15,9 +15,22 @@ import static controller.CommandsController.ROOT;
 
 public class Messages {
     private PrintWriter writer;
+    private OutputStream outputStream;
 
-    public Messages( PrintWriter writer){
+    public Messages(PrintWriter writer){
         this.writer = writer;
+    }
+
+    public Messages(OutputStream outputStream) {
+        this.outputStream = outputStream;
+    }
+
+    public Messages(PrintWriter writer, OutputStream outputStream) {
+        this.writer = writer;
+        this.outputStream = outputStream;
+    }
+
+    public Messages() {
     }
 
     public void printCommandList(){
@@ -32,9 +45,8 @@ public class Messages {
         writer.println("\tRMD directory_name - ");
     }
 
-    public void printDirectoryList(String dirName, Socket socket) throws IOException {
-        StringBuilder response = new StringBuilder("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)\n");
-//        StringBuilder response = new StringBuilder();
+    public void printDirectoryList(String dirName) {
+        StringBuilder response = new StringBuilder();
         String command = "ls -l " + dirName;
         try {
             Process p = Runtime.getRuntime().exec(command);
@@ -45,18 +57,17 @@ public class Messages {
                 if (!line.contains("итого")) {
                     if (line.contains("Лют")) {
                         line = line.replace("Лют", "Feb");
-                        response.append(line).append("\t\n");
                     }
+                    response.append(line).append("\t\n");
                 }
                 line=reader.readLine();
             }
+            outputStream.write(response.toString().getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        writer.println(response);
-//        socket.close();
     }
 
     public static String pasvMessage() {

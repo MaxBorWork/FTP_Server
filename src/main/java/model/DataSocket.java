@@ -1,6 +1,7 @@
 package model;
 
 import org.apache.log4j.Logger;
+import util.DataThreadHandler;
 import util.ServerSocketAccept;
 import util.ThreadHandler;
 
@@ -12,45 +13,34 @@ public class DataSocket {
     private ServerSocket serverSocket;
     private Socket inSocket;
 
-    public void createDataConnection(int port) {
-        try {
-            final InetAddress addr = InetAddress.getByName(Config.IP_ADDRESS_STRING_POINTS);
-            serverSocket = new ServerSocket(port, Config.MAX_CONNECTION_NUMBER, addr);
-            int i = 1;
+    public DataSocket() {
+        startThread(Config.PORT_20_INT);
+    }
 
-            while (true) {
-                Runnable r = new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            inSocket = serverSocket.accept();
-                            inSocket.setSoTimeout(1000);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } finally {
-                            try {
-                                inSocket.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                };
+    public void createDataConnection(String dirPath) {
+            int i = 1;
+            try {
+                inSocket = serverSocket.accept();
+                Runnable r = new DataThreadHandler(inSocket, dirPath);
                 Thread thread = new Thread(r);
                 thread.run();
                 i++;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e ) {
-            logger.info(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     public void startThread(final int port) {
         Runnable r1 = new Runnable() {
             @Override
             public void run() {
-                createDataConnection(port);
+                try {
+                    final InetAddress addr = InetAddress.getByName(Config.IP_ADDRESS_STRING_POINTS);
+                    serverSocket = new ServerSocket(port, Config.MAX_CONNECTION_NUMBER, addr);
+                } catch (IOException e) {
+                    logger.info(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
+                    e.printStackTrace();
+                }
             }
         };
         Thread thread1 = new Thread(r1);

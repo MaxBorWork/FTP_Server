@@ -107,7 +107,7 @@ public class CommandsController {
         String[] messageSplit = message.split(SPACE);
         if (messageSplit.length == SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
             log.info(LogMessages.SENT_ADDRESS_MESSAGE);
-            dataSocket.startThread(Config.PORT_20_INT);
+//            dataSocket.startThread(Config.PORT_20_INT);
             return ReplyCode.CODE_227;
         } else {
             log.info(LogMessages.WRONG_COMMAND_MESSAGE);
@@ -147,7 +147,9 @@ public class CommandsController {
             String[] hostAndPorts = messageSplit[1].split(COMMA);
             String host = hostAndPorts[0] +"."+hostAndPorts[1] +"."+ hostAndPorts[2] + "."+hostAndPorts[3];
             int port = Integer.parseInt(hostAndPorts[4])* Config.BIT_SHIFT + Integer.parseInt(hostAndPorts[5]);
-            dataSocket.startThread(port);
+            if (port != Config.PORT_20_INT) {
+                dataSocket.startThread(port);
+            }
             log.info(LogMessages.PORT_COMMAND_MESSAGE);
             return ReplyCode.CODE_200;
         } else return ReplyCode.CODE_501;
@@ -205,30 +207,34 @@ public class CommandsController {
         }
     }
 
-    public String listCommand(String message, Messages answer, Socket sock) throws IOException {
+    public String listCommand(String message, PrintWriter writer) throws IOException {
         String[] messageSplit = message.split(SPACE);
         if (messageSplit.length == SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
-            answer.printDirectoryList(ROOT, sock);
+            writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
+            dataSocket.createDataConnection(ROOT);
         } else if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
             String path = ROOT + "/" + messageSplit[1];
-            answer.printDirectoryList(path, sock);
+            dataSocket.createDataConnection(path);
         } else {
             return ReplyCode.CODE_501;
         }
         return ReplyCode.CODE_226;
     }
 
-    public String changeWorkDirCommand(String message){
+    public String changeWorkDirCommand(String message, PrintWriter writer){
         String[] messageSplit = message.split(SPACE);
 
         if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
             File rootNew = new File(messageSplit[FIRST_ARGUMENT_INDEX]);
 
             if(rootNew.isDirectory() && rootNew.exists()){
-                ROOT = messageSplit[FIRST_ARGUMENT_INDEX];
-                return ReplyCode.CODE_200;
+//                writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
+//                String path = ROOT + "/" + messageSplit[FIRST_ARGUMENT_INDEX];
+//                dataSocket.createDataConnection(path);
+                return ReplyCode.CODE_250;
 
-            } else return ReplyCode.CODE_200;// либо нет директории либо не лиректория
+            } else return ReplyCode.CODE_550;// либо нет директории либо не лиректория
 
         } else return ReplyCode.CODE_501;
     }

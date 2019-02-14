@@ -96,7 +96,7 @@ public class ThreadHandler implements Runnable {
                             break;
                         }
                         case Commands.CWD: {
-                            String response = controller.changeWorkDirCommand(line);
+                            String response = controller.changeWorkDirCommand(line, writer);
                             writer.println(response);
                             break;
                         }
@@ -106,7 +106,7 @@ public class ThreadHandler implements Runnable {
                             break;
                         }
                         case Commands.LIST: {
-                            String response = controller.listCommand(line, new Messages(writer), inSocket);
+                            String response = controller.listCommand(line, writer);
                             writer.println(response);
                            // done = true;
                             break;
