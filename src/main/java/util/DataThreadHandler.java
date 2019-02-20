@@ -1,6 +1,6 @@
 package util;
 
-import model.Messages;
+import controller.DataTransferringController;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -10,11 +10,13 @@ public class DataThreadHandler implements Runnable {
 
     private Socket inSocket;
     private static Logger log = Logger.getLogger(ServerSocketAccept.class);
-    private String dirPath;
+    private String processingString;
+    private String flag;
 
-    public DataThreadHandler(Socket inSocket, String dirPath) {
+    public DataThreadHandler(Socket inSocket, String processingString, String flag) {
         this.inSocket = inSocket;
-        this.dirPath = dirPath;
+        this.processingString = processingString;
+        this.flag = flag;
     }
 
     @Override
@@ -22,10 +24,16 @@ public class DataThreadHandler implements Runnable {
         try (InputStream inputStream = inSocket.getInputStream();
              OutputStream outputStream = inSocket.getOutputStream()) {
 
-            Messages answer = new Messages(outputStream);
-            answer.printDirectoryList(dirPath);
+            DataTransferringController controller = new DataTransferringController(inputStream, outputStream);
+            if (flag.equals("LIST")) {
+                controller.printDirectoryList(processingString);
+            } else if (flag.equals("RETR")) {
+                controller.sendFileToClient(processingString);
+            } else if (flag.equals("STOR")) {
+                controller.storeFile(processingString);
+            }
 
-            inSocket.close();
+//            inSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

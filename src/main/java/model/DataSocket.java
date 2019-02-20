@@ -17,17 +17,16 @@ public class DataSocket {
         startThread(Config.PORT_20_INT);
     }
 
-    public void createDataConnection(String dirPath) {
-            int i = 1;
-            try {
+    public void createDataConnection(String processingString, String flag) {
+        try {
                 inSocket = serverSocket.accept();
-                Runnable r = new DataThreadHandler(inSocket, dirPath);
+                logger.info("Data connection established");
+                Runnable r = new DataThreadHandler(inSocket, processingString, flag);
                 Thread thread = new Thread(r);
-                thread.run();
-                i++;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                thread.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void startThread(final int port) {

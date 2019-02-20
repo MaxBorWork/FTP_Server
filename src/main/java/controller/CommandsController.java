@@ -7,13 +7,6 @@ import util.JDBCConnection;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.nio.file.Files;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CommandsController {
 
@@ -159,14 +152,20 @@ public class CommandsController {
         String[] messageSplit = message.split(SPACE);
 
         if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            File file = new File(ROOT + File.pathSeparator + messageSplit[FIRST_ARGUMENT_INDEX]);
+            File dir = new File(ROOT + File.pathSeparator + messageSplit[FIRST_ARGUMENT_INDEX]);
 
-            if (file.isDirectory() && file.delete()) {
-                return ReplyCode.CODE_200;
+            if (dir.isDirectory() && dir.delete()) {
+                return ReplyCode.CODE_250;
+            } else if (dir.isDirectory() && !dir.delete()) {
+                removeNotNullDir(dir);
+                if (dir.delete()) {
+                    return ReplyCode.CODE_250;
+                } else {
+                    return ReplyCode.CODE_550;
+                }
             } else {
-                return "Error"; // либо не удалена либо не директория
+                return ReplyCode.CODE_550;
             }
-
         } else {
             return ReplyCode.CODE_501;
         }
@@ -180,7 +179,7 @@ public class CommandsController {
             File file = new File(ROOT + File.pathSeparator + messageSplit[FIRST_ARGUMENT_INDEX]);
 
             if (!file.isDirectory() && file.delete()) {
-                return ReplyCode.CODE_200;
+                return ReplyCode.CODE_250;
             } else {
                 return "Error"; // либо не удалена либо не файл
             }
@@ -211,11 +210,11 @@ public class CommandsController {
         String[] messageSplit = message.split(SPACE);
         if (messageSplit.length == SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
             writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
-            dataSocket.createDataConnection(ROOT);
+            dataSocket.createDataConnection(ROOT, Commands.LIST);
         } else if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
             writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
             String path = ROOT + "/" + messageSplit[1];
-            dataSocket.createDataConnection(path);
+            dataSocket.createDataConnection(path, Commands.LIST);
         } else {
             return ReplyCode.CODE_501;
         }
@@ -226,15 +225,18 @@ public class CommandsController {
         String[] messageSplit = message.split(SPACE);
 
         if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            File rootNew = new File(messageSplit[FIRST_ARGUMENT_INDEX]);
+            String fullDirPath = messageSplit[FIRST_ARGUMENT_INDEX];
+            if (!fullDirPath.contains(ROOT)) {
+                fullDirPath = ROOT + "/" + messageSplit[FIRST_ARGUMENT_INDEX];
+
+            }
+            File rootNew = new File(fullDirPath);
 
             if(rootNew.isDirectory() && rootNew.exists()){
-//                writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
-//                String path = ROOT + "/" + messageSplit[FIRST_ARGUMENT_INDEX];
-//                dataSocket.createDataConnection(path);
+//                dataSocket.createDataConnection(rootNew.getAbsolutePath(), null);
                 return ReplyCode.CODE_250;
 
-            } else return ReplyCode.CODE_550;// либо нет директории либо не лиректория
+            } else return ReplyCode.CODE_550;
 
         } else return ReplyCode.CODE_501;
     }
@@ -244,15 +246,47 @@ public class CommandsController {
         return ReplyCode.CODE_257;
     }
 
-    public String retrieveCommand(String message) {
+    public String retrieveCommand(String message, PrintWriter writer) {
         String[] messageSplit = message.split(" ");
-
-        return "Error";
+        if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            String filename = messageSplit[FIRST_ARGUMENT_INDEX];
+            if (!filename.contains("/")) {
+                filename = ROOT + "/" + messageSplit[FIRST_ARGUMENT_INDEX];
+            }
+            writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
+            dataSocket.createDataConnection(filename, Commands.RETR);
+        } else return ReplyCode.CODE_501;
+        return ReplyCode.CODE_226;
     }
 
-    public String storeCommand(String message) {
+    public String storeCommand(String message, PrintWriter writer) {
         String[] messageSplit = message.split(" ");
-
-        return "Error";
+        if (messageSplit.length == SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            String filename = messageSplit[FIRST_ARGUMENT_INDEX];
+            if (!filename.contains("/")) {
+                filename = ROOT + "/" + messageSplit[FIRST_ARGUMENT_INDEX];
+            }
+            writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
+            dataSocket.createDataConnection(filename, Commands.STOR);
+        } else return ReplyCode.CODE_501;
+        return ReplyCode.CODE_226;
     }
+
+    private void removeNotNullDir(File dir) {
+        String[] fileNames = dir.list();
+        if (fileNames != null) {
+            int removedFromDirFilesCount = 0;
+            for (String fileName : fileNames) {
+                File file = new File(dir.getPath(),fileName);
+                if (file.delete()) {
+                    log.info("file " + fileName + " was successfully deleted");
+                    removedFromDirFilesCount++;
+                } else {
+                    log.info("can't remove file " + fileName);
+                }
+            }
+            log.info("was successfully removed " + removedFromDirFilesCount + " files");
+        }
+    }
+
 }

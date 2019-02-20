@@ -6,12 +6,8 @@ import model.ReplyCode;
 import model.*;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
 import java.util.Scanner;
 
 public class ThreadHandler implements Runnable {
@@ -21,9 +17,9 @@ public class ThreadHandler implements Runnable {
 
     private static Logger log = Logger.getLogger(ServerSocketAccept.class);
 
-    public ThreadHandler(Socket inSocket) {
+    public ThreadHandler(Socket inSocket, CommandsController controller) {
         this.inSocket = inSocket;
-        controller = new CommandsController();
+        this.controller = controller;
     }
 
     public void run() {
@@ -75,8 +71,8 @@ public class ThreadHandler implements Runnable {
                             writer.println(response);
                             break;
                         }
-                        case Commands.STORE: {
-                            String response = controller.storeCommand(line);
+                        case Commands.STOR: {
+                            String response = controller.storeCommand(line, writer);
                             writer.println(response);
                             break;
                         }
@@ -91,7 +87,7 @@ public class ThreadHandler implements Runnable {
                             break;
                         }
                         case Commands.RETR: {
-                            String response = controller.retrieveCommand(line);
+                            String response = controller.retrieveCommand(line, writer);
                             writer.println(response);
                             break;
                         }
@@ -108,7 +104,6 @@ public class ThreadHandler implements Runnable {
                         case Commands.LIST: {
                             String response = controller.listCommand(line, writer);
                             writer.println(response);
-                           // done = true;
                             break;
                         }
                         case Commands.TYPE: {

@@ -1,6 +1,8 @@
-package model;
+package controller;
 
 import controller.CommandsController;
+import model.Config;
+import model.ReplyCode;
 
 import java.io.*;
 import java.net.Socket;
@@ -13,36 +15,20 @@ import java.util.List;
 
 import static controller.CommandsController.ROOT;
 
-public class Messages {
-    private PrintWriter writer;
+public class DataTransferringController {
+    private InputStream inputStream;
     private OutputStream outputStream;
 
-    public Messages(PrintWriter writer){
-        this.writer = writer;
-    }
-
-    public Messages(OutputStream outputStream) {
+    public DataTransferringController(OutputStream outputStream) {
         this.outputStream = outputStream;
     }
 
-    public Messages(PrintWriter writer, OutputStream outputStream) {
-        this.writer = writer;
+    public DataTransferringController(InputStream inputStream, OutputStream outputStream) {
+        this.inputStream = inputStream;
         this.outputStream = outputStream;
     }
 
-    public Messages() {
-    }
-
-    public void printCommandList(){
-        writer.println("Command list: ");
-        writer.println("\tUSERNAME your_name - ");
-        writer.println("\tPASSWORD your_password - ");
-        writer.println("\tLIST - ");
-        writer.println("\tSTORE file/directory_name - ");
-        writer.println("\tRETR file/directory_name - ");
-        writer.println("\tMKD directory_name - ");
-        writer.println("\tDELE file_name - ");
-        writer.println("\tRMD directory_name - ");
+    public DataTransferringController() {
     }
 
     public void printDirectoryList(String dirName) {
@@ -62,6 +48,7 @@ public class Messages {
                 }
                 line=reader.readLine();
             }
+//            response.append("-rw-r--r-- 1 root root 0 Feb  7 21:24 /dir1/file.txt");
             outputStream.write(response.toString().getBytes());
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,17 +61,35 @@ public class Messages {
         return "(" + Config.IP_ADDRESS_STRING_COMMAS + "," + Config.PORT_20_INT / Config.BIT_SHIFT + "," + Config.PORT_20_INT % Config.BIT_SHIFT + ")";
     }
 
-    public void printRoot(String root) {
-        writer.println("Root directory is " + root);
+    public void sendFileToClient(String fileName) {
+        try {
+            byte[] fileAsByteArray = Files.readAllBytes(Paths.get(fileName));
+            outputStream.write(fileAsByteArray);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void commandUnrecognized() {
-       writer.println(ReplyCode.CODE_500);
-    }
+    public void storeFile(String fileName) {
+        if (!Files.exists(Paths.get(fileName))) {
+            try {
+                Files.createFile(Paths.get(fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-    public void errorInParameters() {
-        writer.println(ReplyCode.CODE_501);
-    }
+        byte[] fileAsByteArray = new byte[0];
+        try {
+            fileAsByteArray = new byte[inputStream.available()];
 
+            inputStream.read(fileAsByteArray);
+
+            Files.write(Paths.get(fileName), fileAsByteArray);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
