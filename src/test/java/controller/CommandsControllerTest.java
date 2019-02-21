@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class CommandsControllerTest {
 
-    private CommandsController controller;
+  /*  private CommandsController controller;
     private String systCommandInput[] =  new String[]{"SYST","SYST system", "", "SYST sys system"};
     private String getTypeCommandInput[] = new String[]{"TYPE I","TYPE A", "TYPE I dd", "", "TYPE"};
 
@@ -156,5 +156,5 @@ public class CommandsControllerTest {
 
     @Test
     public void pasvResponse() {
-    }
+    }*/
 }

@@ -33,7 +33,7 @@ public class DataThreadHandler implements Runnable {
                 controller.storeFile(processingString);
             }
 
-//            inSocket.close();
+            inSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

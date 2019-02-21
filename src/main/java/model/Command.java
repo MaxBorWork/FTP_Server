@@ -1,6 +1,6 @@
 package model;
 
-public class Commands {
+public class Command {
     static public final String USER = "USER";
     static public final String PASS = "PASS";
     static public final String DELE = "DELE";
@@ -16,3 +16,5 @@ public class Commands {
     static public final String TYPE = "TYPE";
     static public final String PASV = "PASV";
 }
+
+

@@ -1,4 +1,7 @@
 package model;
 
-public class CommandProccess {
+import controller.CommandsController;
+
+public interface CommandProccess {
+   String process(String message, CommandsController controller);
 }
