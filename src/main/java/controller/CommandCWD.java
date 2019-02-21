@@ -1,30 +1,32 @@
 package controller;
 
-import model.CommandProccess;
+import model.CommandProcess;
 
+import model.Config;
 import model.ReplyCode;
 
 import java.io.File;
+import java.io.PrintWriter;
 
-public class CommandCWD implements CommandProccess {
+public class CommandCWD implements CommandProcess {
 
-    public String process(String message, CommandsController controller){
-        String[] messageSplit = message.split(controller.SPACE);
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+        String[] messageSplit = message.split(Config.SPACE);
 
-        if (messageSplit.length == controller.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            String fullDirPath = messageSplit[controller.FIRST_ARGUMENT_INDEX];
-            if (!fullDirPath.contains(controller.ROOT)) {
-                fullDirPath = controller.ROOT + "/" + messageSplit[controller.FIRST_ARGUMENT_INDEX];
+        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            String fullDirPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
+            if (!fullDirPath.contains(Config.ROOT)) {
+                fullDirPath = controller.getCurrentDir() + "/" + messageSplit[Config.FIRST_ARGUMENT_INDEX];
 
             }
             File rootNew = new File(fullDirPath);
 
             if(rootNew.isDirectory() && rootNew.exists()){
-//                dataSocket.createDataConnection(rootNew.getAbsolutePath(), null);
-                return ReplyCode.CODE_250;
+                controller.setCurrentDir(fullDirPath);
+                return code.getCODE_250();
 
-            } else return ReplyCode.CODE_550;
+            } else return code.getCODE_550();
 
-        } else return ReplyCode.CODE_501;
+        } else return code.getCODE_501();
     }
 }

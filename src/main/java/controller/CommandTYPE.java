@@ -1,32 +1,37 @@
 package controller;
 
-import model.CommandProccess;
+import model.CommandProcess;
 import model.Config;
 import model.LogMessages;
 import model.ReplyCode;
+import org.apache.log4j.Logger;
 
-public class CommandTYPE implements CommandProccess {
+import java.io.PrintWriter;
 
-    public String process(String message, CommandsController controller){
-        String[] messageSplit = message.split( controller.SPACE);
+public class CommandTYPE implements CommandProcess {
 
-        if (messageSplit.length == controller.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            controller.dataType = messageSplit[1];
+    private Logger log = Logger.getLogger(CommandTYPE.class);
 
-            if (controller.dataType.equals(Config.TYPE_A)) {
-                controller.log.info(LogMessages.TYPE_OF_DATA_IS_A_MESSAGE);
-                return ReplyCode.CODE_200;
-            } else if (controller.dataType.equals(Config.TYPE_I)) {
-                controller.log.info(LogMessages.TYPE_OF_DATA_IS_I_MESSAGE);
-                return ReplyCode.CODE_200;
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+        String[] messageSplit = message.split(Config.SPACE);
+
+        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            controller.setCurrentType(messageSplit[1]);
+
+            if (controller.getCurrentType().equals(Config.TYPE_A)) {
+                log.info(LogMessages.TYPE_OF_DATA_IS_A_MESSAGE);
+                return code.getCODE_200();
+            } else if (controller.getCurrentType().equals(Config.TYPE_I)) {
+                log.info(LogMessages.TYPE_OF_DATA_IS_I_MESSAGE);
+                return code.getCODE_200();
             } else {
-                controller.log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-                return ReplyCode.CODE_501;
+                log.info(LogMessages.WRONG_COMMAND_MESSAGE);
+                return code.getCODE_501();
             }
         }
         else {
-            controller.log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return ReplyCode.CODE_501;
+            log.info(LogMessages.WRONG_COMMAND_MESSAGE);
+            return code.getCODE_501();
         }
     }
 }

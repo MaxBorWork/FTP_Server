@@ -1,34 +1,18 @@
 package controller;
 
-import controller.CommandsController;
 import model.Config;
-import model.ReplyCode;
 
 import java.io.*;
-import java.net.Socket;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributeView;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.List;
-
-import static controller.CommandsController.ROOT;
 
 public class DataTransferringController {
     private InputStream inputStream;
     private OutputStream outputStream;
 
-    public DataTransferringController(OutputStream outputStream) {
-        this.outputStream = outputStream;
-    }
-
     public DataTransferringController(InputStream inputStream, OutputStream outputStream) {
         this.inputStream = inputStream;
         this.outputStream = outputStream;
-    }
-
-    public DataTransferringController() {
     }
 
     public void printDirectoryList(String dirName) {
@@ -48,7 +32,6 @@ public class DataTransferringController {
                 }
                 line=reader.readLine();
             }
-//            response.append("-rw-r--r-- 1 root root 0 Feb  7 21:24 /dir1/file.txt");
             outputStream.write(response.toString().getBytes());
         } catch (IOException e) {
             e.printStackTrace();

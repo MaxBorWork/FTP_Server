@@ -1,30 +1,36 @@
 package controller;
 
-import model.CommandProccess;
+import model.CommandProcess;
+import model.Config;
 import model.LogMessages;
 import model.ReplyCode;
+import org.apache.log4j.Logger;
 
-public class CommandPASS implements CommandProccess {
+import java.io.PrintWriter;
 
-    public String process(String message, CommandsController controller){
-        String[] messageSplit = message.split(controller.SPACE);
+public class CommandPASS implements CommandProcess {
 
-        if (messageSplit.length ==  controller.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+    private Logger log = Logger.getLogger(CommandPASS.class);
 
-            String password  = messageSplit[controller.FIRST_ARGUMENT_INDEX];
-            boolean user = controller.connection.getUser(controller.username, password);
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+        String[] messageSplit = message.split(Config.SPACE);
+
+        if (messageSplit.length ==  Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+
+            String password  = messageSplit[Config.FIRST_ARGUMENT_INDEX];
+            boolean user = controller.getConnection().getUser(controller.getUsername(), password);
 
             if (user) {
-                controller.log.info(LogMessages.PASSWORD_OK_MESSAGE);
-                return ReplyCode.CODE_230;
+                log.info(LogMessages.PASSWORD_OK_MESSAGE);
+                return code.getCODE_230();
             } else {
-                controller.log.info(LogMessages.WRONG_PASSWORD_MESSAGE);
-                return ReplyCode.CODE_530;
+                log.info(LogMessages.WRONG_PASSWORD_MESSAGE);
+                return code.getCODE_530();
             }
 
         } else {
-            controller.log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return ReplyCode.CODE_500;
+            log.info(LogMessages.WRONG_COMMAND_MESSAGE);
+            return code.getCODE_500();
         }
     }
 }

@@ -15,35 +15,25 @@ import java.net.UnknownHostException;
 
 public class ServerSocketAccept {
 
-    private Logger logger = Logger.getLogger(ServerSocketAccept.class);
-    private InetAddress addr;
     private CommandsController controller;
+    private Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
     public ServerSocketAccept() {
-
         controller = new CommandsController();
         start();
     }
 
     private void start() {
         try {
-            addr = InetAddress.getByName(Config.IP_ADDRESS_STRING_POINTS);
-            createConnection(Config.PORT_21_INT);
+            InetAddress addr = InetAddress.getByName(Config.IP_ADDRESS_STRING_POINTS);
+            createConnection(Config.PORT_21_INT, addr);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-//        Runnable r1 = new Runnable() {
-//                @Override
-//                public void run() {
-//
-//                }
-//            };
-//            Thread thread1 = new Thread(r1);
-//            thread1.start();
     }
 
-    public void createConnection(int port) {
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
+    private void createConnection(int port, InetAddress addr) {
+        try (ServerSocket serverSocket = new ServerSocket(port, 50, addr)) {
             int clientIndex = 1;
 
             while (true) {

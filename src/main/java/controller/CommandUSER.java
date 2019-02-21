@@ -1,28 +1,36 @@
 package controller;
 
-import model.CommandProccess;
+import model.CommandProcess;
+import model.Config;
 import model.LogMessages;
 import model.ReplyCode;
+import org.apache.log4j.Logger;
+import util.JDBCConnection;
 
-public class CommandUSER implements CommandProccess {
+import java.io.PrintWriter;
 
-    public String process(String message, CommandsController controller){
-        String[] messageSplit = message.split(controller.SPACE);
+public class CommandUSER implements CommandProcess {
 
-        if (messageSplit.length == controller.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+    private Logger log = Logger.getLogger(CommandUSER.class);
 
-            controller.username = messageSplit[controller.FIRST_ARGUMENT_INDEX];
-            boolean user = controller.connection.getUsername(controller.username);
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+        String[] messageSplit = message.split(Config.SPACE);
+
+        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+
+            String username = messageSplit[Config.FIRST_ARGUMENT_INDEX];
+            boolean user = controller.getConnection().getUsername(username);
             if (user) {
-                controller.log.info(LogMessages.USERNAME_OK_MESSAGE);
-                return ReplyCode.CODE_331;
+                controller.setUsername(username);
+                log.info(LogMessages.USERNAME_OK_MESSAGE);
+                return code.getCODE_331();
             } else {
-                controller.log.info(LogMessages.NO_SUCH_USER_MESSAGE);
-                return ReplyCode.CODE_530;
+                log.info(LogMessages.NO_SUCH_USER_MESSAGE);
+                return code.getCODE_530();
             }
         } else {
-            controller.log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return ReplyCode.CODE_500;
+            log.info(LogMessages.WRONG_COMMAND_MESSAGE);
+            return code.getCODE_500();
         }
     }
 }

@@ -1,22 +1,26 @@
 package controller;
 
-import model.CommandProccess;
+import model.CommandProcess;
+import model.Config;
 import model.LogMessages;
 import model.ReplyCode;
+import org.apache.log4j.Logger;
 
-import java.io.File;
+import java.io.PrintWriter;
 
-public class CommandSYST implements CommandProccess {
+public class CommandSYST implements CommandProcess {
 
-    public String process(String message, CommandsController controller){
-        String[] messageSplit = message.split(controller.SPACE);
+    private Logger log = Logger.getLogger(CommandSYST.class);
 
-        if (messageSplit.length ==  controller.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
-            controller.log.info(LogMessages.SYSTEM_TYPE_MESSAGE );
-            return ReplyCode.CODE_215;
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+        String[] messageSplit = message.split(Config.SPACE);
+
+        if (messageSplit.length ==  Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
+            log.info(LogMessages.SYSTEM_TYPE_MESSAGE );
+            return code.getCODE_215();
         } else {
-            controller.log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return ReplyCode.CODE_500;
+            log.info(LogMessages.WRONG_COMMAND_MESSAGE);
+            return code.getCODE_500();
         }
     }
 }

@@ -1,24 +1,28 @@
 package controller;
 
-import model.CommandProccess;
-import model.Config;
-import model.LogMessages;
-import model.ReplyCode;
+import model.*;
+import org.apache.log4j.Logger;
 
-public class CommandPORT implements CommandProccess {
+import java.io.PrintWriter;
 
-    public String process(String message, CommandsController controller){
-        String[] messageSplit = message.split(controller.SPACE);
+public class CommandPORT implements CommandProcess {
 
-        if (messageSplit.length == controller.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            String[] hostAndPorts = messageSplit[1].split(controller.COMMA);
+    private Logger log = Logger.getLogger(CommandPORT.class);
+
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+        DataSocket dataSocket = new DataSocket();
+
+        String[] messageSplit = message.split(Config.SPACE);
+
+        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            String[] hostAndPorts = messageSplit[1].split(Config.COMMA);
             String host = hostAndPorts[0] +"."+hostAndPorts[1] +"."+ hostAndPorts[2] + "."+hostAndPorts[3];
             int port = Integer.parseInt(hostAndPorts[4])* Config.BIT_SHIFT + Integer.parseInt(hostAndPorts[5]);
             if (port != Config.PORT_20_INT) {
-                controller.dataSocket.startThread(port);
+                dataSocket.startThread(port);
             }
-            controller.log.info(LogMessages.PORT_COMMAND_MESSAGE);
-            return ReplyCode.CODE_200;
-        } else return ReplyCode.CODE_501;
+            log.info(LogMessages.PORT_COMMAND_MESSAGE);
+            return code.getCODE_200();
+        } else return code.getCODE_501();
     }
 }

@@ -1,29 +1,28 @@
 package controller;
 
-import model.Command;
-import model.CommandProccess;
+import model.CommandProcess;
+import model.Config;
 import model.ReplyCode;
 
 import java.io.File;
+import java.io.PrintWriter;
 
-import static controller.CommandsController.ROOT;
+public class CommandDELE implements CommandProcess {
 
-public class CommandDELE implements CommandProccess {
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
 
-    public String process(String message, CommandsController controller){
+        String[] messageSplit = message.split(Config.SPACE);
 
-        String[] messageSplit = message.split(controller.SPACE);
-
-        if (messageSplit.length == controller.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            File file = new File(ROOT + File.pathSeparator + messageSplit[controller.FIRST_ARGUMENT_INDEX]);
+        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+            File file = new File(Config.ROOT + File.pathSeparator + messageSplit[Config.FIRST_ARGUMENT_INDEX]);
 
             if (!file.isDirectory() && file.delete()) {
-                return ReplyCode.CODE_250;
+                return code.getCODE_250();
             } else {
-                return "Error"; // либо не удалена либо не файл
+                return code.getCODE_550();
             }
         } else {
-            return ReplyCode.CODE_501;
+            return code.getCODE_501();
         }
     }
 

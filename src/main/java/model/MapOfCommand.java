@@ -26,6 +26,7 @@ public class MapOfCommand {
         commands.put(Command.SYST, new CommandSYST());
         commands.put(Command.TYPE, new CommandTYPE());
         commands.put(Command.PASV, new CommandPASV());
+        commands.put(Command.CDUP, new CommandCDUP());
     }
 
 }

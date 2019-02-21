@@ -1,34 +1,42 @@
 package controller;
 
-import model.CommandProccess;
-import model.LogMessages;
+import model.CommandProcess;
+import model.Config;
 import model.ReplyCode;
+import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.io.PrintWriter;
 
-public class CommandRMD implements CommandProccess {
+public class CommandRMD implements CommandProcess {
 
-    public String process(String message, CommandsController controller){
+    private Logger log = Logger.getLogger(CommandRMD.class);
 
-            String[] messageSplit = message.split(controller.SPACE);
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
 
-            if (messageSplit.length == controller.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-                File dir = new File(controller.ROOT + File.pathSeparator + messageSplit[controller.FIRST_ARGUMENT_INDEX]);
+            String[] messageSplit = message.split(Config.SPACE);
+
+            if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+                String fullPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
+                if (!fullPath.contains(Config.ROOT)) {
+                    fullPath = Config.ROOT + "/" + fullPath;
+                }
+                File dir = new File(fullPath);
 
                 if (dir.isDirectory() && dir.delete()) {
-                    return ReplyCode.CODE_250;
+                    return code.getCODE_250();
                 } else if (dir.isDirectory() && !dir.delete()) {
                     removeNotNullDir(dir, controller);
                     if (dir.delete()) {
-                        return ReplyCode.CODE_250;
+                        return code.getCODE_250();
                     } else {
-                        return ReplyCode.CODE_550;
+                        return code.getCODE_550();
                     }
                 } else {
-                    return ReplyCode.CODE_550;
+                    return code.getCODE_550();
                 }
             } else {
-                return ReplyCode.CODE_501;
+                return code.getCODE_501();
             }
     }
 
@@ -39,13 +47,13 @@ public class CommandRMD implements CommandProccess {
             for (String fileName : fileNames) {
                 File file = new File(dir.getPath(),fileName);
                 if (file.delete()) {
-                    controller.log.info("file " + fileName + " was successfully deleted");
+                    log.info("file " + fileName + " was successfully deleted");
                     removedFromDirFilesCount++;
                 } else {
-                    controller.log.info("can't remove file " + fileName);
+                    log.info("can't remove file " + fileName);
                 }
             }
-            controller.log.info("was successfully removed " + removedFromDirFilesCount + " files");
+            log.info("was successfully removed " + removedFromDirFilesCount + " files");
         }
     }
 }

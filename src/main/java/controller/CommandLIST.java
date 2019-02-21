@@ -1,29 +1,24 @@
 package controller;
 
+import model.*;
+import java.io.PrintWriter;
 
-import model.Command;
-import model.CommandProccess;
-import model.LogMessages;
-import model.ReplyCode;
+public class CommandLIST implements CommandProcess {
 
-import java.io.IOException;
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
 
-public class CommandLIST implements CommandProccess {
+        String resp150 = code.getCODE_150(controller.getCurrentType(),
+                                            controller.getCurrentDir(),
+                                            DataTransferringController.pasvMessage());
 
-    public String process(String message, CommandsController controller){
-
-            String[] messageSplit = message.split(controller.SPACE);
-            if (messageSplit.length == controller.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
-              //  writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
-                controller.dataSocket.createDataConnection(controller.ROOT, Command.LIST);
-            } else if (messageSplit.length == controller.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-          //  writer.println("150 ASCII data connection for /etc/root (127.0.0.1,20) (0 bytes)");
-                String path = controller.ROOT + "/" + messageSplit[1];
-            controller.dataSocket.createDataConnection(path, Command.LIST);
-            } else {
-                return ReplyCode.CODE_501;
-            }
-            return ReplyCode.CODE_226;
+        String[] messageSplit = message.split(Config.SPACE);
+        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
+            writer.println(resp150);
+            controller.getDataSocket().createDataConnection(controller.getCurrentDir(), Command.LIST);
+        } else {
+            return code.getCODE_501();
         }
+        return code.getCODE_226();
+    }
 
 }

@@ -15,6 +15,7 @@ public class Command {
     static public final String SYST = "SYST";
     static public final String TYPE = "TYPE";
     static public final String PASV = "PASV";
+    static public final String CDUP = "CDUP";
 }
 
 

@@ -1,21 +1,26 @@
 package controller;
 
 
-import model.CommandProccess;
+import model.CommandProcess;
+import model.Config;
 import model.LogMessages;
 import model.ReplyCode;
+import org.apache.log4j.Logger;
 
-public class CommandPASV implements CommandProccess {
+import java.io.PrintWriter;
 
-    public String process(String message, CommandsController controller){
-        String[] messageSplit = message.split(controller.SPACE);
-        if (messageSplit.length == controller.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
-            controller.log.info(LogMessages.SENT_ADDRESS_MESSAGE);
-//            dataSocket.startThread(Config.PORT_20_INT);
-            return ReplyCode.CODE_227;
+public class CommandPASV implements CommandProcess {
+
+    private Logger log = Logger.getLogger(CommandPASV.class);
+
+    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+        String[] messageSplit = message.split(Config.SPACE);
+        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
+            log.info(LogMessages.SENT_ADDRESS_MESSAGE);
+            return code.getCODE_227();
         } else {
-            controller.log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return ReplyCode.CODE_500;
+            log.info(LogMessages.WRONG_COMMAND_MESSAGE);
+            return code.getCODE_500();
         }
     }
 }
