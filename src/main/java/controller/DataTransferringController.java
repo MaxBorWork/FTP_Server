@@ -3,6 +3,7 @@ package controller;
 import model.Config;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -44,16 +45,20 @@ public class DataTransferringController {
         return "(" + Config.IP_ADDRESS_STRING_COMMAS + "," + Config.PORT_20_INT / Config.BIT_SHIFT + "," + Config.PORT_20_INT % Config.BIT_SHIFT + ")";
     }
 
-    public void sendFileToClient(String fileName) {
-        try {
-            byte[] fileAsByteArray = Files.readAllBytes(Paths.get(fileName));
-            outputStream.write(fileAsByteArray);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void sendFileToClient(String fileName, CommandsController controller) {
+        if (controller.getCurrentType().equals(Config.TYPE_I)) {
+            try {
+                byte[] fileAsByteArray = Files.readAllBytes(Paths.get(fileName));
+                outputStream.write(fileAsByteArray);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+
         }
     }
 
-    public void storeFile(String fileName) {
+    public void storeFile(String fileName, CommandsController controller) {
         if (!Files.exists(Paths.get(fileName))) {
             try {
                 Files.createFile(Paths.get(fileName));
@@ -61,16 +66,21 @@ public class DataTransferringController {
                 e.printStackTrace();
             }
         }
+        if (controller.getCurrentType().equals(Config.TYPE_I)) {
+            byte[] fileAsByteArray;
+            try {
+                fileAsByteArray = new byte[inputStream.available()];
 
-        byte[] fileAsByteArray = new byte[0];
-        try {
-            fileAsByteArray = new byte[inputStream.available()];
+                inputStream.read(fileAsByteArray);
 
-            inputStream.read(fileAsByteArray);
-
-            Files.write(Paths.get(fileName), fileAsByteArray);
-        } catch (IOException e) {
-            e.printStackTrace();
+                Files.write(Paths.get(fileName), fileAsByteArray);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+//            BufferedReader reader = new BufferedReader(new StringReader(), StandardCharsets.US_ASCII);
+//
+//            while (reader.read())
         }
 
     }

@@ -1,9 +1,7 @@
 package util;
 
-import com.sun.corba.se.spi.activation.Server;
 import controller.CommandsController;
 import model.Config;
-import model.DataSocket;
 import model.LogMessages;
 import org.apache.log4j.Logger;
 
@@ -18,7 +16,12 @@ public class ServerSocketAccept {
     private CommandsController controller;
     private Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
-    public ServerSocketAccept() {
+    public ServerSocketAccept(String[] args) {
+        if (args.length > 0) {
+            Config.ROOT = args[0];
+        } else {
+            Config.ROOT = "/etc/ftRoot";
+        }
         controller = new CommandsController();
         start();
     }
@@ -33,7 +36,7 @@ public class ServerSocketAccept {
     }
 
     private void createConnection(int port, InetAddress addr) {
-        try (ServerSocket serverSocket = new ServerSocket(port, 50, addr)) {
+        try (ServerSocket serverSocket = new ServerSocket(port, Config.MAX_CONNECTION_NUMBER, addr)) {
             int clientIndex = 1;
 
             while (true) {

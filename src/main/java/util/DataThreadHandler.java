@@ -1,5 +1,6 @@
 package util;
 
+import controller.CommandsController;
 import controller.DataTransferringController;
 import org.apache.log4j.Logger;
 
@@ -9,14 +10,16 @@ import java.net.Socket;
 public class DataThreadHandler implements Runnable {
 
     private Socket inSocket;
-    private static Logger log = Logger.getLogger(ServerSocketAccept.class);
+    private CommandsController controller;
+    private Logger log = Logger.getLogger(ServerSocketAccept.class);
     private String processingString;
     private String flag;
 
-    public DataThreadHandler(Socket inSocket, String processingString, String flag) {
+    public DataThreadHandler(Socket inSocket, String processingString, String flag, CommandsController controller) {
         this.inSocket = inSocket;
         this.processingString = processingString;
         this.flag = flag;
+        this.controller = controller;
     }
 
     @Override
@@ -24,13 +27,13 @@ public class DataThreadHandler implements Runnable {
         try (InputStream inputStream = inSocket.getInputStream();
              OutputStream outputStream = inSocket.getOutputStream()) {
 
-            DataTransferringController controller = new DataTransferringController(inputStream, outputStream);
+            DataTransferringController dataController = new DataTransferringController(inputStream, outputStream);
             if (flag.equals("LIST")) {
-                controller.printDirectoryList(processingString);
+                dataController.printDirectoryList(processingString);
             } else if (flag.equals("RETR")) {
-                controller.sendFileToClient(processingString);
+                dataController.sendFileToClient(processingString, controller);
             } else if (flag.equals("STOR")) {
-                controller.storeFile(processingString);
+                dataController.storeFile(processingString, controller);
             }
 
             inSocket.close();

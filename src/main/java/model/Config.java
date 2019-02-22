@@ -1,8 +1,8 @@
 package model;
 
 public class Config {
-    static public String IP_ADDRESS_STRING_POINTS = "127.0.0.1";
-    static public String IP_ADDRESS_STRING_COMMAS = "127,0,0,1";
+    static public String IP_ADDRESS_STRING_POINTS = "0.0.0.0";
+    static public String IP_ADDRESS_STRING_COMMAS = "0,0,0,0";
     static public String PORT_21_STRING = "21";
     static public int PORT_21_INT = 21;
     static public int MAX_CONNECTION_NUMBER = 50;

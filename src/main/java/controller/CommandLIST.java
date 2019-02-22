@@ -14,7 +14,7 @@ public class CommandLIST implements CommandProcess {
         String[] messageSplit = message.split(Config.SPACE);
         if (messageSplit.length == Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
             writer.println(resp150);
-            controller.getDataSocket().createDataConnection(controller.getCurrentDir(), Command.LIST);
+            controller.getDataSocket().createDataConnection(controller.getCurrentDir(), Command.LIST, controller);
         } else {
             return code.getCODE_501();
         }

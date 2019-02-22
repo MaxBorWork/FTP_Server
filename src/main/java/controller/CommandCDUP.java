@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.PrintWriter;
 
 public class CommandCDUP implements CommandProcess {
+
     @Override
     public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller) {
         String[] messageSplit = message.split(Config.SPACE);

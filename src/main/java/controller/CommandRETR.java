@@ -4,9 +4,6 @@ import model.*;
 
 import java.io.PrintWriter;
 
-import static model.Config.ROOT;
-
-
 public class CommandRETR implements CommandProcess {
 
     public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller) {
@@ -19,7 +16,7 @@ public class CommandRETR implements CommandProcess {
             writer.println(code.getCODE_150(controller.getCurrentType(),
                                             controller.getCurrentDir(),
                                             DataTransferringController.pasvMessage()));
-            controller.getDataSocket().createDataConnection(filename, Command.RETR);
+            controller.getDataSocket().createDataConnection(filename, Command.RETR, controller);
         } else return code.getCODE_501();
         return code.getCODE_226();
     }

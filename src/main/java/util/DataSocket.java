@@ -1,9 +1,9 @@
-package model;
+package util;
 
+import controller.CommandsController;
+import model.Config;
+import model.LogMessages;
 import org.apache.log4j.Logger;
-import util.DataThreadHandler;
-import util.ServerSocketAccept;
-import util.ThreadHandler;
 
 import java.io.IOException;
 import java.net.*;
@@ -17,11 +17,11 @@ public class DataSocket {
         startThread(Config.PORT_20_INT);
     }
 
-    public void createDataConnection(String processingString, String flag) {
+    public void createDataConnection(String processingString, String flag, CommandsController controller) {
         try {
                 inSocket = serverSocket.accept();
                 logger.info("Data connection established");
-                Runnable r = new DataThreadHandler(inSocket, processingString, flag);
+                Runnable r = new DataThreadHandler(inSocket, processingString, flag, controller);
                 Thread thread = new Thread(r);
                 thread.start();
         } catch (IOException e) {

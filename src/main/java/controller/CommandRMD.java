@@ -19,7 +19,7 @@ public class CommandRMD implements CommandProcess {
             if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
                 String fullPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
                 if (!fullPath.contains(Config.ROOT)) {
-                    fullPath = Config.ROOT + "/" + fullPath;
+                    fullPath = controller.getCurrentDir() + "/" + fullPath;
                 }
                 File dir = new File(fullPath);
 

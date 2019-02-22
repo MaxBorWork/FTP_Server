@@ -18,12 +18,12 @@ public class CommandSTOR implements CommandProcess {
         if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
             String filename = messageSplit[Config.FIRST_ARGUMENT_INDEX];
             if (!filename.contains("/")) {
-                filename = Config.ROOT + "/" + filename;
+                filename = controller.getCurrentDir() + "/" + filename;
             }
             writer.println(code.getCODE_150(controller.getCurrentType(),
                     controller.getCurrentDir(),
                     DataTransferringController.pasvMessage()));
-            controller.getDataSocket().createDataConnection(filename, Command.STOR);
+            controller.getDataSocket().createDataConnection(filename, Command.STOR, controller);
         } else return code.getCODE_501();
         return code.getCODE_226();
     }
