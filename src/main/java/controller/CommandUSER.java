@@ -23,14 +23,14 @@ public class CommandUSER implements CommandProcess {
             if (user) {
                 controller.setUsername(username);
                 log.info(LogMessages.USERNAME_OK_MESSAGE);
-                return code.getCODE_331();
+                return  controller.reply.codeToMessage.get(331).toString();
             } else {
                 log.info(LogMessages.NO_SUCH_USER_MESSAGE);
-                return code.getCODE_530();
+                return  controller.reply.codeToMessage.get(530).toString();
             }
         } else {
             log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return code.getCODE_500();
+            return  controller.reply.codeToMessage.get(500).toString();
         }
     }
 }

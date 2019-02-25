@@ -16,7 +16,8 @@ public class Config {
     static public int SIZE_OF_COMMAND_WITH_ONE_ARGUMENT = 2;
     static public int SIZE_OF_COMMAND_WITH_TWO_ARGUMENT = 3;
     static public int FIRST_ARGUMENT_INDEX = 1;
-    static public String ROOT = "/etc/ftRoot";
+    static public String ROOT = "/";
+    static public String TEMP = ROOT + "/TEMP";
     static public String SPACE = " ";
     static public String COMMA = ",";
 }

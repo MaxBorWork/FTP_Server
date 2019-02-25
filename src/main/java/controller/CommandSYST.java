@@ -17,10 +17,10 @@ public class CommandSYST implements CommandProcess {
 
         if (messageSplit.length ==  Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
             log.info(LogMessages.SYSTEM_TYPE_MESSAGE );
-            return code.getCODE_215();
+            return  controller.reply.codeToMessage.get(215).toString();
         } else {
             log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return code.getCODE_500();
+            return  controller.reply.codeToMessage.get(500).toString();
         }
     }
 }

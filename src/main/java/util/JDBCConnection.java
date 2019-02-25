@@ -9,7 +9,7 @@ public class JDBCConnection {
 
     private static final String url = "jdbc:mysql://localhost:3306/aipos";
     private static final String user = "root";
-    private static final String pass = "root";
+    private static final String pass = "кщще";
 
     public boolean getUsername(String username) {
 

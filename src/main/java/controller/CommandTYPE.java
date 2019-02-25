@@ -20,18 +20,18 @@ public class CommandTYPE implements CommandProcess {
 
             if (controller.getCurrentType().equals(Config.TYPE_A)) {
                 log.info(LogMessages.TYPE_OF_DATA_IS_A_MESSAGE);
-                return code.getCODE_200();
+                return  controller.reply.codeToMessage.get(200).toString();
             } else if (controller.getCurrentType().equals(Config.TYPE_I)) {
                 log.info(LogMessages.TYPE_OF_DATA_IS_I_MESSAGE);
-                return code.getCODE_200();
+                return  controller.reply.codeToMessage.get(200).toString();
             } else {
                 log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-                return code.getCODE_501();
+                return  controller.reply.codeToMessage.get(501).toString();
             }
         }
         else {
             log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return code.getCODE_501();
+            return  controller.reply.codeToMessage.get(501).toString();
         }
     }
 }

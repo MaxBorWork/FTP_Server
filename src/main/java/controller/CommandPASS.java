@@ -22,15 +22,15 @@ public class CommandPASS implements CommandProcess {
 
             if (user) {
                 log.info(LogMessages.PASSWORD_OK_MESSAGE);
-                return code.getCODE_230();
+                return  controller.reply.codeToMessage.get(230).toString();
             } else {
                 log.info(LogMessages.WRONG_PASSWORD_MESSAGE);
-                return code.getCODE_530();
+                return  controller.reply.codeToMessage.get(530).toString();
             }
 
         } else {
             log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return code.getCODE_500();
+            return  controller.reply.codeToMessage.get(500).toString();
         }
     }
 }

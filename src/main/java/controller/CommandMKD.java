@@ -16,19 +16,18 @@ public class CommandMKD implements CommandProcess {
 
         String[] messageSplit = message.split(Config.SPACE);
 
-        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            String fullPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
+     //   if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+        String fullPath = message.substring(message.indexOf(" ")+1);
+           // String fullPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
             if (!fullPath.contains(Config.ROOT)) {
                 fullPath = controller.getCurrentDir() + "/" + fullPath;
             }
             File file = new File(fullPath);
             if (file.mkdir()) {
-                return code.getCODE_200();
+                return  controller.reply.codeToMessage.get(200).toString();
             } else {
-                return code.getCODE_550();
+                return  controller.reply.codeToMessage.get(550).toString();
             }
-        } else {
-            return code.getCODE_501();
-        }
+      //  } else return code.getCODE_501();
     }
 }
