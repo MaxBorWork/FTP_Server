@@ -7,14 +7,32 @@ import java.util.List;
 
 public class JDBCConnection {
 
-    private static final String url = "jdbc:mysql://localhost:3306/aipos";
+    private static final String url = "jdbc:sqlite:main.db";
     private static final String user = "root";
     private static final String pass = "root";
+    private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS User (\n"
+            + "	id integer PRIMARY KEY,\n"
+            + "	username varchar(255) NOT NULL,\n"
+            + "	password varchar(255) NOT NULL\n"
+            + ");";
+
+    public JDBCConnection() {
+        try {
+            Connection con = DriverManager.getConnection(url);
+
+            Statement statement = con.createStatement();
+
+            statement.execute(SQL_CREATE_TABLE);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public boolean getUsername(String username) {
 
         try {
-            Connection con = DriverManager.getConnection(url, user, pass);
+            Connection con = DriverManager.getConnection(url);
 
             Statement statement = con.createStatement();
 
@@ -33,7 +51,7 @@ public class JDBCConnection {
     public boolean getUser(String username, String password) {
 
         try {
-            Connection con = DriverManager.getConnection(url, user, pass);
+            Connection con = DriverManager.getConnection(url);
 
             Statement statement = con.createStatement();
 
@@ -49,4 +67,5 @@ public class JDBCConnection {
 
         return false;
     }
+
 }
