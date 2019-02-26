@@ -31,7 +31,7 @@ public class DataThreadHandler implements Runnable {
             if (flag.equals("LIST")) {
                 dataController.printDirectoryList(processingString);
             } else if (flag.equals("RETR")) {
-                dataController.sendFileToClient(processingString, controller);
+                dataController.retrieveFile(processingString, controller);
             } else if (flag.equals("STOR")) {
                 dataController.storeFile(processingString, controller);
             }

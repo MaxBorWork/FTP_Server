@@ -3,3 +3,4 @@ target/
 *.iml
 log_file.log
 out/
+lib/

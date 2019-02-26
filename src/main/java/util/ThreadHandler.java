@@ -33,8 +33,8 @@ public class ThreadHandler implements Runnable {
             PrintWriter writer = new PrintWriter(
                     new OutputStreamWriter(outputStream, StandardCharsets.UTF_8),true);
 
-            writer.println(controller.reply.codeToMessage.get(220).toString());
-
+            writer.println(CommandsController.reply.codeToMessage.get(220).toString());
+            System.out.println(CommandsController.reply.codeToMessage.get(220).toString());
             boolean done = false;
 
             while (!done && in.hasNextLine()) {

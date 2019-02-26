@@ -5,11 +5,9 @@ import model.Config;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Collections;
 
 public class DataTransferringController {
     private InputStream inputStream;
@@ -30,18 +28,12 @@ public class DataTransferringController {
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line = reader.readLine();
 
-                while (line != null) {
-
-                    if (!line.contains("итого")) {
-
-                        if (line.contains("Лют")) {
-                            line = line.replace("Лют", "Feb");
-                        }
-                        response.append(line).append("\t\n");
-                    }
-
-                    line = reader.readLine();
+            while (line != null) {
+                if (!line.contains("итого")) {
+                    response.append(line).append("\t\n");
                 }
+                line = reader.readLine();
+            }
 
             outputStream.write(response.toString().getBytes());
         } catch (IOException e) {
@@ -52,75 +44,92 @@ public class DataTransferringController {
     }
 
     public static String pasvMessage() {
-        return "(" + Config.IP_ADDRESS_STRING_COMMAS + "," + Config.PORT_20_INT / Config.BIT_SHIFT + "," + Config.PORT_20_INT % Config.BIT_SHIFT + ")";
+        return "(" + Config.IP_ADDRESS_STRING_COMMAS + "," +
+                        Config.PORT_20_INT / Config.BIT_SHIFT + "," +
+                        Config.PORT_20_INT % Config.BIT_SHIFT + ")";
     }
 
-    public void sendFileToClient(String fileName, CommandsController controller) {
-        System.out.println(fileName);
+    public void retrieveFile(String fileName, CommandsController controller) {
+        String newFileName = copyFileToTmp(fileName);
 
-        String oldFileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-
-        String newFileName = Config.TEMP + "/" + oldFileName;
-        int id = 1;
-        while (Files.exists(Paths.get(newFileName))) {
-            oldFileName = String.valueOf(id) + oldFileName;
-            newFileName = Config.TEMP + "/" + oldFileName;
-            id += 1;
-
-        }
-
-
-       if (controller.getCurrentType().equals(Config.TYPE_I)) {
-            try {
-                Files.copy( Paths.get(fileName), Paths.get(newFileName) ,  StandardCopyOption.REPLACE_EXISTING);
-
-                byte[] fileAsByteArray = Files.readAllBytes(Paths.get(newFileName));
-                outputStream.write(fileAsByteArray);
-                Files.delete(Paths.get(newFileName));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-        }
-
-
-
-
-
-    /*    if (controller.getCurrentType().equals(Config.TYPE_I)) {
-            try {
-
-                byte[] fileAsByteArray = Files.readAllBytes(Paths.get(fileName));
-                outputStream.write(fileAsByteArray);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-        }*/
-    }
-
-    public void storeFile(String fileName, CommandsController controller) {
-      // System.out.println(fileName);
-        String oldFileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-
-        String newFileName = Config.TEMP + "/" + oldFileName;
-        int id = 1;
-        while (Files.exists(Paths.get(newFileName))) {
-            oldFileName = String.valueOf(id) + oldFileName;
-            newFileName = Config.TEMP + "/" + oldFileName;
-            id += 1;
-
-        }
-
-     //  System.out.println(oldFileName);
         try {
-            Files.createFile(Paths.get(newFileName));
+            Files.copy( Paths.get(fileName), Paths.get(newFileName) ,  StandardCopyOption.REPLACE_EXISTING);
+
+            if (controller.getCurrentType().equals(Config.TYPE_I)) {
+                retrieveASCIIFile(newFileName);
+            } else {
+                retrieveBinaryFile(newFileName);
+            }
+
+            Files.delete(Paths.get(newFileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private void retrieveASCIIFile(String newFileName) {
+        try {
+            byte[] fileAsByteArray = Files.readAllBytes(Paths.get(newFileName));
+            outputStream.write(fileAsByteArray);
+            Files.delete(Paths.get(newFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void retrieveBinaryFile(String newFileName) {
+        PrintWriter writer = new PrintWriter(
+                new OutputStreamWriter(outputStream, StandardCharsets.US_ASCII),true);
+        StringBuffer buf = null;
+        try {
+            FileReader fr = new FileReader(newFileName);
+            int theChar;
+            buf = new StringBuffer();
+
+            while (((theChar = fr.read()) != -1)) {
+                buf.append((char) theChar);
+            }
+            writer.println(buf);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void storeFile(String fileName, CommandsController controller) {
+        String newFileName = copyFileToTmp(fileName);
+
+        try {
+            Files.createFile(Paths.get(newFileName));
+            if (controller.getCurrentType().equals(Config.TYPE_I)) {
+                storeASCIIFile(newFileName);
+            } else {
+                storeBinaryFile(newFileName);
+            }
+            Files.move(Paths.get(newFileName), Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void storeASCIIFile(String fileName) {
+        Reader r = null;
+        StringBuilder builder = new StringBuilder();
+        try {
+            r = new InputStreamReader(inputStream, StandardCharsets.US_ASCII);
+            int intch;
+            while ((intch = r.read()) != -1) {
+                char ch = (char) intch;
+                builder.append(ch);
+            }
+            Files.write(Paths.get(fileName), Collections.singleton(builder.toString()));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void storeBinaryFile(String fileName) {
         byte[] fileAsByteArray;
         try {
             fileAsByteArray = new byte[inputStream.available()];
@@ -128,45 +137,22 @@ public class DataTransferringController {
             inputStream.read(fileAsByteArray);
 
             Files.write(Paths.get(fileName), fileAsByteArray);
-            Files.move( Paths.get(newFileName), Paths.get(fileName) ,  StandardCopyOption.REPLACE_EXISTING);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private String copyFileToTmp(String fileName) {
+        StringBuilder oldFileName = new StringBuilder(fileName.substring(fileName.lastIndexOf("/") + 1));
 
-
-
-
-
-
-
-
-   /*     if (!Files.exists(Paths.get(fileName))) {
-            try {
-                Files.createFile(Paths.get(fileName));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        String newFileName = Config.TEMP + "/" + oldFileName;
+        int id = 1;
+        while (Files.exists(Paths.get(newFileName))) {
+            oldFileName.insert(0, String.valueOf(id));
+            newFileName = Config.TEMP + "/" + oldFileName;
+            id += 1;
         }
-        if (controller.getCurrentType().equals(Config.TYPE_I)) {
-            byte[] fileAsByteArray;
-            try {
-                fileAsByteArray = new byte[inputStream.available()];
-
-                inputStream.read(fileAsByteArray);
-
-                Files.write(Paths.get(fileName), fileAsByteArray);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-
-//            BufferedReader reader = new BufferedReader(new StringReader(), StandardCharsets.US_ASCII);
-//
-//            while (reader.read())
-        }
-
-    }*/
+        return newFileName;
     }
 }

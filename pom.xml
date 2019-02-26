@@ -9,12 +9,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <!-- MySQL database driver -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.9</version>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -27,10 +21,11 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.6.4</version>
+            <version>1.7.5</version>
         </dependency>
 
         <dependency>
@@ -43,6 +38,12 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20180813</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
         </dependency>
 
     </dependencies>
@@ -71,15 +72,6 @@
                                     <artifactId>log4j</artifactId>
                                     <type>jar</type>
                                     <destFileName>log4j-1.2.17.jar</destFileName>
-                                    <overWrite>false</overWrite>
-                                </artifactItem>
-
-                                <artifactItem>
-                                    <groupId>mysql</groupId>
-                                    <artifactId>mysql-connector-java</artifactId>
-                                    <type>jar</type>
-
-                                    <destFileName>mysql-connector-java-5.1.9.jar</destFileName>
                                     <overWrite>false</overWrite>
                                 </artifactItem>
                             </artifactItems>
@@ -128,10 +120,11 @@
         </plugins>
         <resources>
             <resource>
-                <directory>src/resources</directory>
+                <directory>src/main/resources</directory>
                 <targetPath>${project.build.directory}</targetPath>
                 <includes>
                     <include>log4j.properties</include>
+                    <include>Reply_Code.json</include>
                 </includes>
             </resource>
         </resources>

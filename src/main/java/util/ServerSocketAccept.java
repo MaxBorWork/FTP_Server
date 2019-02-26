@@ -4,7 +4,8 @@ import controller.CommandsController;
 import model.Config;
 import model.LogMessages;
 import model.Reply;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,8 @@ import java.net.UnknownHostException;
 public class ServerSocketAccept {
 
     private CommandsController controller;
-    private Logger logger = Logger.getLogger(ServerSocketAccept.class);
+
+    private Logger logger = LoggerFactory.getLogger(ServerSocketAccept.class);
 
     public ServerSocketAccept(String[] args) {
 
