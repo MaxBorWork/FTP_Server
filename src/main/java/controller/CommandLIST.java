@@ -14,11 +14,11 @@ public class CommandLIST implements CommandProcess {
         String[] messageSplit = message.split(Config.SPACE);
         if (messageSplit.length == Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
             writer.println(resp150);
-            controller.getDataSocket().createDataConnection(controller.getCurrentDir(), Command.LIST, controller);
+            controller.getDataSocket().createDataConnection(controller.getCurrentDir(), "LIST", controller);
         } else {
-            return code.getCODE_501();
+            return  controller.reply.codeToMessage.get(501).toString();
         }
-        return code.getCODE_226();
+        return  controller.reply.codeToMessage.get(226).toString();
     }
 
 }

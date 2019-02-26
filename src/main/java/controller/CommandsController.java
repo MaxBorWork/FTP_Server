@@ -14,11 +14,13 @@ public class CommandsController {
     private String currentDir = Config.ROOT;
     private String currentType;
     private String username;
+    public static Reply reply ;
     private Logger log = Logger.getLogger(CommandsController.class);
 
     public CommandsController() {
         connection = new JDBCConnection();
         dataSocket = new DataSocket();
+        reply = new Reply();
     }
 
     public boolean getCommand(String line, PrintWriter writer, ReplyCode code) {
@@ -32,13 +34,13 @@ public class CommandsController {
             String command = lineSlpit[0];
             CommandProcess cP = (CommandProcess) map.commands.get(command);
             if(cP == null){
-                writer.println(code.getCODE_500());
+                writer.println(reply.codeToMessage.get(500).toString());
             } else {
                 writer.println(cP.process(line, writer, code, this));
             }
             return false;
         } else {
-            writer.println(code.getCODE_500());
+            writer.println(reply.codeToMessage.get(500).toString());
             return true;
         }
     }

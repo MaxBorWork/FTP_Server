@@ -33,13 +33,15 @@ public class ThreadHandler implements Runnable {
             PrintWriter writer = new PrintWriter(
                     new OutputStreamWriter(outputStream, StandardCharsets.UTF_8),true);
 
-            writer.println(code.getCODE_220());
+            writer.println(controller.reply.codeToMessage.get(220).toString());
 
             boolean done = false;
+
             while (!done && in.hasNextLine()) {
                 String line = in.nextLine();
                 done = controller.getCommand(line, writer, code);
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

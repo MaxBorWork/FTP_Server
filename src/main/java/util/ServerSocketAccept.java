@@ -3,8 +3,10 @@ package util;
 import controller.CommandsController;
 import model.Config;
 import model.LogMessages;
+import model.Reply;
 import org.apache.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -17,11 +19,21 @@ public class ServerSocketAccept {
     private Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
     public ServerSocketAccept(String[] args) {
+
         if (args.length > 0) {
             Config.ROOT = args[0];
-        } else {
-            Config.ROOT = "/etc/ftRoot";
         }
+        Config.TEMP = Config.ROOT+"/"+"TEMP";
+        File tempDir = new File( Config.TEMP);
+        try{
+            if(!tempDir.exists()||!tempDir.isDirectory()){
+                tempDir.mkdir();
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
         controller = new CommandsController();
         start();
     }

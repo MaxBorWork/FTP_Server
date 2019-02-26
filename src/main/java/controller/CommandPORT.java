@@ -23,7 +23,7 @@ public class CommandPORT implements CommandProcess {
                 dataSocket.startThread(port);
             }
             log.info(LogMessages.PORT_COMMAND_MESSAGE);
-            return code.getCODE_200();
-        } else return code.getCODE_501();
+            return  controller.reply.codeToMessage.get(200).toString();
+        } else return  controller.reply.codeToMessage.get(501).toString();
     }
 }

@@ -18,7 +18,7 @@ public class CommandUSERTest {
     @Test
     public void process() {
         String message = "USER admin";
-        String expectedResult = new ReplyCode().getCODE_331();
+        String expectedResult =  CommandsController.reply.codeToMessage.get(331).toString();
         assertEquals(expectedResult, commandUSER.process(message, null,
                                                         new ReplyCode(), new CommandsController()));
     }

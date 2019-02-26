@@ -8,8 +8,6 @@ import java.util.List;
 public class JDBCConnection {
 
     private static final String url = "jdbc:sqlite:main.db";
-    private static final String user = "root";
-    private static final String pass = "root";
     private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS User (\n"
             + "	id integer PRIMARY KEY,\n"
             + "	username varchar(255) NOT NULL,\n"

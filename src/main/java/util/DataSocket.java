@@ -5,6 +5,7 @@ import model.Config;
 import model.LogMessages;
 import org.apache.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.*;
 
@@ -14,6 +15,8 @@ public class DataSocket {
     private Socket inSocket;
 
     public DataSocket() {
+
+
         startThread(Config.PORT_20_INT);
     }
 

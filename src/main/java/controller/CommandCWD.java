@@ -13,20 +13,25 @@ public class CommandCWD implements CommandProcess {
     public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
         String[] messageSplit = message.split(Config.SPACE);
 
-        if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
-            String fullDirPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
-            if (!fullDirPath.contains(Config.ROOT)) {
-                fullDirPath = controller.getCurrentDir() + "/" + messageSplit[Config.FIRST_ARGUMENT_INDEX];
+      //  if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
+           // String fullDirPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
+        String fullDirPath = message.substring(message.indexOf(" ")+1);
+      //  fullDirPath.substring(1);
 
+            if (!fullDirPath.contains(Config.ROOT)) {
+               // fullDirPath = controller.getCurrentDir() + "/" + messageSplit[Config.FIRST_ARGUMENT_INDEX];
+                 fullDirPath = controller.getCurrentDir() + "/" + fullDirPath;
             }
+        System.out.println(fullDirPath);
             File rootNew = new File(fullDirPath);
 
             if(rootNew.isDirectory() && rootNew.exists()){
+                System.out.println("YES");
                 controller.setCurrentDir(fullDirPath);
-                return code.getCODE_250();
+                return controller.reply.codeToMessage.get(250).toString();
 
-            } else return code.getCODE_550();
+            } else return  controller.reply.codeToMessage.get(550).toString();
 
-        } else return code.getCODE_501();
+     //   } else return code.getCODE_501();
     }
 }

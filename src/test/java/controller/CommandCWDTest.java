@@ -4,11 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class CommandCDUPTest {
+public class CommandCWDTest {
 
     @Test
     public void process() {
-
     }
-
 }

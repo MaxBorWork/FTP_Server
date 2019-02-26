@@ -22,14 +22,15 @@ public class CommandCDUP implements CommandProcess {
                 String trimString = "/" + currDirPathSplit[currDirPathSplit.length-1];
                 updirPath = currDirPath.replace(trimString, "");
             }
+
             File rootNew = new File(updirPath);
 
             if(rootNew.isDirectory() && rootNew.exists()){
                 controller.setCurrentDir(updirPath);
-                return code.getCODE_250();
+                return controller.reply.codeToMessage.get(250).toString();
 
-            } else return code.getCODE_550();
+            } else return controller.reply.codeToMessage.get(550).toString();
 
-        } else return code.getCODE_501();
+        } else return controller.reply.codeToMessage.get(501).toString();
     }
 }
