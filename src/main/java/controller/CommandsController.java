@@ -36,7 +36,7 @@ public class CommandsController {
             if(cP == null){
                 writer.println(reply.codeToMessage.get(500).toString());
             } else {
-                writer.println(cP.process(line, writer, code, this));
+                writer.println(cP.process(line, code, this));
             }
             return false;
         } else {

@@ -12,7 +12,7 @@ public class CommandSYST implements CommandProcess {
 
     private Logger log = Logger.getLogger(CommandSYST.class);
 
-    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+    public String process(String message,  ReplyCode code, CommandsController controller){
         String[] messageSplit = message.split(Config.SPACE);
 
         if (messageSplit.length ==  Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {

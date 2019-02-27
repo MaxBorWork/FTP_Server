@@ -11,7 +11,7 @@ public class CommandSTOR implements CommandProcess {
 
     private Logger log = Logger.getLogger(CommandSTOR.class);
 
-    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+    public String process(String message,  ReplyCode code, CommandsController controller){
         String[] messageSplit = message.split(" ");
       //  if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
         String filename = message.substring(message.indexOf(" ")+1);
@@ -19,9 +19,17 @@ public class CommandSTOR implements CommandProcess {
             if (!filename.contains("/")) {
                 filename = controller.getCurrentDir() + "/" + filename;
             }
-            writer.println(code.getCODE_150(controller.getCurrentType(),
-                    controller.getCurrentDir(),
-                    DataTransferringController.pasvMessage()));
+
+
+
+            //убрать writer отсюда
+          //  writer.println(code.getCODE_150(controller.getCurrentType(),
+             //      controller.getCurrentDir(),
+               //     DataTransferringController.pasvMessage()));
+
+
+
+
             controller.getDataSocket().createDataConnection(filename, "STOR", controller);
        // } else return code.getCODE_501();
         return  controller.reply.codeToMessage.get(226).toString();

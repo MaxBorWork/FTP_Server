@@ -10,7 +10,7 @@ public class CommandPORT implements CommandProcess {
 
     private Logger log = Logger.getLogger(CommandPORT.class);
 
-    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+    public String process(String message, ReplyCode code, CommandsController controller){
         DataSocket dataSocket = new DataSocket();
 
         String[] messageSplit = message.split(Config.SPACE);

@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 
 public class CommandCWD implements CommandProcess {
 
-    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+    public String process(String message,  ReplyCode code, CommandsController controller){
         String[] messageSplit = message.split(Config.SPACE);
 
       //  if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
@@ -22,11 +22,11 @@ public class CommandCWD implements CommandProcess {
                // fullDirPath = controller.getCurrentDir() + "/" + messageSplit[Config.FIRST_ARGUMENT_INDEX];
                  fullDirPath = controller.getCurrentDir() + "/" + fullDirPath;
             }
-        System.out.println(fullDirPath);
+
             File rootNew = new File(fullDirPath);
 
             if(rootNew.isDirectory() && rootNew.exists()){
-                System.out.println("YES");
+
                 controller.setCurrentDir(fullDirPath);
                 return controller.reply.codeToMessage.get(250).toString();
 

@@ -12,7 +12,7 @@ public class CommandMKD implements CommandProcess {
 
     private Logger log = Logger.getLogger(CommandMKD.class);
 
-    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+    public String process(String message, ReplyCode code, CommandsController controller){
 
         String[] messageSplit = message.split(Config.SPACE);
 

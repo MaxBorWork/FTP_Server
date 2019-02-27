@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 
 public class CommandDELE implements CommandProcess {
 
-    public String process(String message, PrintWriter writer, ReplyCode code, CommandsController controller){
+    public String process(String message,  ReplyCode code, CommandsController controller){
 
         String[] messageSplit = message.split(Config.SPACE);
 

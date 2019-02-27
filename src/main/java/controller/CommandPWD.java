@@ -11,7 +11,7 @@ public class CommandPWD implements CommandProcess {
 
     private Logger log = Logger.getLogger(CommandPWD.class);
 
-    public String process(String path, PrintWriter writer, ReplyCode code, CommandsController controller) {
+    public String process(String path, ReplyCode code, CommandsController controller) {
         log.info("current directory is " + controller.getCurrentDir());
         return new ReplyCode().getCODE_257(controller.getCurrentDir());
     }
