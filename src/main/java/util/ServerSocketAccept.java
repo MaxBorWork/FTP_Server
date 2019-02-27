@@ -25,6 +25,7 @@ public class ServerSocketAccept {
         if (args.length > 0) {
             Config.ROOT = args[0];
         }
+        new Config();
    //     Config.TEMP = Config.ROOT+"/"+"TEMP";
   //      File tempDir = new File( Config.TEMP);
   //      try{
