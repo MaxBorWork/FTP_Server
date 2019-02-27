@@ -18,11 +18,11 @@ class ServerSocketAccept {
     private Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
     ServerSocketAccept(String[] args) {
-
         if (args.length > 0) {
             Config.ROOT = args[0];
             logger.debug("ROOT directory changed, ROOT is " + Config.ROOT);
         }
+        new Config();
         controller = new CommandsController();
         start();
     }
