@@ -3,7 +3,6 @@ package model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,7 +16,7 @@ public class Reply {
         codeToMessage = new TreeMap<Integer, String>();
 
         try{
-            String text = new String(Files.readAllBytes(Paths.get("src/main/resources/Reply_Code.json")), StandardCharsets.UTF_8);
+            String text = new String(Files.readAllBytes(Paths.get("Reply_Code.json")), StandardCharsets.UTF_8);
             JSONObject object = new JSONObject(text);
             JSONArray ar = object.getJSONArray("replies");
 

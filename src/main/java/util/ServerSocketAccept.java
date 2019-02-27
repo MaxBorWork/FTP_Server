@@ -3,39 +3,26 @@ package util;
 import controller.CommandsController;
 import model.Config;
 import model.LogMessages;
-import model.Reply;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ServerSocketAccept {
+class ServerSocketAccept {
 
     private CommandsController controller;
 
-    private Logger logger = LoggerFactory.getLogger(ServerSocketAccept.class);
+    private Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
-    public ServerSocketAccept(String[] args) {
+    ServerSocketAccept(String[] args) {
 
         if (args.length > 0) {
             Config.ROOT = args[0];
+            logger.debug("ROOT directory changed, ROOT is " + Config.ROOT);
         }
-   //     Config.TEMP = Config.ROOT+"/"+"TEMP";
-  //      File tempDir = new File( Config.TEMP);
-  //      try{
-   //         if(!tempDir.exists()||!tempDir.isDirectory()){
-      //          tempDir.mkdir();
-   //         }
-   //     }
-   //     catch(Exception e){
-  //          e.printStackTrace();
-  //      }
-
         controller = new CommandsController();
         start();
     }
@@ -43,26 +30,27 @@ public class ServerSocketAccept {
     private void start() {
         try {
             InetAddress addr = InetAddress.getByName(Config.IP_ADDRESS_STRING_POINTS);
-            createConnection(Config.PORT_21_INT, addr);
+            createConnection(addr);
         } catch (UnknownHostException e) {
+            logger.debug(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private void createConnection(int port, InetAddress addr) {
-        try (ServerSocket serverSocket = new ServerSocket(port, Config.MAX_CONNECTION_NUMBER, addr)) {
+    private void createConnection(InetAddress addr) {
+        try (ServerSocket serverSocket = new ServerSocket(Config.PORT_21_INT, Config.MAX_CONNECTION_NUMBER, addr)) {
             int clientIndex = 1;
 
             while (true) {
                 Socket inSocket = serverSocket.accept();
-                logger.info("Connected client " + clientIndex);
+                logger.debug("Connected client " + clientIndex);
                 Runnable r = new ThreadHandler(inSocket, controller);
                 Thread thread = new Thread(r);
                 thread.start();
                 clientIndex++;
             }
         } catch (IOException e ) {
-            logger.info(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
+            logger.debug(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -3,11 +3,14 @@ package controller;
 import model.CommandProcess;
 import model.Config;
 import model.ReplyCode;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.PrintWriter;
 
 public class CommandCDUP implements CommandProcess {
+
+    private Logger log = Logger.getLogger(CommandCDUP.class);
 
     @Override
     public String process(String message,  ReplyCode code, CommandsController controller) {
@@ -29,11 +32,12 @@ public class CommandCDUP implements CommandProcess {
             File rootNew = new File(updirPath);
 
             if(rootNew.isDirectory() && rootNew.exists()){
+                log.debug("work directory changed from " + controller.getCurrentDir() + " to " + updirPath);
                 controller.setCurrentDir(updirPath);
-                return controller.reply.codeToMessage.get(250).toString();
+                return CommandsController.reply.codeToMessage.get(250).toString();
 
-            } else return controller.reply.codeToMessage.get(550).toString();
+            } else return CommandsController.reply.codeToMessage.get(550).toString();
 
-        } else return controller.reply.codeToMessage.get(501).toString();
+        } else return CommandsController.reply.codeToMessage.get(501).toString();
     }
 }

@@ -1,0 +1,5 @@
+{"replies":[{"code":501, "message":"501 Syntax error in parameters or arguments."},{"code":200, "message":"200 Command okay."},{"code":500, "message":"500 Syntax error, command unrecognized."}, {"code":331, "message":"331 User name okay, need password."},{"code":215, "message":"215 UNIX system type."},{"code":257, "message":"257   "},{"code":220, "message":"220 Service ready for new user."},{"code":230, "message":"230 Guest login ok, access restrictions apply."},{"code":150, "message":"150   "},{"code":226, "message":"226 Transfer complete."},{"code":530, "message":"530 User can't be logged in."},{"code":425, "message":"425 Can't open data connection."},{"code":225, "message":"225 Data connection open; no transfer in progress."},{"code":250, "message":"250 CWD command successful."},{"code":550, "message":"550 No such file or directory."}]}
+
+
+
+

@@ -6,6 +6,7 @@ import model.ReplyCode;
 import model.*;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -23,8 +24,8 @@ public class ThreadHandler implements Runnable {
 
     public void run() {
         ReplyCode code = new ReplyCode();
-        log.info(LogMessages.CREATE_CONNECTION_MESSAGE);
-
+        log.debug(LogMessages.CREATE_CONNECTION_MESSAGE);
+        getLocalIP();
         try(InputStream inputStream = inSocket.getInputStream();
             OutputStream outputStream = inSocket.getOutputStream()) {
 
@@ -34,7 +35,8 @@ public class ThreadHandler implements Runnable {
                     new OutputStreamWriter(outputStream, StandardCharsets.UTF_8),true);
 
             writer.println(CommandsController.reply.codeToMessage.get(220).toString());
-            System.out.println(CommandsController.reply.codeToMessage.get(220).toString());
+            System.out.println("\t" + CommandsController.reply.codeToMessage.get(220).toString());
+            log.info(CommandsController.reply.codeToMessage.get(220).toString());
             boolean done = false;
 
             while (!done && in.hasNextLine()) {
@@ -45,6 +47,16 @@ public class ThreadHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void getLocalIP() {
+        String address = inSocket.getLocalAddress().toString();
+        if (address.contains("/")) {
+            address = address.replace("/", "");
+        }
+        address = address.replace(".", ",");
+        Config.IP_ADDRESS_STRING_COMMAS = address;
+        log.debug("Client connected to IP " + Config.IP_ADDRESS_STRING_COMMAS);
     }
 
 }

@@ -15,8 +15,6 @@ public class DataSocket {
     private Socket inSocket;
 
     public DataSocket() {
-
-
         startThread(Config.PORT_20_INT);
     }
 

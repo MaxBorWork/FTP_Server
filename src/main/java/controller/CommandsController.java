@@ -27,20 +27,27 @@ public class CommandsController {
         MapOfCommand map = new MapOfCommand();
 
         System.out.println(line);
-        log.info("Get command: " + line);
+        log.info("Got command: " + line);
         String[] lineSlpit = line.split(" ");
 
         if (lineSlpit.length >= 1) {
             String command = lineSlpit[0];
             CommandProcess cP = (CommandProcess) map.commands.get(command);
             if(cP == null){
-                writer.println(reply.codeToMessage.get(500).toString());
+                writer.println("\t" + reply.codeToMessage.get(500).toString());
+                System.out.println(reply.codeToMessage.get(500).toString());
+                log.info(reply.codeToMessage.get(500).toString());
             } else {
-                writer.println(cP.process(line, code, this));
+                String response = cP.process(line, code, this);
+                System.out.println("\t" + response);
+                log.info(response);
+                writer.println(response);
             }
             return false;
         } else {
+            System.out.println("\t" + reply.codeToMessage.get(500).toString());
             writer.println(reply.codeToMessage.get(500).toString());
+            log.info(reply.codeToMessage.get(500).toString());
             return true;
         }
     }

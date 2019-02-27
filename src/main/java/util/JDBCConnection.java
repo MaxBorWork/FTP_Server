@@ -1,26 +1,21 @@
 package util;
 
-import model.User;
+import model.Config;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
-import java.util.List;
 
 public class JDBCConnection {
 
-    private static final String url = "jdbc:sqlite:main.db";
-    private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS User (\n"
-            + "	id integer PRIMARY KEY,\n"
-            + "	username varchar(255) NOT NULL,\n"
-            + "	password varchar(255) NOT NULL\n"
-            + ");";
+    private Logger log = Logger.getLogger(JDBCConnection.class);
 
     public JDBCConnection() {
         try {
-            Connection con = DriverManager.getConnection(url);
+            Connection con = DriverManager.getConnection(Config.SQLITE_URL);
 
             Statement statement = con.createStatement();
 
-            statement.execute(SQL_CREATE_TABLE);
+            statement.execute(Config.SQL_CREATE_TABLE);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,12 +25,13 @@ public class JDBCConnection {
     public boolean getUsername(String username) {
 
         try {
-            Connection con = DriverManager.getConnection(url);
+            Connection con = DriverManager.getConnection(Config.SQLITE_URL);
 
             Statement statement = con.createStatement();
 
             String userQuery = "SELECT username, password FROM User WHERE username ='" + username + "'";
             ResultSet resultSet = statement.executeQuery(userQuery);
+            log.debug("querying for username " + username);
 
             return resultSet.next();
 
@@ -49,13 +45,14 @@ public class JDBCConnection {
     public boolean getUser(String username, String password) {
 
         try {
-            Connection con = DriverManager.getConnection(url);
+            Connection con = DriverManager.getConnection(Config.SQLITE_URL);
 
             Statement statement = con.createStatement();
 
             String userQuery = "SELECT username, password FROM User WHERE username ='" + username + "' AND password='" +
                     password + "'";
             ResultSet resultSet = statement.executeQuery(userQuery);
+            log.debug("querying password for user with username " + username);
 
             return resultSet.next();
 
