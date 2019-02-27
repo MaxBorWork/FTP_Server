@@ -15,14 +15,14 @@ public class CommandDELE implements CommandProcess {
 
 
             String fileName = message.substring(message.indexOf(" ")+1);
-            if (!fileName.contains(Config.ROOT)) {
-                fileName = controller.getCurrentDir() + "/" + fileName;
-            }
+
+            if (!fileName.contains(Config.ROOT)) fileName = controller.getCurrentDir() + "/" + fileName;
+
 
             File file = new File(fileName);
 
             if (!file.isDirectory() && file.delete()) {
-                return  controller.reply.codeToMessage.get(250).toString();
+                return  controller.reply.codeToMessage.get(200).toString();
             } else return  controller.reply.codeToMessage.get(550).toString();
 
 
