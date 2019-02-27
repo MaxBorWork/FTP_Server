@@ -2,6 +2,8 @@ package controller;
 
 
 import model.CommandProcess;
+import model.Config;
+import model.LogMessages;
 import model.ReplyCode;
 import org.apache.log4j.Logger;
 
