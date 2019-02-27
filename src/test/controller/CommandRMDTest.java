@@ -9,27 +9,28 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class CommandPASSTest {
-    private CommandCDUP cdup;
+public class CommandRMDTest {
+    private CommandRMD rmd;
     private ReplyCode code;
     private CommandsController controller;
     private List<String> inputList;
 
     @Before
     public void initTest() {
-        cdup = new CommandCDUP();
+        rmd = new CommandRMD();
         code = new ReplyCode();
         controller = new CommandsController();
         inputList = new ArrayList<>();
-      ///  inputList.add();
+        //   inputList.add();
 
     }
 
     @Test
     public void process() {
         for(String input: inputList){
-            assertEquals("   ",  cdup.process(input, code, controller));
+            assertEquals("   ",  rmd.process(input, code, controller));
         }
     }
+
 
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import model.Config;
 import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,28 +10,28 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class CommandPORTTest {
-    private CommandCDUP cdup;
+public class CommandPASSTest {
+    private CommandPASS pass;
     private ReplyCode code;
     private CommandsController controller;
     private List<String> inputList;
 
     @Before
     public void initTest() {
-        cdup = new CommandCDUP();
+        pass= new CommandPASS();
         code = new ReplyCode();
         controller = new CommandsController();
         inputList = new ArrayList<>();
-        //inputList.add();
+        Config.ROOT = "/home/pashkevich_alena/server";
+        inputList.add("");
 
     }
 
     @Test
     public void process() {
         for(String input: inputList){
-            assertEquals("   ",  cdup.process(input, code, controller));
+            assertEquals("", pass.process(input, code, controller));
         }
     }
-
 
 }

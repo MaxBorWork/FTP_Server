@@ -27,9 +27,9 @@ public class CommandCDUPTest {
         code = new ReplyCode();
         controller = new CommandsController();
         inputList = new ArrayList<>();
-     //   Config.ROOT = "/home/pashkevich_alena/server";
+        Config.ROOT = "/home/pashkevich_alena/server";
 
-      /*  inputList.add();
+      /*   inputList.add();
         inputList.add();
         inputList.add();
         inputList.add();

@@ -11,11 +11,11 @@ import java.io.PrintWriter;
 public class CommandCWD implements CommandProcess {
 
     public String process(String message,  ReplyCode code, CommandsController controller){
+        System.out.println(message);
         String[] messageSplit = message.split(Config.SPACE);
 
         String fullDirPath = message.substring(message.indexOf(" ")+1);
 
-<<<<<<< HEAD
             if (!fullDirPath.contains(Config.ROOT)) {
                  fullDirPath = controller.getCurrentDir() + "/" + fullDirPath;
             }
@@ -26,16 +26,7 @@ public class CommandCWD implements CommandProcess {
 
                 controller.setCurrentDir(fullDirPath);
                 return controller.reply.codeToMessage.get(250).toString();
-=======
-        if (!fullDirPath.contains(Config.ROOT)) {
-             fullDirPath = controller.getCurrentDir() + "/" + fullDirPath;
-        }
-        File rootNew = new File(fullDirPath);
 
-        if(rootNew.isDirectory() && rootNew.exists()){
-            controller.setCurrentDir(fullDirPath);
-            return CommandsController.reply.codeToMessage.get(250).toString();
->>>>>>> 319bd2638b72137f15c6a1e1c94a10000277b61f
 
         } else return  CommandsController.reply.codeToMessage.get(550).toString();
     }

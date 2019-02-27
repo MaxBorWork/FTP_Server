@@ -17,7 +17,7 @@ public class Reply {
         codeToMessage = new TreeMap<Integer, String>();
 
         try{
-            String text = new String(Files.readAllBytes(Paths.get("/home/maksim/IdeaProjects/ftp_serv/src/main/resources/Reply_Code.json")), StandardCharsets.UTF_8);
+            String text = new String(Files.readAllBytes(Paths.get("src/main/resources/Reply_Code.json")), StandardCharsets.UTF_8);
             JSONObject object = new JSONObject(text);
             JSONArray ar = object.getJSONArray("replies");
 
