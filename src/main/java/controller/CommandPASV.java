@@ -17,10 +17,10 @@ public class CommandPASV implements CommandProcess {
         String[] messageSplit = message.split(Config.SPACE);
         if (messageSplit.length == Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
             log.info(LogMessages.SENT_ADDRESS_MESSAGE);
-            return  controller.reply.codeToMessage.get(227).toString();
+            return  code.getCODE_227();
         } else {
             log.info(LogMessages.WRONG_COMMAND_MESSAGE);
-            return controller.reply.codeToMessage.get(500).toString();
+            return CommandsController.reply.codeToMessage.get(500).toString();
         }
     }
 }

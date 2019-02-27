@@ -16,11 +16,14 @@ public class CommandCDUP implements CommandProcess {
         if (messageSplit.length == Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {
             String currDirPath = controller.getCurrentDir();
             String updirPath = Config.ROOT;
+            StringBuilder b = new StringBuilder(currDirPath);
+
             String[] currDirPathSplit = currDirPath.split("/");
 
             if (currDirPathSplit.length > 1) {
                 String trimString = "/" + currDirPathSplit[currDirPathSplit.length-1];
-                updirPath = currDirPath.replace(trimString, "");
+                b.replace(currDirPath.lastIndexOf(trimString), currDirPath.lastIndexOf(trimString) + trimString.length(), "" );
+                updirPath = b.toString();
             }
 
             File rootNew = new File(updirPath);

@@ -17,14 +17,13 @@ public class Reply {
         codeToMessage = new TreeMap<Integer, String>();
 
         try{
-            String text = new String(Files.readAllBytes(Paths.get("/home/pashkevich_alena/os/FTP_Server/src/main/resources/Reply_Code.json")), StandardCharsets.UTF_8);
+            String text = new String(Files.readAllBytes(Paths.get("/home/maksim/IdeaProjects/ftp_serv/src/main/resources/Reply_Code.json")), StandardCharsets.UTF_8);
             JSONObject object = new JSONObject(text);
             JSONArray ar = object.getJSONArray("replies");
 
             for(int i=0; i< ar.length(); ++i){
                 JSONObject obj =  ar.getJSONObject(i);
                 codeToMessage.put(obj.get("code"), obj.get("message"));
-                System.out.println(obj.get("message"));
             }
 
         } catch(Exception e){

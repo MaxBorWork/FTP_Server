@@ -3,7 +3,7 @@ package model;
 import controller.DataTransferringController;
 
 public class ReplyCode {
- //   private String CODE_227 = "227 Entering Passive Mode " + DataTransferringController.pasvMessage();
+    private String CODE_227 = "227 Entering Passive Mode " + DataTransferringController.pasvMessage();
 
     private String CODE_257 = "257 \"";
 
@@ -21,7 +21,7 @@ public class ReplyCode {
         return CODE_150 + type + " data connection for " + dir + " " + ip ;
     }
 
-
-
-
+    public String getCODE_227() {
+        return CODE_227;
+    }
 }
