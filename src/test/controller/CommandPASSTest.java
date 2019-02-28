@@ -20,6 +20,7 @@ public class CommandPASSTest {
 
     @Before
     public void initTest() {
+        new Config();
         pass= new CommandPASS();
         code = new ReplyCode();
         controller = new CommandsController();

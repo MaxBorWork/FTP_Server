@@ -19,6 +19,7 @@ public class CommandPASVTest {
 
     @Before
     public void initTest() {
+        new Config();
         pasv = new CommandPASV();
         code = new ReplyCode();
         controller = new CommandsController();

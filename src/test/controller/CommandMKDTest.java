@@ -13,37 +13,35 @@ import static org.junit.Assert.*;
 public class CommandMKDTest {
     private CommandMKD mkd;
     private ReplyCode code;
-    private CommandsController controller;
+    private CommandsController controller = new CommandsController();
     private List<String> inputList200;
     private List<String> inputList550;
 
-
     @Before
     public void initTest() {
+        new Config();
         mkd = new CommandMKD();
         code = new ReplyCode();
-        controller = new CommandsController();
         inputList200 = new ArrayList<>();
         inputList550 = new ArrayList<>();
 
-        Config.ROOT = "/home/pashkevich_alena/server";
+        Config.ROOT = "/etc/ftRoot";
         controller.setCurrentDir(Config.ROOT );
-
 
         inputList550.add("MKD Безымянный документ");
         inputList550.add("MKD ");
-        inputList200.add("MKD Безымянный документ");
+        inputList200.add("MKD testIT");
 
     }
 
     @Test
     public void process() {
         for(String input: inputList200){
-            assertEquals(controller.reply.codeToMessage.get(200).toString(),  mkd.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(200).toString(),  mkd.process(input, code, controller));
         }
 
         for(String input: inputList550){
-            assertEquals(controller.reply.codeToMessage.get(550).toString(),  mkd.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(550).toString(),  mkd.process(input, code, controller));
         }
     }
 

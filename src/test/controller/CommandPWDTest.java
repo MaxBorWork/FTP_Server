@@ -1,5 +1,6 @@
 package controller;
 
+import model.Config;
 import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +18,7 @@ public class CommandPWDTest {
 
     @Before
     public void initTest() {
+        new Config();
         pwd = new CommandPWD();
         code = new ReplyCode();
         controller = new CommandsController();

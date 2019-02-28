@@ -19,6 +19,7 @@ public class CommandSYSTTest {
 
     @Before
     public void initTest() {
+        new Config();
         syst = new CommandSYST();
         code = new ReplyCode();
         controller = new CommandsController();

@@ -9,8 +9,6 @@ public class ReplyCode {
 
     private String CODE_150 = "150 ";
 
-
-
     public String getCODE_257(String path) {
         return CODE_257 + path +"\"";
     }

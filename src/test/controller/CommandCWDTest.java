@@ -19,6 +19,7 @@ public class CommandCWDTest {
 
     @Before
     public void initTest() {
+        new Config();
         cwd = new CommandCWD();
         code = new ReplyCode();
         controller = new CommandsController();
@@ -26,7 +27,7 @@ public class CommandCWDTest {
         inputList550 = new ArrayList<>();
         inputList250 = new ArrayList<>();
 
-        Config.ROOT = "/home/pashkevich_alena/server";
+        Config.ROOT = "/etc/ftRoot";
 
         inputList550.add("CWD 1.bmp");
         inputList550.add("CWD NotExistCatalog");
@@ -38,12 +39,12 @@ public class CommandCWDTest {
     @Test
     public void process() {
         for(String input: inputList250){
-            controller.setCurrentDir(Config.ROOT );
-            assertEquals(controller.reply.codeToMessage.get(250).toString(),  cwd.process(input, code, controller));
+            controller.setCurrentDir(Config.ROOT);
+            assertEquals(CommandsController.reply.codeToMessage.get(250).toString(),  cwd.process(input, code, controller));
         }
 
         for(String input: inputList550){
-            assertEquals(controller.reply.codeToMessage.get(550).toString(),  cwd.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(550).toString(),  cwd.process(input, code, controller));
         }
     }
 

@@ -20,6 +20,7 @@ public class CommandUSERTest {
 
     @Before
     public void initTest() {
+        new Config();
         user = new CommandUSER();
         code = new ReplyCode();
         controller = new CommandsController();

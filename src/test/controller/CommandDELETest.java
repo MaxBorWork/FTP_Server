@@ -13,27 +13,26 @@ import static org.junit.Assert.*;
 public class CommandDELETest {
     private CommandDELE dele;
     private ReplyCode code;
-    private CommandsController controller;
+    private CommandsController controller= new CommandsController();
     private List<String> inputList250;
     private List<String> inputList550;
 
     @Before
     public void initTest() {
+        new Config();
         dele = new CommandDELE();
         code = new ReplyCode();
-        controller = new CommandsController();
         inputList250 = new ArrayList<>();
         inputList550 = new ArrayList<>();
 
-        Config.ROOT = "/home/pashkevich_alena/server";
+        Config.ROOT = "/etc/ftRoot";
         controller.setCurrentDir(Config.ROOT );
 
 
         inputList550.add("DELE 2.bmp");
         inputList550.add("DELE Безымянный документ1");
-        inputList250.add("DELE 1.bmp");
-        inputList250.add("DELE Безымянный документ");
-
+        inputList250.add("DELE me.jpg");
+        inputList250.add("DELE x.txt");
     }
 
     @Test

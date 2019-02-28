@@ -14,30 +14,24 @@ public class CommandRMD implements CommandProcess {
 
     public String process(String message, ReplyCode code, CommandsController controller){
 
-            String[] messageSplit = message.split(Config.SPACE);
-
-          //  if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
         String fullPath = message.substring(message.indexOf(" ")+1);
-       //         String fullPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
-                if (!fullPath.contains(Config.ROOT)) {
-                    fullPath = controller.getCurrentDir() + "/" + fullPath;
-                }
-                File dir = new File(fullPath);
+        if (!fullPath.contains(Config.ROOT)) {
+            fullPath = controller.getCurrentDir() + "/" + fullPath;
+        }
+        File dir = new File(fullPath);
 
-                if (dir.isDirectory() && dir.delete()) {
-                    return controller.reply.codeToMessage.get(250).toString();
-                } else if (dir.isDirectory() && !dir.delete()) {
-                    removeNotNullDir(dir, controller);
-                    if (dir.delete()) {
-                        return  controller.reply.codeToMessage.get(250).toString();
-                    } else {
-                        return controller.reply.codeToMessage.get(550).toString();
-                    }
-                } else {
-                    return  controller.reply.codeToMessage.get(550).toString();
-                }
-         //   } else return code.getCODE_501();
-
+        if (dir.isDirectory() && dir.delete()) {
+            return CommandsController.reply.codeToMessage.get(250).toString();
+        } else if (dir.isDirectory() && !dir.delete()) {
+            removeNotNullDir(dir, controller);
+            if (dir.delete()) {
+                return  CommandsController.reply.codeToMessage.get(250).toString();
+            } else {
+                return CommandsController.reply.codeToMessage.get(550).toString();
+            }
+        } else {
+            return  CommandsController.reply.codeToMessage.get(550).toString();
+        }
     }
 
     private void removeNotNullDir(File dir, CommandsController controller) {

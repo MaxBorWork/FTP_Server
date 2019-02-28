@@ -14,7 +14,8 @@ public class CommandsController {
     private String currentDir = Config.ROOT;
     private String currentType;
     private String username;
-    public static Reply reply ;
+    private PrintWriter writer;
+    public static Reply reply;
     private Logger log = Logger.getLogger(CommandsController.class);
 
     public CommandsController() {
@@ -24,13 +25,14 @@ public class CommandsController {
     }
 
     public boolean getCommand(String line, PrintWriter writer, ReplyCode code) {
+        this.writer = writer;
         MapOfCommand map = new MapOfCommand();
 
         System.out.println(line);
         log.info("Got command: " + line);
         String[] lineSlpit = line.split(" ");
 
-        if (lineSlpit.length >= 1) {
+        if (!line.equals("")) {
             String command = lineSlpit[0];
             CommandProcess cP = (CommandProcess) map.commands.get(command);
             if(cP == null){
@@ -56,16 +58,9 @@ public class CommandsController {
         return connection;
     }
 
-    public void setConnection(JDBCConnection connection) {
-        this.connection = connection;
-    }
 
     public DataSocket getDataSocket() {
         return dataSocket;
-    }
-
-    public void setDataSocket(DataSocket dataSocket) {
-        this.dataSocket = dataSocket;
     }
 
     public String getCurrentDir() {
@@ -90,5 +85,13 @@ public class CommandsController {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public PrintWriter getWriter() {
+        return writer;
+    }
+
+    public void setWriter(PrintWriter writer) {
+        this.writer = writer;
     }
 }

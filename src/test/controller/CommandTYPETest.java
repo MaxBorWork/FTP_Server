@@ -21,11 +21,12 @@ public class CommandTYPETest {
 
     @Before
     public void initTest() {
+        new Config();
         type = new CommandTYPE();
-    code = new ReplyCode();
-    controller = new CommandsController();
-    inputList501 = new ArrayList<>();
-    inputList200 = new ArrayList<>();
+        code = new ReplyCode();
+        controller = new CommandsController();
+        inputList501 = new ArrayList<>();
+        inputList200 = new ArrayList<>();
 
     Config.ROOT = "/home/pashkevich_alena/server";
 
