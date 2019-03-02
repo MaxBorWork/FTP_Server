@@ -18,11 +18,11 @@ class ServerSocketAccept {
     private Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
     ServerSocketAccept(String[] args) {
+        new Config();
         if (args.length > 0) {
             Config.ROOT = args[0];
             logger.debug("ROOT directory changed, ROOT is " + Config.ROOT);
         }
-        new Config();
         controller = new CommandsController();
         start();
     }
@@ -43,7 +43,8 @@ class ServerSocketAccept {
 
             while (true) {
                 Socket inSocket = serverSocket.accept();
-                logger.debug("Connected client " + clientIndex);
+                String clientInfo = "client " + inSocket.getInetAddress().toString() + ", connection " + clientIndex;
+                logger.info("Connected " + clientInfo);
                 Runnable r = new ThreadHandler(inSocket, controller);
                 Thread thread = new Thread(r);
                 thread.start();
@@ -54,4 +55,5 @@ class ServerSocketAccept {
             e.printStackTrace();
         }
     }
+
 }

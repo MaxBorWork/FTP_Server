@@ -17,6 +17,7 @@ public class Reply {
 
         try{
             String text = new String(Files.readAllBytes(Paths.get("Reply_Code.json")), StandardCharsets.UTF_8);
+         //   Gson g = new Gson();
             JSONObject object = new JSONObject(text);
             JSONArray ar = object.getJSONArray("replies");
 

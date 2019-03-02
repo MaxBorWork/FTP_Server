@@ -27,6 +27,7 @@ public class MapOfCommand {
         commands.put("TYPE", new CommandTYPE());
         commands.put("PASV", new CommandPASV());
         commands.put("CDUP", new CommandCDUP());
+        commands.put("FEAT", new CommandFEAT());
+        commands.put("OPTS", new CommandOPTS());
     }
-
 }

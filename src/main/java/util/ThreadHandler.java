@@ -23,9 +23,9 @@ public class ThreadHandler implements Runnable {
     }
 
     public void run() {
+        getLocalIP();
         ReplyCode code = new ReplyCode();
         log.debug(LogMessages.CREATE_CONNECTION_MESSAGE);
-        getLocalIP();
         try(InputStream inputStream = inSocket.getInputStream();
             OutputStream outputStream = inSocket.getOutputStream()) {
 
@@ -58,5 +58,4 @@ public class ThreadHandler implements Runnable {
         Config.IP_ADDRESS_STRING_COMMAS = address;
         log.debug("Client connected to IP " + Config.IP_ADDRESS_STRING_COMMAS);
     }
-
 }

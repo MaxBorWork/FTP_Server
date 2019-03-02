@@ -1,13 +1,10 @@
 package controller;
 
-
 import model.CommandProcess;
 import model.Config;
 import model.LogMessages;
 import model.ReplyCode;
 import org.apache.log4j.Logger;
-
-import java.io.PrintWriter;
 
 public class CommandPASV implements CommandProcess {
 

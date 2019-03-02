@@ -56,9 +56,9 @@ public class DataTransferringController {
             Files.copy( Paths.get(fileName), Paths.get(newFileName) ,  StandardCopyOption.REPLACE_EXISTING);
 
             if (controller.getCurrentType().equals(Config.TYPE_I)) {
-                retrieveASCIIFile(newFileName);
-            } else {
                 retrieveBinaryFile(newFileName);
+            } else {
+                retrieveASCIIFile(newFileName);
             }
 
             Files.delete(Paths.get(newFileName));
@@ -67,7 +67,7 @@ public class DataTransferringController {
         }
     }
 
-    private void retrieveASCIIFile(String newFileName) {
+    private void retrieveBinaryFile(String newFileName) {
         try {
             byte[] fileAsByteArray = Files.readAllBytes(Paths.get(newFileName));
             outputStream.write(fileAsByteArray);
@@ -77,7 +77,7 @@ public class DataTransferringController {
         }
     }
 
-    private void retrieveBinaryFile(String newFileName) {
+    private void retrieveASCIIFile(String newFileName) {
         PrintWriter writer = new PrintWriter(
                 new OutputStreamWriter(outputStream, StandardCharsets.US_ASCII),true);
         StringBuffer buf = null;
@@ -101,9 +101,9 @@ public class DataTransferringController {
         try {
             Files.createFile(Paths.get(newFileName));
             if (controller.getCurrentType().equals(Config.TYPE_I)) {
-                storeASCIIFile(newFileName);
-            } else {
                 storeBinaryFile(newFileName);
+            } else {
+                storeASCIIFile(newFileName);
             }
             Files.move(Paths.get(newFileName), Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {

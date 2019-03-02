@@ -34,8 +34,6 @@
             <artifactId>json</artifactId>
             <version>20180813</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -70,6 +68,14 @@
                                     <artifactId>sqlite-jdbc</artifactId>
                                     <type>jar</type>
                                     <destFileName>sqlite-jdbc-3.18.0.jar</destFileName>
+                                    <overWrite>false</overWrite>
+                                </artifactItem>
+
+                                <artifactItem>
+                                    <groupId>org.json</groupId>
+                                    <artifactId>json</artifactId>
+                                    <type>jar</type>
+                                    <destFileName>json-20180813.jar</destFileName>
                                     <overWrite>false</overWrite>
                                 </artifactItem>
 
