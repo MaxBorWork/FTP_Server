@@ -15,7 +15,7 @@ public class CommandCDUP implements CommandProcess {
 
     @Override
     public String process(String message,  ReplyCode code, CommandsController controller) {
-        ServerSocketAccept.loggerConfig(log);
+        controller.loggerConfig(log);
         String[] messageSplit = message.split(Config.SPACE);
 
         if (messageSplit.length == Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {

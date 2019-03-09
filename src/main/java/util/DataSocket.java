@@ -15,19 +15,19 @@ public class DataSocket {
     private Socket inSocket;
 
     public DataSocket() {
-
         ServerSocketAccept.loggerConfig(log);
         startThread(Config.PORT_20_INT);
     }
 
     public void createDataConnection(String processingString, String flag, CommandsController controller) {
         try {
-                inSocket = serverSocket.accept();
+            inSocket = serverSocket.accept();
             log.info("Data connection established");
-                Runnable r = new DataThreadHandler(inSocket, processingString, flag, controller);
-                Thread thread = new Thread(r);
-                thread.start();
-        } catch (IOException e) {
+            Runnable r = new DataThreadHandler(inSocket, processingString, flag, controller);
+            Thread thread = new Thread(r);
+            thread.start();
+            thread.join();
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }

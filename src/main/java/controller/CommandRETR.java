@@ -2,6 +2,8 @@ package controller;
 
 import model.*;
 
+import java.io.File;
+
 public class CommandRETR implements CommandProcess {
 
     public String process(String message,  ReplyCode code, CommandsController controller) {
@@ -10,6 +12,10 @@ public class CommandRETR implements CommandProcess {
             if (!filename.contains("/")) {
                 filename = controller.getCurrentDir() + "/" + filename;
             }
+
+        if( !new File(filename).canRead()){
+            return  CommandsController.reply.codeToMessage.get(550).toString();
+        }
 
             controller.getWriter().println(code.getCODE_150(controller.getCurrentType(),
                                             controller.getCurrentDir(),

@@ -14,7 +14,7 @@ public class CommandSYST implements CommandProcess {
     private Logger log = Logger.getLogger(CommandSYST.class);
 
     public String process(String message,  ReplyCode code, CommandsController controller){
-        ServerSocketAccept.loggerConfig(log);
+        controller.loggerConfig(log);
         String[] messageSplit = message.split(Config.SPACE);
 
         if (messageSplit.length ==  Config.SIZE_OF_COMMAND_WITHOUT_ARGUMENT) {

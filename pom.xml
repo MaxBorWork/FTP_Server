@@ -61,7 +61,6 @@
                         <configuration>
                             <artifactItems>
 
-
                                 <artifactItem>
                                     <groupId>commons-io</groupId>
                                     <artifactId>commons-io</artifactId>

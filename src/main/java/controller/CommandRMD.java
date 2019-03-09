@@ -15,7 +15,7 @@ public class CommandRMD implements CommandProcess {
     private Logger log = Logger.getLogger(CommandRMD.class);
 
     public String process(String message, ReplyCode code, CommandsController controller){
-        ServerSocketAccept.loggerConfig(log);
+        controller.loggerConfig(log);
         String fullPath = message.substring(message.indexOf(" ")+1);
         if (!fullPath.contains(Config.ROOT)) {
             fullPath = controller.getCurrentDir() + "/" + fullPath;

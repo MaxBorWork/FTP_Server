@@ -15,7 +15,7 @@ public class CommandTYPE implements CommandProcess {
 
     public String process(String message,  ReplyCode code, CommandsController controller){
         String[] messageSplit = message.split(Config.SPACE);
-        ServerSocketAccept.loggerConfig(log);
+        controller.loggerConfig(log);
         if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
             controller.setCurrentType(messageSplit[1]);
 

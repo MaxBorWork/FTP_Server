@@ -8,7 +8,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class DataTransferringController {
     private InputStream inputStream;
@@ -37,9 +39,7 @@ public class DataTransferringController {
             }
 
             outputStream.write(response.toString().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -55,14 +55,12 @@ public class DataTransferringController {
 
         try {
             FileUtils.copyFile( new File(fileName),  new File(newFileName));
-     //       Files.copy( Paths.get(fileName), Paths.get(newFileName) ,  StandardCopyOption.REPLACE_EXISTING);
 
             if (controller.getCurrentType().equals(Config.TYPE_I)) {
                 retrieveBinaryFile(newFileName);
             } else {
                 retrieveASCIIFile(newFileName);
             }
-      //      FileUtils.
 
             Files.delete(Paths.get(newFileName));
         } catch (IOException e) {
@@ -74,7 +72,6 @@ public class DataTransferringController {
         try {
             byte[] fileAsByteArray = Files.readAllBytes(Paths.get(newFileName));
             outputStream.write(fileAsByteArray);
-           // Files.delete(Paths.get(newFileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +97,6 @@ public class DataTransferringController {
 
     public void storeFile(String fileName, CommandsController controller) {
         String newFileName = copyFileToTmp(fileName);
-
         try {
             Files.createFile(Paths.get(newFileName));
             if (controller.getCurrentType().equals(Config.TYPE_I)) {
@@ -108,12 +104,10 @@ public class DataTransferringController {
             } else {
                 storeASCIIFile(newFileName);
             }
-      //      FileUtils.copyFile();
             if( new File(fileName).exists()){
                 new File(fileName).delete();
             }
             FileUtils.moveFile( new File(newFileName),  new File(fileName));
-         //   Files.move(Paths.get(newFileName), Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -130,8 +124,6 @@ public class DataTransferringController {
                 builder.append(ch);
             }
             Files.write(Paths.get(fileName), Collections.singleton(builder.toString()));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -141,11 +133,15 @@ public class DataTransferringController {
         byte[] fileAsByteArray;
         try {
             fileAsByteArray = new byte[inputStream.available()];
-
-            inputStream.read(fileAsByteArray);
-
+            int data = inputStream.read();
+            int index = 0;
+            while(data != -1) {
+                fileAsByteArray[index] = (byte) data;
+                index++;
+                data = inputStream.read();
+            }
+            inputStream.close();
             Files.write(Paths.get(fileName), fileAsByteArray);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

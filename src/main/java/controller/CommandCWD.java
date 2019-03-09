@@ -15,7 +15,7 @@ public class CommandCWD implements CommandProcess {
     private Logger log = Logger.getLogger(CommandCWD.class);
 
     public String process(String message,  ReplyCode code, CommandsController controller){
-        ServerSocketAccept.loggerConfig(log);
+        controller.loggerConfig(log);
         String fullDirPath = message.substring(message.indexOf(" ")+1);
 
         if (!fullDirPath.contains(Config.ROOT)) {

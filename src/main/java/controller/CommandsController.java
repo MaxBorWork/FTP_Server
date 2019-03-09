@@ -1,11 +1,15 @@
 package controller;
 
 import model.*;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
 import util.DataSocket;
 import util.JDBCConnection;
 import util.ServerSocketAccept;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 public class CommandsController {
@@ -14,19 +18,24 @@ public class CommandsController {
     private DataSocket dataSocket;
     private String currentDir = Config.ROOT;
     private String currentType;
-    private String username;
+    private String username = "";
     private PrintWriter writer;
     public static Reply reply;
     private Logger log = Logger.getLogger(CommandsController.class);
 
     public CommandsController() {
-        ServerSocketAccept.loggerConfig(log);
         connection = new JDBCConnection();
         dataSocket = new DataSocket();
         reply = new Reply();
     }
 
     public boolean getCommand(String line, PrintWriter writer, ReplyCode code) {
+        if (!username.equals("")) {
+            loggerConfig(log);
+        } else {
+            ServerSocketAccept.loggerConfig(log);
+        }
+
         this.writer = writer;
         MapOfCommand map = new MapOfCommand();
 
@@ -53,6 +62,19 @@ public class CommandsController {
             writer.println(reply.codeToMessage.get(500).toString());
             log.info(reply.codeToMessage.get(500).toString());
             return true;
+        }
+    }
+
+    public void loggerConfig(Logger logger) {
+        logger.setLevel(Level.ALL);
+        PatternLayout layout = new PatternLayout("%d{yyyy-MM-dd HH:mm:ss} %-5p " + username + " > %c{1}:%L - %m%n");
+        try {
+            FileAppender fileAppender = new FileAppender(layout, "log_info.log");
+            fileAppender.setAppend(false);
+            fileAppender.setImmediateFlush(true);
+            logger.addAppender(fileAppender);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

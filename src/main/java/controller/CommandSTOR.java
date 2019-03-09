@@ -4,8 +4,7 @@ import model.CommandProcess;
 import model.ReplyCode;
 import org.apache.log4j.Logger;
 
-import java.io.PrintWriter;
-
+import java.io.File;
 
 public class CommandSTOR implements CommandProcess {
 
@@ -16,6 +15,10 @@ public class CommandSTOR implements CommandProcess {
         String filename = message.substring(message.indexOf(" ")+1);
         if (!filename.contains("/")) {
             filename = controller.getCurrentDir() + "/" + filename;
+        }
+
+        if( !new File(filename).canWrite()){
+            return  CommandsController.reply.codeToMessage.get(550).toString();
         }
 
         controller.getWriter().println(code.getCODE_150(controller.getCurrentType(),

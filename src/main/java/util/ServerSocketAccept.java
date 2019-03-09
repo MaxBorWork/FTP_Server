@@ -59,7 +59,7 @@ public class ServerSocketAccept {
 
     public static void loggerConfig(Logger logger) {
         logger.setLevel(Level.ALL);
-        PatternLayout layout = new PatternLayout("%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n");
+        PatternLayout layout = new PatternLayout("%d{yyyy-MM-dd HH:mm:ss} %-5p (not logged in) %c{1}:%L - %m%n");
         try {
             FileAppender fileAppender = new FileAppender(layout, "log_info.log");
             fileAppender.setAppend(false);
@@ -69,5 +69,4 @@ public class ServerSocketAccept {
             e.printStackTrace();
         }
     }
-
 }
