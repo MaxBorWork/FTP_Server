@@ -11,17 +11,17 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-class ServerSocketAccept {
+public class ServerSocketAccept {
 
     private CommandsController controller;
 
     private Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
-    ServerSocketAccept(String[] args) {
+    public ServerSocketAccept(String[] args) {
         new Config();
         if (args.length > 0) {
             Config.ROOT = args[0];
-            logger.debug("ROOT directory changed, ROOT is " + Config.ROOT);
+            logger.info("ROOT directory changed, ROOT is " + Config.ROOT);
         }
         controller = new CommandsController();
         start();
@@ -32,7 +32,7 @@ class ServerSocketAccept {
             InetAddress addr = InetAddress.getByName(Config.IP_ADDRESS_STRING_POINTS);
             createConnection(addr);
         } catch (UnknownHostException e) {
-            logger.debug(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
+            logger.info(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -51,7 +51,7 @@ class ServerSocketAccept {
                 clientIndex++;
             }
         } catch (IOException e ) {
-            logger.debug(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
+            logger.info(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
             e.printStackTrace();
         }
     }
