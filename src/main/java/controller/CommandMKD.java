@@ -14,20 +14,15 @@ public class CommandMKD implements CommandProcess {
 
     public String process(String message, ReplyCode code, CommandsController controller){
 
-        String[] messageSplit = message.split(Config.SPACE);
-
-     //   if (messageSplit.length == Config.SIZE_OF_COMMAND_WITH_ONE_ARGUMENT) {
         String fullPath = message.substring(message.indexOf(" ")+1);
-           // String fullPath = messageSplit[Config.FIRST_ARGUMENT_INDEX];
             if (!fullPath.contains(Config.ROOT)) {
                 fullPath = controller.getCurrentDir() + "/" + fullPath;
             }
             File file = new File(fullPath);
             if (file.mkdir()) {
-                return  controller.reply.codeToMessage.get(200).toString();
+                return  CommandsController.reply.codeToMessage.get(200).toString();
             } else {
-                return  controller.reply.codeToMessage.get(550).toString();
+                return  CommandsController.reply.codeToMessage.get(550).toString();
             }
-      //  } else return code.getCODE_501();
     }
 }

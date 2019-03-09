@@ -9,7 +9,9 @@ public class JDBCConnection {
 
     private Logger log = Logger.getLogger(JDBCConnection.class);
 
+
     public JDBCConnection() {
+        ServerSocketAccept.loggerConfig(log);
         try {
             Connection con = DriverManager.getConnection(Config.SQLITE_URL);
 

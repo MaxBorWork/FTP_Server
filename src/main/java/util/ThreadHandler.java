@@ -20,12 +20,13 @@ public class ThreadHandler implements Runnable {
     public ThreadHandler(Socket inSocket, CommandsController controller) {
         this.inSocket = inSocket;
         this.controller = controller;
+        ServerSocketAccept.loggerConfig(log);
     }
 
     public void run() {
         getLocalIP();
         ReplyCode code = new ReplyCode();
-        log.info(LogMessages.CREATE_CONNECTION_MESSAGE);
+        log.debug(LogMessages.CREATE_CONNECTION_MESSAGE);
         try(InputStream inputStream = inSocket.getInputStream();
             OutputStream outputStream = inSocket.getOutputStream()) {
 

@@ -28,12 +28,16 @@ public class DataThreadHandler implements Runnable {
              OutputStream outputStream = inSocket.getOutputStream()) {
 
             DataTransferringController dataController = new DataTransferringController(inputStream, outputStream);
-            if (flag.equals("LIST")) {
-                dataController.printDirectoryList(processingString);
-            } else if (flag.equals("RETR")) {
-                dataController.retrieveFile(processingString, controller);
-            } else if (flag.equals("STOR")) {
-                dataController.storeFile(processingString, controller);
+            switch (flag) {
+                case "LIST":
+                    dataController.printDirectoryList(processingString);
+                    break;
+                case "RETR":
+                    dataController.retrieveFile(processingString, controller);
+                    break;
+                case "STOR":
+                    dataController.storeFile(processingString, controller);
+                    break;
             }
 
             inSocket.close();

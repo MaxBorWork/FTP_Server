@@ -5,6 +5,7 @@ import model.CommandProcess;
 import model.Config;
 import model.ReplyCode;
 import org.apache.log4j.Logger;
+import util.ServerSocketAccept;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ public class CommandCWD implements CommandProcess {
     private Logger log = Logger.getLogger(CommandCWD.class);
 
     public String process(String message,  ReplyCode code, CommandsController controller){
+        ServerSocketAccept.loggerConfig(log);
         String fullDirPath = message.substring(message.indexOf(" ")+1);
 
         if (!fullDirPath.contains(Config.ROOT)) {

@@ -28,12 +28,8 @@ public class Config {
     static public String TEMP;
     static public String SPACE;
     static public String COMMA;
-    static public final String SQLITE_URL = "jdbc:sqlite:main.db";
-    static public final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS User (\n"
-            + "	id integer PRIMARY KEY,\n"
-            + "	username varchar(255) NOT NULL,\n"
-            + "	password varchar(255) NOT NULL\n"
-            + ");";
+    static public String SQLITE_URL;
+    static public String SQL_CREATE_TABLE;
 
     public Config(){
         try{
@@ -59,6 +55,8 @@ public class Config {
             TEMP = object.get("TEMP").toString();
             SPACE = object.get("SPACE").toString();
             COMMA = object.get("COMMA").toString();
+            SQLITE_URL = object.get("SQLITE_URL").toString();
+            SQL_CREATE_TABLE = object.get("SQL_CREATE_TABLE").toString();
 
         } catch(Exception e){
             e.printStackTrace();

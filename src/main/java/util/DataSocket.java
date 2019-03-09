@@ -10,18 +10,20 @@ import java.io.IOException;
 import java.net.*;
 
 public class DataSocket {
-    private static Logger logger = Logger.getLogger(DataSocket.class);
+    private static Logger log = Logger.getLogger(DataSocket.class);
     private ServerSocket serverSocket;
     private Socket inSocket;
 
     public DataSocket() {
+
+        ServerSocketAccept.loggerConfig(log);
         startThread(Config.PORT_20_INT);
     }
 
     public void createDataConnection(String processingString, String flag, CommandsController controller) {
         try {
                 inSocket = serverSocket.accept();
-                logger.info("Data connection established");
+            log.info("Data connection established");
                 Runnable r = new DataThreadHandler(inSocket, processingString, flag, controller);
                 Thread thread = new Thread(r);
                 thread.start();
@@ -38,7 +40,7 @@ public class DataSocket {
                     final InetAddress addr = InetAddress.getByName(Config.IP_ADDRESS_STRING_POINTS);
                     serverSocket = new ServerSocket(port, Config.MAX_CONNECTION_NUMBER, addr);
                 } catch (IOException e) {
-                    logger.info(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
+                    log.debug(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -47,27 +49,4 @@ public class DataSocket {
         thread1.start();
     }
 
-    public void closeSocket() {
-        try {
-            serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public ServerSocket getServerSocket() {
-        return serverSocket;
-    }
-
-    public void setServerSocket(ServerSocket serverSocket) {
-        this.serverSocket = serverSocket;
-    }
-
-    public Socket getInSocket() {
-        return inSocket;
-    }
-
-    public void setInSocket(Socket inSocket) {
-        this.inSocket = inSocket;
-    }
 }

@@ -4,6 +4,7 @@ import model.*;
 import org.apache.log4j.Logger;
 import util.DataSocket;
 import util.JDBCConnection;
+import util.ServerSocketAccept;
 
 import java.io.PrintWriter;
 
@@ -19,6 +20,7 @@ public class CommandsController {
     private Logger log = Logger.getLogger(CommandsController.class);
 
     public CommandsController() {
+        ServerSocketAccept.loggerConfig(log);
         connection = new JDBCConnection();
         dataSocket = new DataSocket();
         reply = new Reply();

@@ -24,6 +24,6 @@ public class CommandSTOR implements CommandProcess {
 
         controller.getDataSocket().createDataConnection(filename, "STOR", controller);
 
-        return  controller.reply.codeToMessage.get(226).toString();
+        return  CommandsController.reply.codeToMessage.get(226).toString();
     }
 }

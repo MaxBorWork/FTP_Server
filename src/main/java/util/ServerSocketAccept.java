@@ -3,7 +3,7 @@ package util;
 import controller.CommandsController;
 import model.Config;
 import model.LogMessages;
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -18,10 +18,11 @@ public class ServerSocketAccept {
     private Logger logger = Logger.getLogger(ServerSocketAccept.class);
 
     public ServerSocketAccept(String[] args) {
+        loggerConfig(logger);
         new Config();
         if (args.length > 0) {
             Config.ROOT = args[0];
-            logger.info("ROOT directory changed, ROOT is " + Config.ROOT);
+            logger.debug("ROOT directory changed, ROOT is " + Config.ROOT);
         }
         controller = new CommandsController();
         start();
@@ -32,7 +33,7 @@ public class ServerSocketAccept {
             InetAddress addr = InetAddress.getByName(Config.IP_ADDRESS_STRING_POINTS);
             createConnection(addr);
         } catch (UnknownHostException e) {
-            logger.info(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
+            logger.debug(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -52,6 +53,19 @@ public class ServerSocketAccept {
             }
         } catch (IOException e ) {
             logger.info(LogMessages.CANT_CREATE_SOCKET_MESSAGE + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void loggerConfig(Logger logger) {
+        logger.setLevel(Level.ALL);
+        PatternLayout layout = new PatternLayout("%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n");
+        try {
+            FileAppender fileAppender = new FileAppender(layout, "log_info.log");
+            fileAppender.setAppend(false);
+            fileAppender.setImmediateFlush(true);
+            logger.addAppender(fileAppender);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -22,8 +22,8 @@ public class CommandDELE implements CommandProcess {
             File file = new File(fileName);
 
             if (!file.isDirectory() && file.delete()) {
-                return  controller.reply.codeToMessage.get(200).toString();
-            } else return  controller.reply.codeToMessage.get(550).toString();
+                return  CommandsController.reply.codeToMessage.get(200).toString();
+            } else return  CommandsController.reply.codeToMessage.get(550).toString();
 
 
     }
