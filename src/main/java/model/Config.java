@@ -37,7 +37,7 @@ public class Config {
 
     public Config(){
         try{
-            String text = new String(Files.readAllBytes(Paths.get("Config.jsonConfig.json")), StandardCharsets.UTF_8);
+            String text = new String(Files.readAllBytes(Paths.get("Config.json")), StandardCharsets.UTF_8);
             JSONObject object = new JSONObject(text);
 
             IP_ADDRESS_STRING_POINTS = object.get("IP_ADDRESS_STRING_POINTS").toString();

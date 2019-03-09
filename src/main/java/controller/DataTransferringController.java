@@ -1,6 +1,7 @@
 package controller;
 
 import model.Config;
+import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -53,13 +54,15 @@ public class DataTransferringController {
         String newFileName = copyFileToTmp(fileName);
 
         try {
-            Files.copy( Paths.get(fileName), Paths.get(newFileName) ,  StandardCopyOption.REPLACE_EXISTING);
+            FileUtils.copyFile( new File(fileName),  new File(newFileName));
+     //       Files.copy( Paths.get(fileName), Paths.get(newFileName) ,  StandardCopyOption.REPLACE_EXISTING);
 
             if (controller.getCurrentType().equals(Config.TYPE_I)) {
                 retrieveBinaryFile(newFileName);
             } else {
                 retrieveASCIIFile(newFileName);
             }
+      //      FileUtils.
 
             Files.delete(Paths.get(newFileName));
         } catch (IOException e) {
@@ -71,7 +74,7 @@ public class DataTransferringController {
         try {
             byte[] fileAsByteArray = Files.readAllBytes(Paths.get(newFileName));
             outputStream.write(fileAsByteArray);
-            Files.delete(Paths.get(newFileName));
+           // Files.delete(Paths.get(newFileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,7 +108,12 @@ public class DataTransferringController {
             } else {
                 storeASCIIFile(newFileName);
             }
-            Files.move(Paths.get(newFileName), Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
+      //      FileUtils.copyFile();
+            if( new File(fileName).exists()){
+                new File(fileName).delete();
+            }
+            FileUtils.moveFile( new File(newFileName),  new File(fileName));
+         //   Files.move(Paths.get(newFileName), Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
