@@ -5,12 +5,14 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class CommandMKDTest {
+    private CommandDELE dele;
     private CommandMKD mkd;
     private ReplyCode code;
     private CommandsController controller = new CommandsController();
@@ -20,6 +22,7 @@ public class CommandMKDTest {
     @Before
     public void initTest() {
         new Config();
+        dele = new CommandDELE();
         mkd = new CommandMKD();
         code = new ReplyCode();
         inputList200 = new ArrayList<>();
@@ -31,6 +34,9 @@ public class CommandMKDTest {
         inputList550.add("MKD Безымянный документ");
         inputList550.add("MKD ");
         inputList200.add("MKD testIT");
+       if(new File(Config.ROOT+"/testIT").exists()){
+new File(Config.ROOT+"/testIT").delete();
+       }
 
     }
 

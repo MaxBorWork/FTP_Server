@@ -5,12 +5,14 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class CommandDELETest {
+    private CommandMKD mkd;
     private CommandDELE dele;
     private ReplyCode code;
     private CommandsController controller= new CommandsController();
@@ -20,6 +22,7 @@ public class CommandDELETest {
     @Before
     public void initTest() {
         new Config();
+        mkd = new CommandMKD();
         dele = new CommandDELE();
         code = new ReplyCode();
         inputList250 = new ArrayList<>();
@@ -31,8 +34,31 @@ public class CommandDELETest {
 
         inputList550.add("DELE 2.bmp");
         inputList550.add("DELE Безымянный документ1");
+
         inputList250.add("DELE me.jpg");
         inputList250.add("DELE x.txt");
+
+
+        if(!(new File( Config.ROOT +"/me.jpg").exists())){
+            try{
+                new File(Config.ROOT +"/me.jpg").createNewFile();
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+        if(!(new File( Config.ROOT +"/x.txt").exists())){
+            try{ new File(Config.ROOT +"/x.txt").createNewFile();
+
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        //for(String input: inputList250){
+           // mkd.process(input, code, controller);
+          //   }
     }
 
     @Test

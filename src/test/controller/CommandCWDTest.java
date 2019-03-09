@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 public class CommandCWDTest {
     private CommandCWD cwd;
+    private CommandMKD mkd;
     private ReplyCode code;
     private CommandsController controller;
     private List<String> inputList250;
@@ -20,6 +21,7 @@ public class CommandCWDTest {
     @Before
     public void initTest() {
         new Config();
+        mkd = new CommandMKD();
         cwd = new CommandCWD();
         code = new ReplyCode();
         controller = new CommandsController();
@@ -31,9 +33,15 @@ public class CommandCWDTest {
 
         inputList550.add("CWD 1.bmp");
         inputList550.add("CWD NotExistCatalog");
+
         inputList250.add("CWD литература");
         inputList250.add("CWD New catalog");
         inputList250.add("CWD Lab1");
+
+        for(String input: inputList250){
+            controller.setCurrentDir(Config.ROOT);
+           mkd.process(input, code, controller);
+        }
     }
 
     @Test

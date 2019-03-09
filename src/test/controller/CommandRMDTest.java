@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 public class CommandRMDTest {
     private CommandRMD rmd;
+    private CommandMKD cwd;
     private ReplyCode code;
     private CommandsController controller = new CommandsController();
     private List<String> inputList250;
@@ -21,6 +22,7 @@ public class CommandRMDTest {
     public void initTest() {
         new Config();
         rmd = new CommandRMD();
+        cwd = new CommandMKD();
         code = new ReplyCode();
         inputList250 = new ArrayList<>();
         inputList550 = new ArrayList<>();
@@ -33,6 +35,11 @@ public class CommandRMDTest {
 
         inputList250.add("RMD d2");
         inputList250.add("RMD testedIT");
+
+
+        for(String input: inputList250){
+            cwd.process(input, code, controller);
+        }
 
     }
 
