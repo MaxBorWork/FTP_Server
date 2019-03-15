@@ -130,18 +130,20 @@ public class DataTransferringController {
     }
 
     private void storeBinaryFile(String fileName) {
-        byte[] fileAsByteArray;
-        try {
-            fileAsByteArray = new byte[inputStream.available()];
-            int data = inputStream.read();
-            int index = 0;
-            while(data != -1) {
-                fileAsByteArray[index] = (byte) data;
-                index++;
-                data = inputStream.read();
-            }
-            inputStream.close();
-            Files.write(Paths.get(fileName), fileAsByteArray);
+    try{
+        byte[] buffer = new byte[1024];
+
+        OutputStream file = new FileOutputStream(new File(fileName));
+        int data = inputStream.read(buffer);
+
+        while(data > 0){
+            file.write(buffer);
+            data = inputStream.read(buffer);
+        }
+
+        inputStream.close();
+        file.close();
+        
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -17,9 +17,9 @@ public class CommandSTOR implements CommandProcess {
             filename = controller.getCurrentDir() + "/" + filename;
         }
 
-        if( !new File(filename).canWrite()){
-            return  CommandsController.reply.codeToMessage.get(550).toString();
-        }
+    //    if( new File(filename).canWrite()){
+
+
 
         controller.getWriter().println(code.getCODE_150(controller.getCurrentType(),
                controller.getCurrentDir(),
@@ -28,5 +28,8 @@ public class CommandSTOR implements CommandProcess {
         controller.getDataSocket().createDataConnection(filename, "STOR", controller);
 
         return  CommandsController.reply.codeToMessage.get(226).toString();
+      //  } else {
+        //    return  CommandsController.reply.codeToMessage.get(550).toString();
+        //}
     }
 }
