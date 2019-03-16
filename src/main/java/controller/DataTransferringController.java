@@ -11,7 +11,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 public class DataTransferringController {
     private InputStream inputStream;
     private OutputStream outputStream;
@@ -143,7 +142,7 @@ public class DataTransferringController {
 
         inputStream.close();
         file.close();
-        
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -162,3 +161,4 @@ public class DataTransferringController {
         return newFileName;
     }
 }
+
