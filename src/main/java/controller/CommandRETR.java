@@ -18,9 +18,7 @@ public class CommandRETR implements CommandProcess {
             filename = controller.getCurrentDir() + "/" + filename;
         }
 
-
         String programRight = (new com.sun.security.auth.module.UnixSystem()).getUsername();
-
 
         try {
             Path path = Paths.get(filename);
@@ -29,19 +27,27 @@ public class CommandRETR implements CommandProcess {
             UserPrincipal owner = ownerView.getOwner();
             String ownerName = owner.toString();
 
-            if (ownerName != programRight && !programRight.equals("root")) {
-
-
-                return CommandsController.reply.codeToMessage.get(226).toString();
-            } else {
+            if(programRight.equals("root")){
                 controller.getWriter().println(code.getCODE_150(controller.getCurrentType(),
                         controller.getCurrentDir(),
                         DataTransferringController.pasvMessage()));
 
                 controller.getDataSocket().createDataConnection(filename, "RETR", controller);
-                return CommandsController.reply.codeToMessage.get(550).toString();
-            }
+                return CommandsController.reply.codeToMessage.get(226).toString();
 
+            } else {
+                if(programRight.equals(ownerName)){
+                    controller.getWriter().println(code.getCODE_150(controller.getCurrentType(),
+                            controller.getCurrentDir(),
+                            DataTransferringController.pasvMessage()));
+
+                    controller.getDataSocket().createDataConnection(filename, "RETR", controller);
+                    return CommandsController.reply.codeToMessage.get(226).toString();
+                } else {
+                    return CommandsController.reply.codeToMessage.get(553).toString();
+                }
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

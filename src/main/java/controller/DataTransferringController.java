@@ -129,23 +129,28 @@ public class DataTransferringController {
     }
 
     private void storeBinaryFile(String fileName) {
-    try{
-        byte[] buffer = new byte[1024];
+        byte[] fileAsByteArray;
 
-        OutputStream file = new FileOutputStream(new File(fileName));
-        int data = inputStream.read(buffer);
+        try {
+            List byteList = new ArrayList();
+            int data = inputStream.read();
 
-        while(data > 0){
-            file.write(buffer);
-            data = inputStream.read(buffer);
-        }
-
-        inputStream.close();
-        file.close();
+            while (data != -1) {
+                byteList.add((byte) data);
+                data = inputStream.read();
+            }
+            inputStream.close();
+            fileAsByteArray = new byte[byteList.size()];
+            for (int i = 0; i < byteList.size(); i++) {
+                fileAsByteArray[i] = (byte) byteList.get(i);
+            }
+            Files.write(Paths.get(fileName), fileAsByteArray);
+            Files.write(Paths.get(fileName), fileAsByteArray);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private String copyFileToTmp(String fileName) {
