@@ -43,7 +43,7 @@ public class CommandSTOR implements CommandProcess {
                 return CommandsController.reply.codeToMessage.get(226).toString();
             } else {
                 if(!programRight.equals(ownerName)){
-                    return CommandsController.reply.codeToMessage.get(553).toString();
+                    return CommandsController.reply.codeToMessage.get(550).toString();
 
                 } else {
                     controller.getWriter().println(code.getCODE_150(controller.getCurrentType(),

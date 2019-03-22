@@ -22,7 +22,7 @@ public class CommandMKD implements CommandProcess {
             if (file.mkdir()) {
                 return  CommandsController.reply.codeToMessage.get(200).toString();
             } else {
-                return  CommandsController.reply.codeToMessage.get(550).toString();
+                return  CommandsController.reply.codeToMessage.get(551).toString();
             }
     }
 }

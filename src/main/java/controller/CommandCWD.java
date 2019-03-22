@@ -29,7 +29,7 @@ public class CommandCWD implements CommandProcess {
             log.debug("current work dir is " + fullDirPath);
             return CommandsController.reply.codeToMessage.get(250).toString();
         } else {
-            return  CommandsController.reply.codeToMessage.get(550).toString();
+            return  CommandsController.reply.codeToMessage.get(551).toString();
         }
     }
 }

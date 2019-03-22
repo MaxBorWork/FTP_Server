@@ -44,7 +44,7 @@ public class CommandRETR implements CommandProcess {
                     controller.getDataSocket().createDataConnection(filename, "RETR", controller);
                     return CommandsController.reply.codeToMessage.get(226).toString();
                 } else {
-                    return CommandsController.reply.codeToMessage.get(553).toString();
+                    return CommandsController.reply.codeToMessage.get(550).toString();
                 }
 
             }

@@ -23,7 +23,7 @@ public class CommandDELE implements CommandProcess {
 
             if (!file.isDirectory() && file.delete()) {
                 return  CommandsController.reply.codeToMessage.get(200).toString();
-            } else return  CommandsController.reply.codeToMessage.get(550).toString();
+            } else return  CommandsController.reply.codeToMessage.get(551).toString();
 
 
     }
