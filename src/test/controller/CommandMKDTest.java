@@ -28,7 +28,7 @@ public class CommandMKDTest {
         inputList200 = new ArrayList<>();
         inputList550 = new ArrayList<>();
 
-        Config.ROOT = "/etc/ftRoot";
+        Config.ROOT = "/home/pashkevich_alena/s";
         controller.setCurrentDir(Config.ROOT );
 
         inputList550.add("MKD Безымянный документ");
@@ -47,7 +47,7 @@ new File(Config.ROOT+"/testIT").delete();
         }
 
         for(String input: inputList550){
-            assertEquals(CommandsController.reply.codeToMessage.get(550).toString(),  mkd.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(551).toString(),  mkd.process(input, code, controller));
         }
     }
 

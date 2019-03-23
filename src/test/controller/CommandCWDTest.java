@@ -29,7 +29,7 @@ public class CommandCWDTest {
         inputList550 = new ArrayList<>();
         inputList250 = new ArrayList<>();
 
-        Config.ROOT = "/etc/ftRoot";
+        Config.ROOT = "/home/pashkevich_alena/s";
 
         inputList550.add("CWD 1.bmp");
         inputList550.add("CWD NotExistCatalog");
@@ -52,7 +52,7 @@ public class CommandCWDTest {
         }
 
         for(String input: inputList550){
-            assertEquals(CommandsController.reply.codeToMessage.get(550).toString(),  cwd.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(551).toString(),  cwd.process(input, code, controller));
         }
     }
 
