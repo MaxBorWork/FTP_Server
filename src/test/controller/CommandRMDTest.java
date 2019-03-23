@@ -27,7 +27,7 @@ public class CommandRMDTest {
         inputList250 = new ArrayList<>();
         inputList550 = new ArrayList<>();
 
-        Config.ROOT = "/etc/ftRoot";
+        Config.ROOT = "/home/pashkevich_alena/s";
         controller.setCurrentDir(Config.ROOT);
 
         inputList550.add("RMD 2.bmp");

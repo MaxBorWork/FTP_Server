@@ -28,7 +28,7 @@ public class CommandDELETest {
         inputList250 = new ArrayList<>();
         inputList550 = new ArrayList<>();
 
-        Config.ROOT = "/etc/ftRoot";
+        Config.ROOT = "/home/pashkevich_alena/s";
         controller.setCurrentDir(Config.ROOT );
 
 
@@ -68,7 +68,7 @@ public class CommandDELETest {
         }
 
         for(String input: inputList550){
-            assertEquals(controller.reply.codeToMessage.get(550).toString(),  dele.process(input, code, controller));
+            assertEquals(controller.reply.codeToMessage.get(551).toString(),  dele.process(input, code, controller));
         }
     }
 }
