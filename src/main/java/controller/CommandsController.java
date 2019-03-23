@@ -55,6 +55,9 @@ public class CommandsController {
                 System.out.println("\t" + response);
                 log.info(response);
                 writer.println(response);
+                if (response.contains("550")) {
+                    return true;
+                }
             }
             return false;
         } else {
