@@ -5,6 +5,7 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class CommandRMDTest {
     private CommandRMD rmd;
     private CommandMKD cwd;
     private ReplyCode code;
-    private CommandsController controller = new CommandsController();
+    private CommandsController controller = new CommandsController("RMD");
     private List<String> inputList250;
     private List<String> inputList550;
 
@@ -52,7 +53,12 @@ public class CommandRMDTest {
         for(String input: inputList550){
             assertEquals(CommandsController.reply.codeToMessage.get(550).toString(),  rmd.process(input, code, controller));
         }
+
+//        try {
+//            controller.getDataSocket().getServerSocket().close();
+//        } catch (IOException | NullPointerException e) {
+//            e.printStackTrace();
+//            e.printStackTrace();
+//        }
     }
-
-
 }

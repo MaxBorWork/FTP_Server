@@ -5,6 +5,7 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class CommandCWDTest {
     private CommandCWD cwd;
     private CommandMKD mkd;
     private ReplyCode code;
-    private CommandsController controller;
+    private CommandsController controller = new CommandsController("CWD");
     private List<String> inputList250;
     private List<String> inputList550;
 
@@ -24,7 +25,6 @@ public class CommandCWDTest {
         mkd = new CommandMKD();
         cwd = new CommandCWD();
         code = new ReplyCode();
-        controller = new CommandsController();
 
         inputList550 = new ArrayList<>();
         inputList250 = new ArrayList<>();
@@ -54,6 +54,13 @@ public class CommandCWDTest {
         for(String input: inputList550){
             assertEquals(CommandsController.reply.codeToMessage.get(551).toString(),  cwd.process(input, code, controller));
         }
+
+//        try {
+//            controller.getDataSocket().getServerSocket().close();
+//        } catch (IOException | NullPointerException e) {
+//            e.printStackTrace();
+//            e.printStackTrace();
+//        }
     }
 
 }

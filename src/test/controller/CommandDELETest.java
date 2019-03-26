@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class CommandDELETest {
     private CommandMKD mkd;
     private CommandDELE dele;
     private ReplyCode code;
-    private CommandsController controller= new CommandsController();
+    private CommandsController controller= new CommandsController("DELE");
     private List<String> inputList250;
     private List<String> inputList550;
 
@@ -70,5 +71,11 @@ public class CommandDELETest {
         for(String input: inputList550){
             assertEquals(controller.reply.codeToMessage.get(551).toString(),  dele.process(input, code, controller));
         }
+
+//        try {
+//            controller.getDataSocket().getServerSocket().close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

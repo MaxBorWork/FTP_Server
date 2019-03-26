@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class CommandMKDTest {
     private CommandDELE dele;
     private CommandMKD mkd;
     private ReplyCode code;
-    private CommandsController controller = new CommandsController();
+    private CommandsController controller = new CommandsController("MKD");
     private List<String> inputList200;
     private List<String> inputList550;
 
@@ -34,9 +35,9 @@ public class CommandMKDTest {
         inputList550.add("MKD Безымянный документ");
         inputList550.add("MKD ");
         inputList200.add("MKD testIT");
-       if(new File(Config.ROOT+"/testIT").exists()){
-new File(Config.ROOT+"/testIT").delete();
-       }
+        if(new File(Config.ROOT+"/testIT").exists()){
+            new File(Config.ROOT+"/testIT").delete();
+        }
 
     }
 
@@ -49,6 +50,13 @@ new File(Config.ROOT+"/testIT").delete();
         for(String input: inputList550){
             assertEquals(CommandsController.reply.codeToMessage.get(551).toString(),  mkd.process(input, code, controller));
         }
+
+//        try {
+//            controller.getDataSocket().getServerSocket().close();
+//        } catch (IOException | NullPointerException e) {
+//            e.printStackTrace();
+//            e.printStackTrace();
+//        }
     }
 
 }

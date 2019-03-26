@@ -5,6 +5,7 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
 public class CommandPASVTest {
     private CommandPASV pasv;
     private ReplyCode code;
-    private CommandsController controller;
+    private CommandsController controller = new CommandsController("PASV");
     private List<String> inputList227;
     private List<String> inputList500;
 
@@ -22,7 +23,6 @@ public class CommandPASVTest {
         new Config();
         pasv = new CommandPASV();
         code = new ReplyCode();
-        controller = new CommandsController();
         inputList227 = new ArrayList<>();
         inputList500 = new ArrayList<>();
 
@@ -44,8 +44,9 @@ public class CommandPASVTest {
         }
 
         for(String input: inputList500){
-            assertEquals(controller.reply.codeToMessage.get(500).toString(),  pasv.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(500).toString(),  pasv.process(input, code, controller));
         }
+
     }
 
 }

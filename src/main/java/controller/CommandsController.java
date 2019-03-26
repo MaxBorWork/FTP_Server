@@ -29,6 +29,11 @@ public class CommandsController {
         reply = new Reply();
     }
 
+    public CommandsController(String command) {
+        connection = new JDBCConnection();
+        reply = new Reply();
+    }
+
     public boolean getCommand(String line, PrintWriter writer, ReplyCode code) {
         if (!username.equals("")) {
             loggerConfig(log);

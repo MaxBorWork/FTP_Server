@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -28,12 +29,10 @@ public class CommandCDUPTest {
         new Config();
         cdup = new CommandCDUP();
         code = new ReplyCode();
-        controller = new CommandsController();
+        controller = new CommandsController("CDUP");
         inputList250 = new ArrayList<>();
         inputList550 = new ArrayList<>();
         inputList501 = new ArrayList<>();
-
-
 
         inputList250.add("CDUP");
         inputList550.add("CDUP");

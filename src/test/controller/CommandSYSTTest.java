@@ -5,6 +5,7 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class CommandSYSTTest {
         new Config();
         syst = new CommandSYST();
         code = new ReplyCode();
-        controller = new CommandsController();
+        controller = new CommandsController("SYST");
         inputList215 = new ArrayList<>();
         inputList500 = new ArrayList<>();
 
@@ -46,6 +47,13 @@ public class CommandSYSTTest {
         for(String input: inputList500){
             assertEquals(controller.reply.codeToMessage.get(500).toString(),  syst.process(input, code, controller));
         }
+
+//        try {
+//            controller.getDataSocket().getServerSocket().close();
+//        } catch (IOException | NullPointerException e) {
+//            e.printStackTrace();
+//            e.printStackTrace();
+//        }
     }
 
 }

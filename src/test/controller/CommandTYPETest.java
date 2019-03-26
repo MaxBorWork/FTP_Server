@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class CommandTYPETest {
         new Config();
         type = new CommandTYPE();
         code = new ReplyCode();
-        controller = new CommandsController();
+        controller = new CommandsController("TYPE");
         inputList501 = new ArrayList<>();
         inputList200 = new ArrayList<>();
 
@@ -46,6 +47,13 @@ public class CommandTYPETest {
         for(String input: inputList501){
             Assert.assertEquals(CommandsController.reply.codeToMessage.get(501).toString(),  type.process(input, code, controller));
         }
+
+//        try {
+//            controller.getDataSocket().getServerSocket().close();
+//        } catch (IOException | NullPointerException e) {
+//            e.printStackTrace();
+//            e.printStackTrace();
+//        }
     }
 
 }

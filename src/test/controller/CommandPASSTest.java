@@ -5,6 +5,7 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
 public class CommandPASSTest {
     private CommandPASS pass;
     private ReplyCode code;
-    private CommandsController controller;
+    private CommandsController controller = new CommandsController("PASS");
     private List<String> inputList530;
     private List<String> inputList500;
     private List<String> inputList230;
@@ -23,7 +24,6 @@ public class CommandPASSTest {
         new Config();
         pass= new CommandPASS();
         code = new ReplyCode();
-        controller = new CommandsController();
         inputList530 = new ArrayList<>();
         inputList500 = new ArrayList<>();
         inputList230 = new ArrayList<>();
@@ -53,6 +53,13 @@ public class CommandPASSTest {
         for(String input: inputList230){
             assertEquals(controller.reply.codeToMessage.get(230).toString(), pass.process(input, code, controller));
         }
+
+//        try {
+//            controller.getDataSocket().getServerSocket().close();
+//        } catch (IOException | NullPointerException e) {
+//            e.printStackTrace();
+//            e.printStackTrace();
+//        }
     }
 
 }

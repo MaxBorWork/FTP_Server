@@ -49,4 +49,7 @@ public class DataSocket {
         thread1.start();
     }
 
+    public ServerSocket getServerSocket() {
+        return serverSocket;
+    }
 }

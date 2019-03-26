@@ -5,6 +5,7 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class CommandUSERTest {
         new Config();
         user = new CommandUSER();
         code = new ReplyCode();
-        controller = new CommandsController();
+        controller = new CommandsController("USER");
         inputList530 = new ArrayList<>();
         inputList331 = new ArrayList<>();
         inputList500 = new ArrayList<>();
@@ -52,6 +53,13 @@ public class CommandUSERTest {
         for(String input: inputList500){
             assertEquals(CommandsController.reply.codeToMessage.get(500).toString(),  user.process(input, code, controller));
         }
+
+//        try {
+//            controller.getDataSocket().getServerSocket().close();
+//        } catch (IOException | NullPointerException e) {
+//            e.printStackTrace();
+//            e.printStackTrace();
+//        }
     }
 
 }

@@ -5,6 +5,7 @@ import model.ReplyCode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class CommandPWDTest {
         new Config();
         pwd = new CommandPWD();
         code = new ReplyCode();
-        controller = new CommandsController();
+        controller = new CommandsController("PWD");
         inputList257 = new ArrayList<>();
         inputList257.add("PWD");
         inputList257.add("PWD  ");
@@ -33,7 +34,6 @@ public class CommandPWDTest {
         for(String input: inputList257){
             assertEquals(new ReplyCode().getCODE_257(controller.getCurrentDir()),  pwd.process(input, code, controller));
         }
+
     }
-
-
 }
