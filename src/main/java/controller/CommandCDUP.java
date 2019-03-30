@@ -38,7 +38,7 @@ public class CommandCDUP implements CommandProcess {
                 controller.setCurrentDir(updirPath);
                 return CommandsController.reply.codeToMessage.get(250).toString();
 
-            } else return CommandsController.reply.codeToMessage.get(550).toString();
+            } else return CommandsController.reply.codeToMessage.get(551).toString();
 
         } else return CommandsController.reply.codeToMessage.get(501).toString();
     }

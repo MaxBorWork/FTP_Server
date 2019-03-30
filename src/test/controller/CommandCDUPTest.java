@@ -48,7 +48,7 @@ public class CommandCDUPTest {
 
         for(String input: inputList550) {
             controller.setCurrentDir(Config.ROOT + "/dir1/dirr");
-            assertEquals(CommandsController.reply.codeToMessage.get(550).toString(), cdup.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(551).toString(), cdup.process(input, code, controller));
         }
 
         for(String input: inputList501) {

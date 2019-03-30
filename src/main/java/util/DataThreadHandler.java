@@ -15,7 +15,14 @@ public class DataThreadHandler implements Runnable {
     private String processingString;
     private String flag;
 
-    public DataThreadHandler(Socket inSocket, String processingString, String flag, CommandsController controller) {
+    /**
+     * Конструктор обработчика Data Socket
+     * @param inSocket
+     * @param processingString
+     * @param flag
+     * @param controller
+     */
+    DataThreadHandler(Socket inSocket, String processingString, String flag, CommandsController controller) {
         this.inSocket = inSocket;
         this.processingString = processingString;
         this.flag = flag;

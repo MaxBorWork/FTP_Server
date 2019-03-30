@@ -51,7 +51,7 @@ public class CommandRMDTest {
         }
 
         for(String input: inputList550){
-            assertEquals(CommandsController.reply.codeToMessage.get(550).toString(),  rmd.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(551).toString(),  rmd.process(input, code, controller));
         }
 
 //        try {

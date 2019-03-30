@@ -11,6 +11,7 @@ public class Main {
 //        Path currentRelativePath = Paths.get("");
 //        String s = currentRelativePath.toAbsolutePath().toString();
 //        System.out.println("Current relative path is: " + s);
+        System.out.println("FTP server started, waiting for connection");
         new ServerSocketAccept(args);
     }
 

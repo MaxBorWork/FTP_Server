@@ -60,7 +60,7 @@ public class CommandsController {
                 System.out.println("\t" + response);
                 log.info(response);
                 writer.println(response);
-                if (response.contains("550")) {
+                if (response.contains(reply.codeToMessage.get(550).toString())) {
                     return true;
                 }
             }

@@ -27,7 +27,7 @@ public class CommandCWD implements CommandProcess {
         if(rootNew.isDirectory() && rootNew.exists()){
             controller.setCurrentDir(fullDirPath);
             log.debug("current work dir is " + fullDirPath);
-            return CommandsController.reply.codeToMessage.get(250).toString();
+            return CommandsController.reply.codeToMessage.get(200).toString();
         } else {
             return  CommandsController.reply.codeToMessage.get(551).toString();
         }

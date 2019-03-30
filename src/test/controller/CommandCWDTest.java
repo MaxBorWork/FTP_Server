@@ -48,7 +48,7 @@ public class CommandCWDTest {
     public void process() {
         for(String input: inputList250){
             controller.setCurrentDir(Config.ROOT);
-            assertEquals(CommandsController.reply.codeToMessage.get(250).toString(),  cwd.process(input, code, controller));
+            assertEquals(CommandsController.reply.codeToMessage.get(200).toString(),  cwd.process(input, code, controller));
         }
 
         for(String input: inputList550){

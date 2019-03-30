@@ -30,15 +30,20 @@ public class CommandRMD implements CommandProcess {
                 return  CommandsController.reply.codeToMessage.get(250).toString();
             } else {
                 log.debug(LogMessages.WRONG_COMMAND_MESSAGE);
-                return CommandsController.reply.codeToMessage.get(550).toString();
+                return CommandsController.reply.codeToMessage.get(551).toString();
             }
         } else {
             log.debug(LogMessages.WRONG_COMMAND_MESSAGE);
-            return  CommandsController.reply.codeToMessage.get(550).toString();
+            return  CommandsController.reply.codeToMessage.get(551).toString();
         }
     }
 
-    private void removeNotNullDir(File dir, CommandsController controller) {
+    /**
+     * Метод удаления непустой директории
+     * @param dir
+     * @param controller
+     */
+    protected void removeNotNullDir(File dir, CommandsController controller) {
         String[] fileNames = dir.list();
         if (fileNames != null) {
             int removedFromDirFilesCount = 0;

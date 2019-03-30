@@ -52,19 +52,21 @@ public class DataTransferringController {
     public void retrieveFile(String fileName, CommandsController controller) {
         String newFileName = copyFileToTmp(fileName);
 
-        try {
-            FileUtils.copyFile( new File(fileName),  new File(newFileName));
+            try {
+                FileUtils.copyFile( new File(fileName),  new File(newFileName));
 
-            if (controller.getCurrentType().equals(Config.TYPE_I)) {
-                retrieveBinaryFile(newFileName);
-            } else {
-                retrieveASCIIFile(newFileName);
+                if (controller.getCurrentType().equals(Config.TYPE_I)) {
+                    retrieveBinaryFile(newFileName);
+                } else {
+                    retrieveASCIIFile(newFileName);
+                }
+
+                Files.delete(Paths.get(newFileName));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-            Files.delete(Paths.get(newFileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     private void retrieveBinaryFile(String newFileName) {
@@ -94,6 +96,11 @@ public class DataTransferringController {
         }
     }
 
+    /**
+     * Метод для выбора типа (бинарный или текстовый) сохранения файла на сервер
+     * @param fileName
+     * @param controller
+     */
     public void storeFile(String fileName, CommandsController controller) {
         String newFileName = copyFileToTmp(fileName);
         try {
@@ -112,6 +119,10 @@ public class DataTransferringController {
         }
     }
 
+    /**
+     * Метод, сохраняющий текстовый (ASCII) файл на сервер
+     * @param fileName
+     */
     private void storeASCIIFile(String fileName) {
         Reader r = null;
         StringBuilder builder = new StringBuilder();
@@ -145,19 +156,20 @@ public class DataTransferringController {
                 fileAsByteArray[i] = (byte) byteList.get(i);
             }
             Files.write(Paths.get(fileName), fileAsByteArray);
-            Files.write(Paths.get(fileName), fileAsByteArray);
+         //   Files.write(Paths.get(fileName), fileAsByteArray);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
+    //медот копирования в промежуточную директорию
     private String copyFileToTmp(String fileName) {
         StringBuilder oldFileName = new StringBuilder(fileName.substring(fileName.lastIndexOf("/") + 1));
-
+        //новое имя файла
         String newFileName = Config.TEMP + "/" + oldFileName;
         int id = 1;
+        //копирование файлов
         while (Files.exists(Paths.get(newFileName))) {
             oldFileName.insert(0, String.valueOf(id));
             newFileName = Config.TEMP + "/" + oldFileName;
